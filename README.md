@@ -6,6 +6,6 @@
 - Asier Ferreiro
   - https://github.com/asife77/sassy-fish-project.git
 - Naiara Gutierrez
-  - 
+  - https://github.com/naii7/sassy-fish.git 
 - Aitana Perez
   - https://github.com/a-perz/sassy-fish-project.git
