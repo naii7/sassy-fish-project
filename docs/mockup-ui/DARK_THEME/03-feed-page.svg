@@ -1,0 +1,182 @@
+<svg width="1440" height="900" viewBox="0 0 1440 900" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="buttonGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#ff6b35;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#ffa600;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="headerGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#764ba2;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#f093fb;stop-opacity:1" />
+    </linearGradient>
+    <filter id="neon">
+      <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="6" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Dark Background -->
+  <rect width="1440" height="900" fill="#0a0e27"/>
+  
+  <!-- Top Navigation Bar -->
+  <rect width="1440" height="70" fill="#1e2139"/>
+  <rect width="1440" height="3" fill="url(#headerGradient)" filter="url(#neon)"/>
+  
+  <!-- Logo -->
+  <text x="60" y="48" font-family="Archivo Black, sans-serif" font-size="26" font-weight="900" fill="url(#headerGradient)" filter="url(#neon)">SASSY-ME</text>
+  
+  <!-- Navigation Items -->
+  <text x="900" y="45" font-family="Space Grotesk, sans-serif" font-size="14" font-weight="700" fill="#667eea">HOME</text>
+  <rect x="895" y="50" width="45" height="3" fill="#667eea" filter="url(#neon)"/>
+  
+  <text x="990" y="45" font-family="Space Grotesk, sans-serif" font-size="14" font-weight="600" fill="#6b7280">TRENDING</text>
+  <text x="1090" y="45" font-family="Space Grotesk, sans-serif" font-size="14" font-weight="600" fill="#6b7280">TAGS</text>
+  <text x="1170" y="45" font-family="Space Grotesk, sans-serif" font-size="14" font-weight="600" fill="#6b7280">FRIENDS</text>
+  
+  <!-- New Post Button -->
+  <rect x="1280" y="25" width="120" height="40" fill="url(#buttonGradient)" filter="url(#neon)"/>
+  <text x="1340" y="50" font-family="Archivo Black, sans-serif" font-size="13" font-weight="900" fill="#0a0e27" text-anchor="middle">+ NEW POST</text>
+  
+  <!-- Main Feed Container -->
+  <g transform="translate(280, 110)">
+    <!-- Post Card 1 -->
+    <rect x="0" y="0" width="860" height="220" fill="#1e2139" filter="url(#glow)"/>
+    <rect x="0" y="0" width="6" height="220" fill="#ff6b35" filter="url(#neon)"/>
+    
+    <!-- Post Image 1 -->
+    <rect x="25" y="25" width="180" height="170" fill="#ffa600" opacity="0.2" filter="url(#glow)"/>
+    <circle cx="115" cy="95" r="38" fill="#ff6b35" filter="url(#neon)"/>
+    <circle cx="95" cy="108" r="20" fill="#0a0e27" opacity="0.6"/>
+    <circle cx="130" cy="114" r="24" fill="#0a0e27" opacity="0.6"/>
+    <text x="115" y="145" font-family="Archivo Black, sans-serif" font-size="28" text-anchor="middle">🍳</text>
+    
+    <!-- Post Content 1 -->
+    <text x="230" y="48" font-family="Archivo Black, sans-serif" font-size="20" font-weight="900" fill="#ffffff">DISASTER IN THE KITCHEN</text>
+    
+    <!-- Tags 1 -->
+    <rect x="230" y="65" width="115" height="28" fill="#ff6b35" filter="url(#neon)"/>
+    <text x="287" y="84" font-family="Space Grotesk, sans-serif" font-size="11" font-weight="700" fill="#0a0e27" text-anchor="middle">DISASTERS/OH NO</text>
+    
+    <rect x="355" y="65" width="85" height="28" fill="#667eea"/>
+    <text x="397" y="84" font-family="Space Grotesk, sans-serif" font-size="11" font-weight="700" fill="#ffffff" text-anchor="middle">BATHROOM</text>
+    
+    <!-- Rating 1 -->
+    <text x="230" y="125" fill="#ffa600" font-size="24" filter="url(#neon)">⭐⭐⭐⭐</text>
+    <text x="340" y="125" fill="#374151" font-size="24">☆</text>
+    
+    <!-- Post Text 1 -->
+    <text x="230" y="158" font-family="Space Grotesk, sans-serif" font-size="15" font-weight="500" fill="#9ca3af">well, that didn't go as planned... 😅</text>
+    
+    <!-- Engagement 1 -->
+    <text x="230" y="190" font-family="Space Grotesk, sans-serif" font-size="14" font-weight="600" fill="#f093fb">❤️ 45</text>
+    <text x="310" y="190" font-family="Space Grotesk, sans-serif" font-size="14" font-weight="600" fill="#667eea">💬 18</text>
+  </g>
+  
+  <g transform="translate(280, 350)">
+    <!-- Post Card 2 -->
+    <rect x="0" y="0" width="860" height="220" fill="#1e2139" filter="url(#glow)"/>
+    <rect x="0" y="0" width="6" height="220" fill="#667eea" filter="url(#neon)"/>
+    
+    <!-- Post Image 2 -->
+    <rect x="25" y="25" width="180" height="170" fill="#667eea" opacity="0.2" filter="url(#glow)"/>
+    <circle cx="115" cy="95" r="42" fill="#764ba2" opacity="0.6" filter="url(#glow)"/>
+    <circle cx="115" cy="95" r="28" fill="#667eea" opacity="0.8"/>
+    <rect x="85" y="125" width="28" height="50" fill="#ff6b35"/>
+    <rect x="122" y="125" width="28" height="50" fill="#ffa600"/>
+    
+    <!-- Post Content 2 -->
+    <text x="230" y="48" font-family="Archivo Black, sans-serif" font-size="20" font-weight="900" fill="#ffffff">EPIC MOVIE NIGHT!</text>
+    
+    <!-- Tags 2 -->
+    <rect x="230" y="65" width="125" height="28" fill="#667eea" filter="url(#neon)"/>
+    <text x="292" y="84" font-family="Space Grotesk, sans-serif" font-size="11" font-weight="700" fill="#0a0e27" text-anchor="middle">CINEMA/MOVIES</text>
+    
+    <rect x="365" y="65" width="60" height="28" fill="#ffa600"/>
+    <text x="395" y="84" font-family="Space Grotesk, sans-serif" font-size="11" font-weight="700" fill="#0a0e27" text-anchor="middle">FOOD</text>
+    
+    <!-- Rating 2 -->
+    <text x="230" y="125" fill="#ffa600" font-size="24" filter="url(#neon)">⭐⭐⭐⭐⭐</text>
+    <text x="340" y="125" font-size="24" filter="url(#neon)">❤️</text>
+    
+    <!-- Post Text 2 -->
+    <text x="230" y="158" font-family="Space Grotesk, sans-serif" font-size="15" font-weight="500" fill="#9ca3af">best movie night ever! 🍿 🎬</text>
+    
+    <!-- Engagement 2 -->
+    <text x="230" y="190" font-family="Space Grotesk, sans-serif" font-size="14" font-weight="600" fill="#f093fb">❤️ 87</text>
+    <text x="310" y="190" font-family="Space Grotesk, sans-serif" font-size="14" font-weight="600" fill="#667eea">💬 24</text>
+  </g>
+  
+  <g transform="translate(280, 590)">
+    <!-- Post Card 3 -->
+    <rect x="0" y="0" width="860" height="220" fill="#1e2139" filter="url(#glow)"/>
+    <rect x="0" y="0" width="6" height="220" fill="#764ba2" filter="url(#neon)"/>
+    
+    <!-- Post Image 3 -->
+    <rect x="25" y="25" width="180" height="170" fill="#764ba2" opacity="0.2" filter="url(#glow)"/>
+    <rect x="70" y="70" width="100" height="100" fill="#667eea" opacity="0.4"/>
+    <circle cx="115" cy="120" r="24" fill="#ffa600" filter="url(#neon)"/>
+    <rect x="97" y="128" width="36" height="7" fill="#ff6b35"/>
+    
+    <!-- Post Content 3 -->
+    <text x="230" y="48" font-family="Archivo Black, sans-serif" font-size="20" font-weight="900" fill="#ffffff">LATE NIGHT GAMING</text>
+    
+    <!-- Tags 3 -->
+    <rect x="230" y="65" width="105" height="28" fill="#764ba2" filter="url(#neon)"/>
+    <text x="282" y="84" font-family="Space Grotesk, sans-serif" font-size="11" font-weight="700" fill="#ffffff" text-anchor="middle">VIDEOGAMES</text>
+    
+    <!-- Rating 3 -->
+    <text x="230" y="125" fill="#ffa600" font-size="24" filter="url(#neon)">⭐⭐⭐⭐</text>
+    <text x="320" y="125" fill="#374151" font-size="24">☆</text>
+    
+    <!-- Post Text 3 -->
+    <text x="230" y="158" font-family="Space Grotesk, sans-serif" font-size="15" font-weight="500" fill="#9ca3af">finally beat that impossible level! 🎮</text>
+    
+    <!-- Engagement 3 -->
+    <text x="230" y="190" font-family="Space Grotesk, sans-serif" font-size="14" font-weight="600" fill="#f093fb">❤️ 32</text>
+    <text x="310" y="190" font-family="Space Grotesk, sans-serif" font-size="14" font-weight="600" fill="#667eea">💬 9</text>
+  </g>
+  
+  <!-- Right Sidebar - Trending -->
+  <g transform="translate(1160, 110)">
+    <rect x="0" y="0" width="250" height="500" fill="#1e2139" filter="url(#glow)"/>
+    <rect x="0" y="0" width="250" height="5" fill="url(#headerGradient)" filter="url(#neon)"/>
+    
+    <text x="25" y="50" font-family="Archivo Black, sans-serif" font-size="20" font-weight="900" fill="#ffffff">TRENDING</text>
+    
+    <!-- Trending items -->
+    <rect x="15" y="75" width="220" height="55" fill="#0a0e27" opacity="0.5"/>
+    <text x="25" y="98" font-family="Archivo Black, sans-serif" font-size="16" font-weight="900" fill="#667eea">#CINEMA</text>
+    <text x="25" y="118" font-family="Space Grotesk, sans-serif" font-size="13" font-weight="500" fill="#6b7280">1.2k posts</text>
+    
+    <rect x="15" y="140" width="220" height="55" fill="#0a0e27" opacity="0.5"/>
+    <text x="25" y="163" font-family="Archivo Black, sans-serif" font-size="16" font-weight="900" fill="#ffa600">#FOOD</text>
+    <text x="25" y="183" font-family="Space Grotesk, sans-serif" font-size="13" font-weight="500" fill="#6b7280">890 posts</text>
+    
+    <rect x="15" y="205" width="220" height="55" fill="#0a0e27" opacity="0.5"/>
+    <text x="25" y="228" font-family="Archivo Black, sans-serif" font-size="16" font-weight="900" fill="#764ba2">#VIDEOGAMES</text>
+    <text x="25" y="248" font-family="Space Grotesk, sans-serif" font-size="13" font-weight="500" fill="#6b7280">756 posts</text>
+    
+    <rect x="15" y="270" width="220" height="55" fill="#0a0e27" opacity="0.5"/>
+    <text x="25" y="293" font-family="Archivo Black, sans-serif" font-size="16" font-weight="900" fill="#ff6b35">#DISASTERS</text>
+    <text x="25" y="313" font-family="Space Grotesk, sans-serif" font-size="13" font-weight="500" fill="#6b7280">623 posts</text>
+    
+    <rect x="15" y="335" width="220" height="55" fill="#0a0e27" opacity="0.5"/>
+    <text x="25" y="358" font-family="Archivo Black, sans-serif" font-size="16" font-weight="900" fill="#f093fb">#BOOKS</text>
+    <text x="25" y="378" font-family="Space Grotesk, sans-serif" font-size="13" font-weight="500" fill="#6b7280">445 posts</text>
+    
+    <rect x="15" y="400" width="220" height="55" fill="#0a0e27" opacity="0.5"/>
+    <text x="25" y="423" font-family="Archivo Black, sans-serif" font-size="16" font-weight="900" fill="#667eea">#MUSIC</text>
+    <text x="25" y="443" font-family="Space Grotesk, sans-serif" font-size="13" font-weight="500" fill="#6b7280">389 posts</text>
+  </g>
+</svg>

@@ -1,0 +1,180 @@
+<svg width="1440" height="900" viewBox="0 0 1440 900" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="headerGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+      <stop offset="25%" style="stop-color:#764ba2;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#f093fb;stop-opacity:1" />
+      <stop offset="75%" style="stop-color:#ff6b35;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#ffa600;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="fishGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#764ba2;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#f093fb;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="buttonGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#ff6b35;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#ffa600;stop-opacity:1" />
+    </linearGradient>
+    <filter id="neon">
+      <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="6" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Dark Background -->
+  <rect width="1440" height="900" fill="#0a0e27"/>
+  
+  <!-- Top Navigation Bar -->
+  <rect width="1440" height="70" fill="#1e2139"/>
+  <rect width="1440" height="3" fill="url(#headerGradient)" filter="url(#neon)"/>
+  
+  <!-- Logo -->
+  <text x="60" y="48" font-family="Archivo Black, sans-serif" font-size="26" font-weight="900" fill="url(#headerGradient)" filter="url(#neon)">SASSY-ME</text>
+  
+  <!-- Navigation Items -->
+  <text x="900" y="45" font-family="Space Grotesk, sans-serif" font-size="14" font-weight="700" fill="#667eea">HOME</text>
+  <rect x="895" y="50" width="45" height="3" fill="#667eea" filter="url(#neon)"/>
+  
+  <text x="990" y="45" font-family="Space Grotesk, sans-serif" font-size="14" font-weight="600" fill="#6b7280">TRENDING</text>
+  <text x="1090" y="45" font-family="Space Grotesk, sans-serif" font-size="14" font-weight="600" fill="#6b7280">TAGS</text>
+  <text x="1170" y="45" font-family="Space Grotesk, sans-serif" font-size="14" font-weight="600" fill="#6b7280">FRIENDS</text>
+  
+  <!-- New Post Button -->
+  <rect x="1280" y="25" width="120" height="40" fill="url(#buttonGradient)" filter="url(#neon)"/>
+  <text x="1340" y="50" font-family="Archivo Black, sans-serif" font-size="13" font-weight="900" fill="#0a0e27" text-anchor="middle">+ NEW POST</text>
+  
+  <!-- Profile Header Banner -->
+  <rect x="0" y="70" width="1440" height="220" fill="url(#headerGradient)" filter="url(#glow)"/>
+  
+  <!-- Decorative pattern overlay -->
+  <circle cx="200" cy="140" r="70" fill="#ffffff" opacity="0.08"/>
+  <circle cx="1280" cy="210" r="90" fill="#ffffff" opacity="0.06"/>
+  <circle cx="600" cy="190" r="50" fill="#ffa600" opacity="0.12"/>
+  
+  <!-- Profile Picture Container -->
+  <circle cx="720" cy="230" r="95" fill="#0a0e27" filter="url(#glow)"/>
+  <circle cx="720" cy="230" r="88" fill="url(#fishGradient)" filter="url(#neon)"/>
+  
+  <!-- Enhanced Fish Avatar -->
+  <ellipse cx="720" cy="230" rx="54" ry="38" fill="#764ba2" filter="url(#glow)"/>
+  <ellipse cx="750" cy="223" rx="12" ry="12" fill="#ffffff" opacity="0.9"/>
+  <circle cx="753" cy="223" r="5" fill="#0a0e27"/>
+  <path d="M 658 230 L 682 216 L 682 244 Z" fill="#667eea" opacity="0.9"/>
+  <path d="M 720 258 L 713 276 L 727 276 Z" fill="#f093fb"/>
+  <ellipse cx="738" cy="237" rx="4" ry="6" fill="#667eea" opacity="0.7"/>
+  
+  <!-- Username -->
+  <text x="720" y="350" font-family="Archivo Black, sans-serif" font-size="34" font-weight="900" fill="#ffffff" text-anchor="middle">SASSYFISH</text>
+  <text x="720" y="375" font-family="Space Grotesk, sans-serif" font-size="15" font-weight="600" fill="#764ba2" text-anchor="middle">@sassyfish</text>
+  
+  <!-- Bio -->
+  <text x="720" y="410" font-family="Space Grotesk, sans-serif" font-size="16" font-weight="500" fill="#9ca3af" text-anchor="middle">living life with sass! ⭐ movie lover, foodie, adventure seeker 🎬 📱</text>
+  
+  <!-- Stats with dark cards -->
+  <g transform="translate(515, 430)">
+    <rect x="0" y="0" width="130" height="65" fill="#1e2139" filter="url(#glow)"/>
+    <rect x="0" y="0" width="130" height="3" fill="#667eea" filter="url(#neon)"/>
+    <text x="65" y="32" font-family="Archivo Black, sans-serif" font-size="26" font-weight="900" fill="#ffffff" text-anchor="middle">245</text>
+    <text x="65" y="50" font-family="Space Grotesk, sans-serif" font-size="12" font-weight="600" fill="#667eea" text-anchor="middle">POSTS</text>
+  </g>
+  
+  <g transform="translate(655, 430)">
+    <rect x="0" y="0" width="130" height="65" fill="#1e2139" filter="url(#glow)"/>
+    <rect x="0" y="0" width="130" height="3" fill="#764ba2" filter="url(#neon)"/>
+    <text x="65" y="32" font-family="Archivo Black, sans-serif" font-size="26" font-weight="900" fill="#ffffff" text-anchor="middle">1.2K</text>
+    <text x="65" y="50" font-family="Space Grotesk, sans-serif" font-size="12" font-weight="600" fill="#764ba2" text-anchor="middle">FOLLOWERS</text>
+  </g>
+  
+  <g transform="translate(795, 430)">
+    <rect x="0" y="0" width="130" height="65" fill="#1e2139" filter="url(#glow)"/>
+    <rect x="0" y="0" width="130" height="3" fill="#ff6b35" filter="url(#neon)"/>
+    <text x="65" y="32" font-family="Archivo Black, sans-serif" font-size="26" font-weight="900" fill="#ffffff" text-anchor="middle">980</text>
+    <text x="65" y="50" font-family="Space Grotesk, sans-serif" font-size="12" font-weight="600" fill="#ff6b35" text-anchor="middle">FOLLOWING</text>
+  </g>
+  
+  <!-- Tab Navigation -->
+  <rect x="0" y="515" width="1440" height="60" fill="#16192e"/>
+  <text x="620" y="552" font-family="Archivo Black, sans-serif" font-size="15" font-weight="900" fill="#ffffff">POSTS</text>
+  <rect x="610" y="565" width="65" height="4" fill="url(#buttonGradient)" filter="url(#neon)"/>
+  
+  <text x="760" y="552" font-family="Space Grotesk, sans-serif" font-size="15" font-weight="600" fill="#6b7280">FAVORITES</text>
+  <text x="880" y="552" font-family="Space Grotesk, sans-serif" font-size="15" font-weight="600" fill="#6b7280">TAGS</text>
+  
+  <!-- Favorites Grid (4 items) -->
+  <g transform="translate(330, 600)">
+    <!-- Favorite 1: Popcorn -->
+    <rect x="0" y="0" width="195" height="195" fill="#1e2139" filter="url(#glow)"/>
+    <rect x="0" y="0" width="195" height="5" fill="#ffa600" filter="url(#neon)"/>
+    <circle cx="97" cy="85" r="38" fill="#ffa600" filter="url(#neon)"/>
+    <circle cx="78" cy="68" r="12" fill="#1e2139" opacity="0.3"/>
+    <circle cx="114" cy="73" r="14" fill="#1e2139" opacity="0.3"/>
+    <circle cx="97" cy="98" r="16" fill="#1e2139" opacity="0.3"/>
+    <text x="15" y="162" font-family="Archivo Black, sans-serif" font-size="13" font-weight="900" fill="#ffa600">POPCORN NIGHT</text>
+    <text x="15" y="180" fill="#ffa600" font-size="20" filter="url(#neon)">⭐⭐⭐⭐⭐</text>
+  </g>
+  
+  <g transform="translate(545, 600)">
+    <!-- Favorite 2: Interstellar -->
+    <rect x="0" y="0" width="195" height="195" fill="#1e2139" filter="url(#glow)"/>
+    <rect x="0" y="0" width="195" height="5" fill="#667eea" filter="url(#neon)"/>
+    <circle cx="97" cy="85" r="42" fill="#667eea" opacity="0.4" filter="url(#glow)"/>
+    <circle cx="97" cy="85" r="28" fill="#764ba2" opacity="0.6"/>
+    <circle cx="97" cy="85" r="16" fill="#0a0e27"/>
+    <text x="15" y="162" font-family="Archivo Black, sans-serif" font-size="13" font-weight="900" fill="#667eea">INTERSTELLAR</text>
+    <text x="15" y="180" fill="#ffa600" font-size="20" filter="url(#neon)">⭐⭐⭐⭐⭐</text>
+  </g>
+  
+  <g transform="translate(760, 600)">
+    <!-- Favorite 3: Catan -->
+    <rect x="0" y="0" width="195" height="195" fill="#1e2139" filter="url(#glow)"/>
+    <rect x="0" y="0" width="195" height="5" fill="#ff6b35" filter="url(#neon)"/>
+    <rect x="50" y="40" width="95" height="105" fill="#ff6b35" transform="rotate(12 97 92)" filter="url(#neon)"/>
+    <text x="60" y="105" font-family="Archivo Black, sans-serif" font-size="28" font-weight="900" fill="#0a0e27" transform="rotate(12 97 92)">CATAN</text>
+    <text x="15" y="162" font-family="Archivo Black, sans-serif" font-size="13" font-weight="900" fill="#ff6b35">BOARD GAME</text>
+    <text x="15" y="180" fill="#ffa600" font-size="20" filter="url(#neon)">⭐⭐⭐⭐⭐</text>
+  </g>
+  
+  <g transform="translate(975, 600)">
+    <!-- Favorite 4: Don Quijote -->
+    <rect x="0" y="0" width="195" height="195" fill="#1e2139" filter="url(#glow)"/>
+    <rect x="0" y="0" width="195" height="5" fill="#764ba2" filter="url(#neon)"/>
+    <rect x="50" y="30" width="95" height="120" fill="#764ba2" opacity="0.3"/>
+    <text x="97" y="80" font-family="Archivo Black, sans-serif" font-size="14" font-weight="900" fill="#f093fb" text-anchor="middle">DON QUIJOTE</text>
+    <text x="97" y="100" font-family="Space Grotesk, sans-serif" font-size="11" font-style="italic" fill="#9ca3af" text-anchor="middle">de la Mancha</text>
+    <text x="15" y="162" font-family="Archivo Black, sans-serif" font-size="13" font-weight="900" fill="#764ba2">CLASSIC NOVEL</text>
+    <text x="15" y="180" fill="#ffa600" font-size="20" filter="url(#neon)">⭐⭐⭐⭐⭐</text>
+  </g>
+  
+  <!-- Tag Filters -->
+  <g transform="translate(330, 820)">
+    <rect x="0" y="0" width="90" height="38" fill="#667eea" filter="url(#neon)"/>
+    <text x="45" y="25" font-family="Archivo Black, sans-serif" font-size="12" font-weight="900" fill="#0a0e27" text-anchor="middle">ALL TAGS</text>
+    
+    <rect x="100" y="0" width="140" height="38" fill="#1e2139"/>
+    <text x="170" y="25" font-family="Space Grotesk, sans-serif" font-size="12" font-weight="600" fill="#667eea" text-anchor="middle">CINEMA/MOVIES</text>
+    
+    <rect x="250" y="0" width="75" height="38" fill="#1e2139"/>
+    <text x="287" y="25" font-family="Space Grotesk, sans-serif" font-size="12" font-weight="600" fill="#6b7280" text-anchor="middle">BOOKS</text>
+    
+    <rect x="335" y="0" width="70" height="38" fill="#1e2139"/>
+    <text x="370" y="25" font-family="Space Grotesk, sans-serif" font-size="12" font-weight="600" fill="#6b7280" text-anchor="middle">MUSIC</text>
+    
+    <rect x="415" y="0" width="110" height="38" fill="#1e2139"/>
+    <text x="470" y="25" font-family="Space Grotesk, sans-serif" font-size="12" font-weight="600" fill="#6b7280" text-anchor="middle">VIDEOGAMES</text>
+    
+    <rect x="535" y="0" width="70" height="38" fill="#1e2139"/>
+    <text x="570" y="25" font-family="Space Grotesk, sans-serif" font-size="12" font-weight="600" fill="#6b7280" text-anchor="middle">OTHER</text>
+  </g>
+</svg>

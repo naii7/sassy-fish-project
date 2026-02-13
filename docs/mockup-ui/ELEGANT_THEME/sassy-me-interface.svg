@@ -1,0 +1,376 @@
+<svg viewBox="0 0 1340 900" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs>
+    <!-- Gradients -->
+    <linearGradient id="skyGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#b8c5d0;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#e8d5c4;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="waterGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#8ba3b0;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#a8bcc5;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="buttonGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#d4914a;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#b87532;stop-opacity:1" />
+    </linearGradient>
+
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1340" height="900" fill="#f5f5f5"/>
+
+  <!-- ===================== 1. LOGIN SCREEN ===================== -->
+  <g id="loginScreen">
+    <!-- Container -->
+    <rect x="30" y="30" width="610" height="355" fill="white" rx="8" filter="url(#shadow)"/>
+    
+    <!-- Sky background -->
+    <rect x="30" y="30" width="610" height="355" fill="url(#skyGradient)" rx="8"/>
+    
+    <!-- Water -->
+    <ellipse cx="335" cy="320" rx="320" ry="80" fill="url(#waterGradient)" opacity="0.7"/>
+    
+    <!-- City silhouette (left) -->
+    <rect x="50" y="280" width="15" height="60" fill="#5a6b7a" opacity="0.4"/>
+    <rect x="70" y="265" width="20" height="75" fill="#5a6b7a" opacity="0.4"/>
+    <rect x="95" y="275" width="15" height="65" fill="#5a6b7a" opacity="0.4"/>
+    <rect x="115" y="285" width="18" height="55" fill="#5a6b7a" opacity="0.4"/>
+    
+    <!-- Trees/foliage (right) -->
+    <circle cx="550" cy="300" r="35" fill="#8a9a7a" opacity="0.5"/>
+    <circle cx="570" cy="310" r="30" fill="#7a8a6a" opacity="0.5"/>
+    <circle cx="590" cy="295" r="28" fill="#9aaa8a" opacity="0.5"/>
+    <circle cx="610" cy="315" r="32" fill="#7a8a6a" opacity="0.5"/>
+    
+    <!-- Clouds -->
+    <ellipse cx="150" cy="80" rx="40" ry="20" fill="white" opacity="0.6"/>
+    <ellipse cx="170" cy="85" rx="35" ry="18" fill="white" opacity="0.6"/>
+    <ellipse cx="500" cy="100" rx="45" ry="22" fill="white" opacity="0.5"/>
+    
+    <!-- Title -->
+    <text x="335" y="115" font-family="Georgia, serif" font-size="52" fill="#2c2c2c" text-anchor="middle" font-style="italic">Sassy-me</text>
+    
+    <!-- Subtitle -->
+    <text x="335" y="165" font-family="Arial, sans-serif" font-size="15" fill="#4a4a4a" text-anchor="middle">Enter your username to get started</text>
+    
+    <!-- Username input -->
+    <rect x="185" y="195" width="300" height="45" fill="white" rx="4" opacity="0.9"/>
+    <text x="200" y="223" font-family="Arial, sans-serif" font-size="14" fill="#888">Username</text>
+    
+    <!-- Login button -->
+    <rect x="218" y="255" width="234" height="36" fill="url(#buttonGradient)" rx="4"/>
+    <text x="335" y="279" font-family="Arial, sans-serif" font-size="16" fill="white" text-anchor="middle" font-weight="600">Log In</text>
+    
+    <!-- Tagline -->
+    <text x="335" y="332" font-family="Arial, sans-serif" font-size="13" fill="#3a3a3a" text-anchor="middle">Be Bold. Be Sassy. Be You.</text>
+    
+    <!-- Label -->
+    <text x="30" y="410" font-family="Arial, sans-serif" font-size="16" fill="#333">1. Login Screen</text>
+  </g>
+
+  <!-- ===================== 2. PROFILE PAGE ===================== -->
+  <g id="profilePage">
+    <!-- Container -->
+    <rect x="655" y="30" width="655" height="520" fill="white" rx="8" filter="url(#shadow)"/>
+    
+    <!-- Header background -->
+    <rect x="655" y="30" width="655" height="180" fill="url(#skyGradient)" rx="8 8 0 0"/>
+    <ellipse cx="982" cy="160" rx="280" ry="60" fill="url(#waterGradient)" opacity="0.5"/>
+    
+    <!-- Navigation bar -->
+    <rect x="655" y="30" width="655" height="50" fill="white" rx="8 8 0 0" opacity="0.95"/>
+    <text x="700" y="58" font-family="Georgia, serif" font-size="22" fill="#2c2c2c" font-style="italic">Sassy-me</text>
+    
+    <text x="880" y="58" font-family="Arial, sans-serif" font-size="14" fill="#333">Home</text>
+    <text x="945" y="58" font-family="Arial, sans-serif" font-size="14" fill="#666">Trending</text>
+    <text x="1020" y="58" font-family="Arial, sans-serif" font-size="14" fill="#666">Tags</text>
+    <text x="1075" y="58" font-family="Arial, sans-serif" font-size="14" fill="#666">Friends</text>
+    
+    <!-- New Post button -->
+    <rect x="1192" y="43" width="100" height="28" fill="#d4914a" rx="4"/>
+    <text x="1215" y="61" font-family="Arial, sans-serif" font-size="13" fill="white">+ New Post</text>
+    
+    <!-- Profile picture circle -->
+    <circle cx="982" cy="145" r="60" fill="#4a5a6a" stroke="white" stroke-width="4"/>
+    
+    <!-- Fish icon (simplified) -->
+    <ellipse cx="982" cy="145" rx="35" ry="28" fill="#6a9bd8"/>
+    <ellipse cx="990" cy="145" rx="30" ry="25" fill="#8ab5e8"/>
+    <circle cx="995" cy="140" r="5" fill="white"/>
+    <circle cx="996" cy="140" r="2" fill="#2c2c2c"/>
+    <path d="M 947 145 L 960 135 L 960 155 Z" fill="#6a9bd8"/>
+    
+    <!-- Profile name -->
+    <text x="982" y="230" font-family="Arial, sans-serif" font-size="24" fill="#2c2c2c" text-anchor="middle" font-weight="700">SassyFish</text>
+    <text x="982" y="250" font-family="Arial, sans-serif" font-size="13" fill="#666" text-anchor="middle">@sassyfish</text>
+    
+    <!-- Bio -->
+    <text x="982" y="275" font-family="Arial, sans-serif" font-size="13" fill="#444" text-anchor="middle">Living life with sass! ✨ Movie lover, foodie, and adventure seeker 🎬📱</text>
+    
+    <!-- Stats -->
+    <text x="880" y="308" font-family="Arial, sans-serif" font-size="16" fill="#2c2c2c" text-anchor="middle" font-weight="700">245</text>
+    <text x="880" y="324" font-family="Arial, sans-serif" font-size="12" fill="#666" text-anchor="middle">Posts</text>
+    
+    <text x="982" y="308" font-family="Arial, sans-serif" font-size="16" fill="#2c2c2c" text-anchor="middle" font-weight="700">1.2k</text>
+    <text x="982" y="324" font-family="Arial, sans-serif" font-size="12" fill="#666" text-anchor="middle">Followers</text>
+    
+    <text x="1084" y="308" font-family="Arial, sans-serif" font-size="16" fill="#2c2c2c" text-anchor="middle" font-weight="700">980</text>
+    <text x="1084" y="324" font-family="Arial, sans-serif" font-size="12" fill="#666" text-anchor="middle">Following</text>
+    
+    <!-- Tabs -->
+    <line x1="675" y1="348" x2="1290" y2="348" stroke="#ddd" stroke-width="1"/>
+    <text x="785" y="368" font-family="Arial, sans-serif" font-size="14" fill="#2c2c2c" font-weight="600">Posts</text>
+    <text x="920" y="368" font-family="Arial, sans-serif" font-size="14" fill="#666">Favorites</text>
+    <text x="1050" y="368" font-family="Arial, sans-serif" font-size="14" fill="#666">Tags</text>
+    <rect x="770" y="372" width="50" height="2" fill="#d4914a"/>
+    
+    <!-- Image grid -->
+    <!-- Row 1 -->
+    <rect x="695" y="390" width="135" height="115" fill="#f5e6d3" rx="6"/>
+    <circle cx="720" cy="415" r="12" fill="#f4d088"/>
+    <circle cx="740" cy="425" r="14" fill="#f4d088"/>
+    <circle cx="758" cy="415" r="11" fill="#f4d088"/>
+    <circle cx="720" cy="445" r="13" fill="#f4d088"/>
+    <circle cx="745" cy="445" r="12" fill="#f4d088"/>
+    <rect x="700" y="475" width="18" height="25" fill="#e8b84a" rx="2"/>
+    <text x="705" y="497" font-size="10" fill="#fff">⭐⭐⭐⭐⭐</text>
+    
+    <rect x="840" y="390" width="135" height="115" fill="#2a3f5f" rx="6"/>
+    <circle cx="907" cy="430" r="8" fill="#fff" opacity="0.8"/>
+    <circle cx="925" cy="445" r="6" fill="#fff" opacity="0.6"/>
+    <text x="850" y="497" font-size="10" fill="#fff">⭐⭐⭐⭐⭐</text>
+    
+    <rect x="985" y="390" width="135" height="115" fill="#c8532a" rx="6"/>
+    <text x="1025" y="435" font-family="Georgia, serif" font-size="24" fill="#f4e8d0" font-weight="700">CATAN</text>
+    <text x="995" y="497" font-size="10" fill="#fff">⭐⭐⭐⭐⭐</text>
+    
+    <rect x="1130" y="390" width="135" height="115" fill="#d4c4b0" rx="6"/>
+    <rect x="1150" y="410" width="30" height="50" fill="#8a7a6a" opacity="0.5"/>
+    <text x="1145" y="493" font-family="Arial, sans-serif" font-size="9" fill="#444">Don Quijote de la Mancha</text>
+    
+    <!-- Tag filters -->
+    <rect x="705" y="515" width="70" height="24" fill="#5a6a7a" rx="12"/>
+    <text x="740" y="531" font-family="Arial, sans-serif" font-size="11" fill="white" text-anchor="middle">All tags</text>
+    
+    <rect x="785" y="515" width="110" height="24" fill="#e8e8e8" rx="12"/>
+    <text x="840" y="531" font-family="Arial, sans-serif" font-size="11" fill="#444" text-anchor="middle">Cinema / Movies</text>
+    
+    <rect x="905" y="515" width="55" height="24" fill="#e8e8e8" rx="12"/>
+    <text x="932" y="531" font-family="Arial, sans-serif" font-size="11" fill="#444" text-anchor="middle">Books</text>
+    
+    <rect x="970" y="515" width="55" height="24" fill="#e8e8e8" rx="12"/>
+    <text x="997" y="531" font-family="Arial, sans-serif" font-size="11" fill="#444" text-anchor="middle">🎵 Music</text>
+    
+    <rect x="1035" y="515" width="90" height="24" fill="#e8e8e8" rx="12"/>
+    <text x="1080" y="531" font-family="Arial, sans-serif" font-size="11" fill="#444" text-anchor="middle">🎮 Videogames</text>
+    
+    <rect x="1135" y="515" width="60" height="24" fill="#e8e8e8" rx="12"/>
+    <text x="1165" y="531" font-family="Arial, sans-serif" font-size="11" fill="#444" text-anchor="middle">👁 Other</text>
+    
+    <text x="1235" y="531" font-family="Arial, sans-serif" font-size="18" fill="#999">⋯</text>
+    
+    <!-- Label -->
+    <text x="655" y="570" font-family="Arial, sans-serif" font-size="16" fill="#333">2. Profile Page</text>
+  </g>
+
+  <!-- ===================== 3. FEED / FYP PAGE ===================== -->
+  <g id="feedPage">
+    <!-- Container -->
+    <rect x="30" y="442" width="610" height="428" fill="white" rx="8" filter="url(#shadow)"/>
+    
+    <!-- Header -->
+    <text x="60" y="475" font-family="Georgia, serif" font-size="22" fill="#2c2c2c" font-style="italic">Sassy-me</text>
+    
+    <text x="222" y="477" font-family="Arial, sans-serif" font-size="14" fill="#333" font-weight="600">Home</text>
+    <rect x="220" y="481" width="40" height="2" fill="#d4914a"/>
+    
+    <text x="310" y="477" font-family="Arial, sans-serif" font-size="14" fill="#666">Trending</text>
+    <text x="395" y="477" font-family="Arial, sans-serif" font-size="14" fill="#666">Tags</text>
+    <text x="455" y="477" font-family="Arial, sans-serif" font-size="14" fill="#666">Friends</text>
+    
+    <!-- New Post button -->
+    <rect x="525" y="461" width="95" height="28" fill="#d4914a" rx="4"/>
+    <text x="548" y="479" font-family="Arial, sans-serif" font-size="13" fill="white">+ New Post</text>
+    
+    <line x1="50" y1="492" x2="620" y2="492" stroke="#e0e0e0" stroke-width="1"/>
+    
+    <!-- Post 1 -->
+    <rect x="50" y="510" width="570" height="130" fill="#f8f8f8" rx="6"/>
+    
+    <!-- Post 1 images -->
+    <rect x="60" y="520" width="100" height="85" fill="#8a6a4a" rx="4"/>
+    <circle cx="85" cy="545" r="8" fill="#f4a460"/>
+    <circle cx="100" cy="555" r="10" fill="#e89850"/>
+    <circle cx="115" cy="548" r="7" fill="#f4a460"/>
+    <rect x="70" y="575" width="80" height="20" fill="#6a4a2a" rx="2"/>
+    
+    <rect x="515" y="520" width="95" height="85" fill="#8a6a4a" rx="4"/>
+    <rect x="525" y="540" width="75" height="50" fill="#5a4a3a" rx="2"/>
+    
+    <!-- Post 1 content -->
+    <text x="180" y="540" font-family="Arial, sans-serif" font-size="16" fill="#2c2c2c" font-weight="600">Disaster in the Kitchen</text>
+    
+    <rect x="188" y="550" width="95" height="20" fill="#d4914a" rx="10"/>
+    <text x="200" y="564" font-family="Arial, sans-serif" font-size="11" fill="white">Disasters / Oh no</text>
+    
+    <rect x="290" y="550" width="75" height="20" fill="#6a7a8a" rx="10"/>
+    <text x="302" y="564" font-family="Arial, sans-serif" font-size="11" fill="white">Bathroom</text>
+    
+    <text x="180" y="590" font-size="14" fill="#f4a460">⭐⭐⭐⭐</text>
+    <text x="240" y="590" font-size="14" fill="#ddd">⭐</text>
+    
+    <text x="180" y="615" font-family="Arial, sans-serif" font-size="13" fill="#444">Well, that didn't go as planned... 😅</text>
+    
+    <text x="555" y="626" font-family="Arial, sans-serif" font-size="12" fill="#666">❤️ 45</text>
+    <text x="595" y="626" font-family="Arial, sans-serif" font-size="12" fill="#666">💬 18</text>
+    
+    <!-- Post 2 -->
+    <rect x="50" y="655" width="570" height="130" fill="#f8f8f8" rx="6"/>
+    
+    <!-- Post 2 images -->
+    <rect x="60" y="665" width="100" height="85" fill="#5a4a3a" rx="4"/>
+    <circle cx="85" cy="690" r="6" fill="#8a6a4a" opacity="0.5"/>
+    <rect x="70" y="720" width="80" height="20" fill="#3a2a1a"/>
+    
+    <rect x="515" y="665" width="95" height="85" fill="#d4b48a" rx="4"/>
+    <circle cx="555" cy="695" r="12" fill="#f4e4c4"/>
+    
+    <!-- Post 2 content -->
+    <text x="180" y="685" font-family="Arial, sans-serif" font-size="16" fill="#2c2c2c" font-weight="600">Epic Movie Night!</text>
+    
+    <rect x="188" y="695" width="95" height="20" fill="#4a6a8a" rx="10"/>
+    <text x="200" y="709" font-family="Arial, sans-serif" font-size="11" fill="white">Cinema / Movies</text>
+    
+    <rect x="290" y="695" width="50" height="20" fill="#d4a44a" rx="10"/>
+    <text x="302" y="709" font-family="Arial, sans-serif" font-size="11" fill="white">Food</text>
+    
+    <text x="348" y="709" font-size="14" fill="#f4a460">⭐⭐⭐⭐⭐</text>
+    
+    <text x="180" y="735" font-family="Arial, sans-serif" font-size="13" fill="#444">Best movie night ever! 🍿 🎬</text>
+    
+    <text x="180" y="760" font-size="12" fill="#e74c3c">❤️</text>
+    
+    <text x="555" y="771" font-family="Arial, sans-serif" font-size="12" fill="#666">❤️ 87</text>
+    <text x="595" y="771" font-family="Arial, sans-serif" font-size="12" fill="#666">💬 24</text>
+    
+    <!-- Label -->
+    <text x="30" y="893" font-family="Arial, sans-serif" font-size="16" fill="#333">3. Feed / FYP Page</text>
+  </g>
+
+  <!-- ===================== 4. CREATE POST MODAL (Middle) ===================== -->
+  <g id="createPostMiddle">
+    <!-- Container background -->
+    <rect x="655" y="595" width="330" height="275" fill="white" rx="8" filter="url(#shadow)"/>
+    
+    <!-- Header background -->
+    <rect x="655" y="595" width="330" height="180" fill="#2a1a1a" rx="8 8 0 0"/>
+    
+    <!-- Theater seats -->
+    <rect x="675" y="720" width="290" height="35" fill="#8a4a3a" rx="4"/>
+    <rect x="680" y="725" width="35" height="28" fill="#a85a4a" rx="2"/>
+    <rect x="720" y="725" width="35" height="28" fill="#a85a4a" rx="2"/>
+    <rect x="760" y="725" width="35" height="28" fill="#a85a4a" rx="2"/>
+    <rect x="800" y="725" width="35" height="28" fill="#a85a4a" rx="2"/>
+    <rect x="840" y="725" width="35" height="28" fill="#a85a4a" rx="2"/>
+    <rect x="880" y="725" width="35" height="28" fill="#a85a4a" rx="2"/>
+    <rect x="920" y="725" width="35" height="28" fill="#a85a4a" rx="2"/>
+    
+    <!-- Movie screen -->
+    <rect x="685" y="625" width="270" height="80" fill="#e8e8e8" rx="3"/>
+    <rect x="695" y="632" width="250" height="66" fill="#f8f8f8"/>
+    
+    <!-- Screen light effect -->
+    <rect x="690" y="610" width="10" height="15" fill="#f4d488" opacity="0.3"/>
+    <rect x="710" y="608" width="12" height="17" fill="#f4d488" opacity="0.3"/>
+    <rect x="950" y="610" width="10" height="15" fill="#f4d488" opacity="0.3"/>
+    <rect x="930" y="608" width="12" height="17" fill="#f4d488" opacity="0.3"/>
+    
+    <!-- Post content -->
+    <text x="670" y="798" font-family="Arial, sans-serif" font-size="16" fill="#2c2c2c" font-weight="600">Epic Movie Night!</text>
+    
+    <rect x="688" y="806" width="95" height="20" fill="#4a6a8a" rx="10"/>
+    <text x="700" y="820" font-family="Arial, sans-serif" font-size="11" fill="white">Cinema / Movies</text>
+    
+    <rect x="790" y="806" width="50" height="20" fill="#d4a44a" rx="10"/>
+    <text x="802" y="820" font-family="Arial, sans-serif" font-size="11" fill="white">Food</text>
+    
+    <text x="848" y="820" font-size="14" fill="#f4a460">⭐⭐⭐⭐⭐</text>
+    
+    <text x="670" y="848" font-family="Arial, sans-serif" font-size="13" fill="#444">Best movie night ever! 🍿 🎬</text>
+    
+    <!-- Label -->
+    <text x="655" y="893" font-family="Arial, sans-serif" font-size="16" fill="#333">3. Feed / FYP Page</text>
+  </g>
+
+  <!-- ===================== 4. CREATE POST MODAL (Right) ===================== -->
+  <g id="createPostModal">
+    <!-- Modal container -->
+    <rect x="995" y="595" width="315" height="275" fill="white" rx="8" filter="url(#shadow)"/>
+    
+    <!-- Header -->
+    <text x="1020" y="623" font-family="Arial, sans-serif" font-size="18" fill="#2c2c2c" font-weight="600">Create New Post</text>
+    
+    <!-- Close button -->
+    <circle cx="1285" cy="613" r="12" fill="#e8e8e8"/>
+    <text x="1281" y="619" font-family="Arial, sans-serif" font-size="16" fill="#666">×</text>
+    
+    <!-- Upload section -->
+    <rect x="1010" y="640" width="280" height="36" fill="#e8f4f8" rx="4" stroke="#4a9bc0" stroke-width="1" stroke-dasharray="4,4"/>
+    <circle cx="1108" cy="658" r="10" fill="#4a9bc0"/>
+    <text x="1125" y="663" font-family="Arial, sans-serif" font-size="13" fill="#4a9bc0" font-weight="600">Upload Images</text>
+    
+    <!-- Title field -->
+    <text x="1010" y="697" font-family="Arial, sans-serif" font-size="13" fill="#444" font-weight="600">Title</text>
+    <rect x="1010" y="703" width="280" height="32" fill="white" rx="4" stroke="#ddd" stroke-width="1"/>
+    <text x="1020" y="724" font-family="Arial, sans-serif" font-size="13" fill="#888">Today</text>
+    <text x="1270" y="724" font-family="Arial, sans-serif" font-size="13" fill="#999">▼</text>
+    
+    <!-- Tags section -->
+    <rect x="1010" y="750" width="70" height="22" fill="#6a7a8a" rx="11"/>
+    <text x="1020" y="765" font-family="Arial, sans-serif" font-size="10" fill="white">🚿 Bathroom</text>
+    
+    <rect x="1088" y="750" width="110" height="22" fill="#d4914a" rx="11"/>
+    <text x="1098" y="765" font-family="Arial, sans-serif" font-size="10" fill="white">📁 Disasters / Oh no</text>
+    
+    <rect x="1205" y="750" width="50" height="22" fill="#8a5a4a" rx="11"/>
+    <text x="1215" y="765" font-family="Arial, sans-serif" font-size="10" fill="white">🍔 Food</text>
+    
+    <rect x="1262" y="750" width="20" height="22" fill="#e8e8e8" rx="11"/>
+    <text x="1267" y="765" font-family="Arial, sans-serif" font-size="10" fill="#999">📅</text>
+    
+    <!-- Second row of tags -->
+    <rect x="1010" y="778" width="100" height="22" fill="#4a6a8a" rx="11"/>
+    <text x="1020" y="793" font-family="Arial, sans-serif" font-size="10" fill="white">🎬 Cinema / Movies</text>
+    
+    <rect x="1118" y="778" width="55" height="22" fill="#8a6a5a" rx="11"/>
+    <text x="1128" y="793" font-family="Arial, sans-serif" font-size="10" fill="white">📚 Books</text>
+    
+    <rect x="1180" y="778" width="55" height="22" fill="#7a6a8a" rx="11"/>
+    <text x="1190" y="793" font-family="Arial, sans-serif" font-size="10" fill="white">🎵 Music</text>
+    
+    <rect x="1242" y="778" width="20" height="22" fill="#e8e8e8" rx="11"/>
+    <text x="1247" y="793" font-family="Arial, sans-serif" font-size="10" fill="#999">🎮</text>
+    
+    <!-- Third row of tags -->
+    <rect x="1010" y="806" width="90" height="22" fill="#6a8a7a" rx="11"/>
+    <text x="1020" y="821" font-family="Arial, sans-serif" font-size="10" fill="white">🎮 Videogames</text>
+    
+    <rect x="1108" y="806" width="55" height="22" fill="#8a8a8a" rx="11"/>
+    <text x="1118" y="821" font-family="Arial, sans-serif" font-size="10" fill="white">👁 Other</text>
+    
+    <!-- Favorite button -->
+    <text x="1030" y="850" font-family="Arial, sans-serif" font-size="13" fill="#666">🤍 Mark as Favorite</text>
+    
+    <!-- Post button -->
+    <rect x="1185" y="833" width="90" height="32" fill="url(#buttonGradient)" rx="4"/>
+    <text x="1230" y="855" font-family="Arial, sans-serif" font-size="14" fill="white" text-anchor="middle" font-weight="600">Post</text>
+    
+    <!-- Label -->
+    <text x="995" y="893" font-family="Arial, sans-serif" font-size="16" fill="#333">4. Create Post Modal</text>
+  </g>
+</svg>

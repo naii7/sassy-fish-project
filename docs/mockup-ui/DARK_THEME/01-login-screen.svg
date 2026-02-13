@@ -1,0 +1,105 @@
+<svg width="1440" height="900" viewBox="0 0 1440 900" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0a0e27;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#1a1f3a;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0f1419;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="cardGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1e2139;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#16192e;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="buttonGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#ff6b35;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#ff8c42;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#ffa600;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="accentGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#764ba2;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#f093fb;stop-opacity:1" />
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="8" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="neon">
+      <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Dark Background -->
+  <rect width="1440" height="900" fill="url(#bgGradient)"/>
+  
+  <!-- Vibrant geometric decorations -->
+  <circle cx="120" cy="150" r="180" fill="#667eea" opacity="0.15" filter="url(#glow)"/>
+  <circle cx="1350" cy="700" r="220" fill="#ff6b35" opacity="0.12" filter="url(#glow)"/>
+  <rect x="50" y="500" width="200" height="200" fill="#f093fb" opacity="0.08" transform="rotate(25 150 600)"/>
+  <rect x="1100" y="50" width="150" height="150" fill="#ffa600" opacity="0.1" transform="rotate(-30 1175 125)"/>
+  <circle cx="300" cy="750" r="100" fill="#764ba2" opacity="0.15"/>
+  
+  <!-- Neon accent lines -->
+  <line x1="0" y1="280" x2="350" y2="280" stroke="#667eea" stroke-width="4" opacity="0.6" filter="url(#neon)"/>
+  <line x1="1090" y1="620" x2="1440" y2="620" stroke="#ff6b35" stroke-width="4" opacity="0.6" filter="url(#neon)"/>
+  <line x1="0" y1="450" x2="250" y2="450" stroke="#ffa600" stroke-width="3" opacity="0.5" filter="url(#neon)"/>
+  
+  <!-- Main Login Card -->
+  <rect x="420" y="160" width="600" height="580" fill="url(#cardGradient)" filter="url(#glow)"/>
+  
+  <!-- Neon border accents -->
+  <rect x="420" y="160" width="600" height="6" fill="url(#accentGradient)" filter="url(#neon)"/>
+  <rect x="420" y="734" width="600" height="6" fill="url(#buttonGradient)" filter="url(#neon)"/>
+  <rect x="420" y="160" width="6" height="580" fill="#667eea" opacity="0.5" filter="url(#neon)"/>
+  <rect x="1014" y="160" width="6" height="580" fill="#ff6b35" opacity="0.5" filter="url(#neon)"/>
+  
+  <!-- Logo/Title with bold Gen Z typography -->
+  <text x="720" y="280" font-family="Archivo Black, sans-serif" font-size="72" font-weight="900" fill="url(#accentGradient)" text-anchor="middle" filter="url(#neon)">SASSY-ME</text>
+  
+  <!-- Glitch effect lines -->
+  <rect x="580" y="295" width="280" height="3" fill="#ff6b35" opacity="0.6"/>
+  <rect x="590" y="300" width="260" height="2" fill="#667eea" opacity="0.4"/>
+  
+  <!-- Subtitle with modern font -->
+  <text x="720" y="350" font-family="Space Grotesk, sans-serif" font-size="18" font-weight="600" fill="#a78bfa" text-anchor="middle">ENTER YOUR USERNAME TO GET STARTED</text>
+  
+  <!-- Decorative dots -->
+  <circle cx="650" cy="370" r="5" fill="#ff6b35" opacity="0.8" filter="url(#neon)"/>
+  <circle cx="670" cy="370" r="5" fill="#667eea" opacity="0.8" filter="url(#neon)"/>
+  <circle cx="690" cy="370" r="5" fill="#ffa600" opacity="0.8" filter="url(#neon)"/>
+  <circle cx="750" cy="370" r="5" fill="#f093fb" opacity="0.8" filter="url(#neon)"/>
+  <circle cx="770" cy="370" r="5" fill="#ff6b35" opacity="0.8" filter="url(#neon)"/>
+  <circle cx="790" cy="370" r="5" fill="#667eea" opacity="0.8" filter="url(#neon)"/>
+  
+  <!-- Username Input with neon effect -->
+  <rect x="470" y="420" width="500" height="60" fill="#0f1419" stroke="#667eea" stroke-width="3" filter="url(#neon)"/>
+  <text x="490" y="457" font-family="Space Grotesk, sans-serif" font-size="16" font-weight="500" fill="#6b7280">username</text>
+  
+  <!-- Login Button with vibrant gradient -->
+  <rect x="520" y="520" width="400" height="65" fill="url(#buttonGradient)" filter="url(#neon)"/>
+  <text x="720" y="558" font-family="Archivo Black, sans-serif" font-size="20" font-weight="900" fill="#0a0e27" text-anchor="middle">LOG IN</text>
+  
+  <!-- Decorative tech elements -->
+  <circle cx="450" cy="620" r="8" fill="#667eea" filter="url(#neon)"/>
+  <circle cx="990" cy="620" r="8" fill="#ff6b35" filter="url(#neon)"/>
+  
+  <!-- Tagline with bold typography -->
+  <text x="720" y="650" font-family="Archivo Black, sans-serif" font-size="16" font-weight="900" fill="url(#accentGradient)" text-anchor="middle" filter="url(#neon)">BE BOLD • BE SASSY • BE YOU</text>
+  
+  <!-- Social proof dots -->
+  <circle cx="480" cy="230" r="10" fill="#ffa600" opacity="0.6"/>
+  <circle cx="960" cy="230" r="10" fill="#f093fb" opacity="0.6"/>
+  <circle cx="450" cy="690" r="8" fill="#764ba2" opacity="0.5"/>
+  <circle cx="990" cy="690" r="8" fill="#ff6b35" opacity="0.5"/>
+  
+  <!-- Extra neon accents -->
+  <line x1="470" y1="380" x2="520" y2="380" stroke="#ff6b35" stroke-width="2" opacity="0.8"/>
+  <line x1="920" y1="380" x2="970" y2="380" stroke="#667eea" stroke-width="2" opacity="0.8"/>
+</svg>

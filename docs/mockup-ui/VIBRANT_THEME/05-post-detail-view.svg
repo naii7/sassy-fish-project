@@ -1,0 +1,110 @@
+<svg width="1440" height="900" viewBox="0 0 1440 900" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#0a0e27"/>
+      <stop offset="100%" style="stop-color:#1a1b3d"/>
+    </linearGradient>
+    <linearGradient id="btnGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#ff6b35"/>
+      <stop offset="100%" style="stop-color:#ffa600"/>
+    </linearGradient>
+    <linearGradient id="fishGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#8b5cf6"/>
+      <stop offset="50%" style="stop-color:#6366f1"/>
+      <stop offset="100%" style="stop-color:#3b82f6"/>
+    </linearGradient>
+    <filter id="neon">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="shad"><feDropShadow dx="0" dy="4" stdDeviation="12" flood-opacity="0.4"/></filter>
+  </defs>
+  
+  <rect width="1440" height="900" fill="url(#bgGrad)"/>
+  <circle cx="200" cy="400" r="150" fill="#6366f1" opacity="0.08" filter="url(#neon)"/>
+  <circle cx="1300" cy="600" r="120" fill="#ff6b35" opacity="0.06" filter="url(#neon)"/>
+  
+  <rect width="1440" height="70" fill="#0f1729" opacity="0.95" filter="url(#shad)"/>
+  <rect width="1440" height="3" fill="url(#btnGrad)" filter="url(#neon)"/>
+  
+  <text x="60" y="45" font-family="Space Grotesk, sans-serif" font-size="32" font-weight="700" fill="#fff" filter="url(#neon)">Sassy-me</text>
+  <rect x="60" y="52" width="160" height="3" fill="url(#btnGrad)" opacity="0.6"/>
+  
+  <text x="900" y="45" font-family="Space Grotesk, sans-serif" font-size="16" font-weight="500" fill="#94a3b8">home</text>
+  <text x="1000" y="45" font-family="Space Grotesk, sans-serif" font-size="16" font-weight="500" fill="#94a3b8">trending</text>
+  <text x="1110" y="45" font-family="Space Grotesk, sans-serif" font-size="16" font-weight="500" fill="#94a3b8">tags</text>
+  <text x="1190" y="45" font-family="Space Grotesk, sans-serif" font-size="16" font-weight="500" fill="#94a3b8">friends</text>
+  
+  <rect x="1280" y="23" width="130" height="44" fill="url(#btnGrad)" filter="url(#neon)"/>
+  <text x="1345" y="50" font-family="Space Grotesk, sans-serif" font-size="15" font-weight="700" fill="#fff" text-anchor="middle">+ new post</text>
+  
+  <g transform="translate(180, 110)">
+    <rect width="1080" height="390" fill="#1e1e3f" stroke="#6366f1" stroke-width="2" filter="url(#shad)"/>
+    <rect width="1080" height="6" fill="#6366f1" filter="url(#neon)"/>
+    
+    <circle cx="55" cy="55" r="30" fill="url(#fishGrad)" filter="url(#neon)"/>
+    <ellipse cx="55" cy="55" rx="18" ry="12" fill="#6366f1"/>
+    <circle cx="66" cy="53" r="5" fill="#fff"/>
+    
+    <text x="100" y="53" font-family="Space Grotesk, sans-serif" font-size="19" font-weight="700" fill="#fff">SassyFish</text>
+    <text x="100" y="74" font-family="Space Grotesk, sans-serif" font-size="14" font-weight="500" fill="#8b5cf6">2 hours ago</text>
+    
+    <text x="35" y="130" font-family="Space Grotesk, sans-serif" font-size="30" font-weight="700" fill="#fff">epic movie night!</text>
+    
+    <rect x="35" y="145" width="125" height="32" fill="#6366f1" filter="url(#neon)"/>
+    <text x="97" y="167" font-family="Space Grotesk, sans-serif" font-size="14" font-weight="700" fill="#fff" text-anchor="middle">cinema / movies</text>
+    
+    <rect x="170" y="145" width="60" height="32" fill="#ffa600" filter="url(#neon)"/>
+    <text x="200" y="167" font-family="Space Grotesk, sans-serif" font-size="14" font-weight="700" fill="#fff" text-anchor="middle">food</text>
+    
+    <text x="35" y="210" fill="#ffa600" font-size="30" filter="url(#neon)">⭐⭐⭐⭐⭐</text>
+    <text x="185" y="210" font-size="30" filter="url(#neon)">❤️</text>
+    
+    <rect x="35" y="230" width="240" height="140" fill="#2a2550" filter="url(#shad)"/>
+    <circle cx="155" cy="285" r="35" fill="#6366f1" opacity="0.5" filter="url(#neon)"/>
+    
+    <rect x="290" y="230" width="240" height="140" fill="#2a2550" filter="url(#shad)"/>
+    <circle cx="410" cy="285" r="40" fill="#ffa600" opacity="0.7" filter="url(#neon)"/>
+    
+    <rect x="545" y="230" width="240" height="140" fill="#2a2550" filter="url(#shad)"/>
+    <rect x="615" y="260" width="35" height="70" fill="#fef3c7"/>
+    <rect x="655" y="260" width="35" height="70" fill="#fef3c7"/>
+    <rect x="695" y="260" width="35" height="70" fill="#fef3c7"/>
+    
+    <text x="805" y="255" font-family="Space Grotesk, sans-serif" font-size="17" fill="#cbd5e1">best movie night ever! had an amazing</text>
+    <text x="805" y="280" font-family="Space Grotesk, sans-serif" font-size="17" fill="#cbd5e1">time watching classics with friends.</text>
+    <text x="805" y="305" font-family="Space Grotesk, sans-serif" font-size="17" fill="#cbd5e1">the popcorn was perfect! 🍿 🎬</text>
+  </g>
+  
+  <g transform="translate(180, 520)">
+    <rect width="1080" height="75" fill="#1e1e3f" stroke="#8b5cf6" stroke-width="2" filter="url(#shad)"/>
+    <rect width="1080" height="4" fill="#8b5cf6" opacity="0.5"/>
+    
+    <text x="40" y="47" font-family="Space Grotesk, sans-serif" font-size="19" font-weight="700" fill="#ff6b35">❤️ 87</text>
+    <text x="140" y="47" font-family="Space Grotesk, sans-serif" font-size="16" fill="#94a3b8">likes</text>
+    
+    <text x="280" y="47" font-family="Space Grotesk, sans-serif" font-size="19" font-weight="700" fill="#8b5cf6">💬 24</text>
+    <text x="380" y="47" font-family="Space Grotesk, sans-serif" font-size="16" fill="#94a3b8">comments</text>
+    
+    <text x="530" y="47" font-family="Space Grotesk, sans-serif" font-size="19" font-weight="700" fill="#3b82f6">🔗</text>
+    <text x="580" y="47" font-family="Space Grotesk, sans-serif" font-size="16" fill="#94a3b8">share</text>
+  </g>
+  
+  <g transform="translate(180, 615)">
+    <rect width="1080" height="275" fill="#1e1e3f" stroke="#3b82f6" stroke-width="2" filter="url(#shad)"/>
+    
+    <text x="35" y="45" font-family="Space Grotesk, sans-serif" font-size="24" font-weight="700" fill="#fff">comments</text>
+    <line x1="35" y1="55" x2="190" y2="55" stroke="#ff6b35" stroke-width="2" opacity="0.5"/>
+    
+    <circle cx="60" cy="100" r="26" fill="#ffa600" opacity="0.8" filter="url(#neon)"/>
+    <text x="100" y="97" font-family="Space Grotesk, sans-serif" font-size="17" font-weight="700" fill="#fff">MovieBuff87</text>
+    <text x="100" y="117" font-family="Space Grotesk, sans-serif" font-size="14" fill="#8b5cf6">1 hour ago</text>
+    <text x="100" y="145" font-family="Space Grotesk, sans-serif" font-size="16" fill="#cbd5e1">this looks amazing! what movies did you watch?</text>
+    <text x="100" y="172" font-family="Space Grotesk, sans-serif" font-size="14" font-weight="600" fill="#ff6b35">❤️ 5</text>
+    <text x="155" y="172" font-family="Space Grotesk, sans-serif" font-size="14" fill="#8b5cf6">💬 reply</text>
+    
+    <circle cx="60" cy="220" r="26" fill="#6366f1" opacity="0.8" filter="url(#neon)"/>
+    <text x="100" y="217" font-family="Space Grotesk, sans-serif" font-size="17" font-weight="700" fill="#fff">FoodieFan</text>
+    <text x="100" y="237" font-family="Space Grotesk, sans-serif" font-size="14" fill="#8b5cf6">30 minutes ago</text>
+  </g>
+</svg>

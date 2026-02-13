@@ -1,0 +1,100 @@
+<svg viewBox="0 0 800 900" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-opacity="0.25"/>
+    </filter>
+    
+    <linearGradient id="buttonGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#d4914a;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#b87532;stop-opacity:1" />
+    </linearGradient>
+    
+    <filter id="modalShadow">
+      <feDropShadow dx="0" dy="8" stdDeviation="16" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+
+  <!-- Background (dimmed) -->
+  <rect width="800" height="900" fill="#000" opacity="0.5"/>
+  
+  <!-- Modal Container -->
+  <rect x="150" y="100" width="500" height="700" fill="white" rx="12" filter="url(#modalShadow)"/>
+  
+  <!-- Modal Header -->
+  <text x="180" y="145" font-family="Arial, sans-serif" font-size="24" fill="#2c2c2c" font-weight="600">Create New Post</text>
+  
+  <!-- Close button -->
+  <circle cx="620" cy="135" r="18" fill="#e8e8e8"/>
+  <text x="614" y="144" font-family="Arial, sans-serif" font-size="24" fill="#666" font-weight="300">×</text>
+  
+  <!-- Upload Section -->
+  <rect x="180" y="180" width="440" height="60" fill="#e8f4f8" rx="8" stroke="#4a9bc0" stroke-width="2" stroke-dasharray="6,4"/>
+  
+  <circle cx="300" cy="210" r="16" fill="#4a9bc0"/>
+  <text x="295" y="218" font-family="Arial, sans-serif" font-size="20" fill="white" font-weight="bold">⬆</text>
+  
+  <text x="330" y="217" font-family="Arial, sans-serif" font-size="16" fill="#4a9bc0" font-weight="600">Upload Images</text>
+  
+  <!-- Title Field -->
+  <text x="180" y="275" font-family="Arial, sans-serif" font-size="15" fill="#444" font-weight="600">Title</text>
+  <rect x="180" y="285" width="440" height="45" fill="white" rx="6" stroke="#d0d0d0" stroke-width="2"/>
+  <text x="195" y="313" font-family="Arial, sans-serif" font-size="15" fill="#888">Today</text>
+  
+  <!-- Dropdown icon -->
+  <text x="590" y="313" font-family="Arial, sans-serif" font-size="14" fill="#999">▼</text>
+  <circle cx="598" cy="307" r="2" fill="#d0d0d0"/>
+  
+  <!-- Tags Section Title -->
+  <text x="180" y="370" font-family="Arial, sans-serif" font-size="15" fill="#444" font-weight="600">Tags</text>
+  
+  <!-- Tags - Row 1 -->
+  <rect x="180" y="385" width="95" height="32" fill="#6a7a8a" rx="16"/>
+  <text x="198" y="407" font-family="Arial, sans-serif" font-size="13" fill="white" font-weight="500">🚿 Bathroom</text>
+  
+  <rect x="285" y="385" width="145" height="32" fill="#d4914a" rx="16"/>
+  <text x="303" y="407" font-family="Arial, sans-serif" font-size="13" fill="white" font-weight="500">📁 Disasters / Oh no</text>
+  
+  <rect x="440" y="385" width="70" height="32" fill="#8a5a4a" rx="16"/>
+  <text x="458" y="407" font-family="Arial, sans-serif" font-size="13" fill="white" font-weight="500">🍔 Food</text>
+  
+  <rect x="520" y="385" width="30" height="32" fill="#e8e8e8" rx="16"/>
+  <text x="529" y="407" font-family="Arial, sans-serif" font-size="13" fill="#999">📅</text>
+  
+  <!-- Tags - Row 2 -->
+  <rect x="180" y="428" width="135" height="32" fill="#4a6a8a" rx="16"/>
+  <text x="198" y="450" font-family="Arial, sans-serif" font-size="13" fill="white" font-weight="500">🎬 Cinema / Movies</text>
+  
+  <rect x="325" y="428" width="75" height="32" fill="#8a6a5a" rx="16"/>
+  <text x="343" y="450" font-family="Arial, sans-serif" font-size="13" fill="white" font-weight="500">📚 Books</text>
+  
+  <rect x="410" y="428" width="75" height="32" fill="#7a6a8a" rx="16"/>
+  <text x="428" y="450" font-family="Arial, sans-serif" font-size="13" fill="white" font-weight="500">🎵 Music</text>
+  
+  <rect x="495" y="428" width="30" height="32" fill="#e8e8e8" rx="16"/>
+  <text x="504" y="450" font-family="Arial, sans-serif" font-size="13" fill="#999">🎮</text>
+  
+  <!-- Tags - Row 3 -->
+  <rect x="180" y="471" width="120" height="32" fill="#6a8a7a" rx="16"/>
+  <text x="198" y="493" font-family="Arial, sans-serif" font-size="13" fill="white" font-weight="500">🎮 Videogames</text>
+  
+  <rect x="310" y="471" width="75" height="32" fill="#8a8a8a" rx="16"/>
+  <text x="328" y="493" font-family="Arial, sans-serif" font-size="13" fill="white" font-weight="500">👁 Other</text>
+  
+  <!-- Rating Section -->
+  <text x="180" y="545" font-family="Arial, sans-serif" font-size="15" fill="#444" font-weight="600">Rating</text>
+  
+  <text x="180" y="575" font-size="32">⭐⭐⭐⭐⭐</text>
+  
+  <!-- Description Field -->
+  <text x="180" y="625" font-family="Arial, sans-serif" font-size="15" fill="#444" font-weight="600">Description</text>
+  <rect x="180" y="635" width="440" height="100" fill="white" rx="6" stroke="#d0d0d0" stroke-width="2"/>
+  <text x="195" y="662" font-family="Arial, sans-serif" font-size="14" fill="#888">Share your thoughts...</text>
+  
+  <!-- Mark as Favorite -->
+  <circle cx="193" cy="770" r="12" fill="white" stroke="#ccc" stroke-width="2"/>
+  <text x="210" y="776" font-family="Arial, sans-serif" font-size="15" fill="#666">Mark as Favorite</text>
+  
+  <!-- Post Button -->
+  <rect x="500" y="755" width="120" height="45" fill="url(#buttonGradient)" rx="8" filter="url(#shadow)"/>
+  <text x="560" y="783" font-family="Arial, sans-serif" font-size="16" fill="white" text-anchor="middle" font-weight="600">Post</text>
+</svg>

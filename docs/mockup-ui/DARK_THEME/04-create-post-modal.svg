@@ -1,0 +1,119 @@
+<svg width="1440" height="900" viewBox="0 0 1440 900" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="buttonGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#ff6b35;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#ffa600;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="headerGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#764ba2;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#f093fb;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="modalGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#1e2139;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#16192e;stop-opacity:1" />
+    </linearGradient>
+    <filter id="neon">
+      <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="8" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Dimmed Background -->
+  <rect width="1440" height="900" fill="#0a0e27"/>
+  
+  <!-- Top Navigation Bar (dimmed) -->
+  <rect width="1440" height="70" fill="#1e2139" opacity="0.5"/>
+  <text x="60" y="48" font-family="Archivo Black, sans-serif" font-size="26" font-weight="900" fill="url(#headerGradient)" opacity="0.5">SASSY-ME</text>
+  
+  <!-- Overlay -->
+  <rect width="1440" height="900" fill="#000000" opacity="0.7"/>
+  
+  <!-- Create Post Modal -->
+  <rect x="395" y="110" width="650" height="680" fill="url(#modalGradient)" filter="url(#glow)"/>
+  
+  <!-- Neon border -->
+  <rect x="395" y="110" width="650" height="8" fill="url(#headerGradient)" filter="url(#neon)"/>
+  <rect x="395" y="782" width="650" height="8" fill="url(#buttonGradient)" filter="url(#neon)"/>
+  
+  <!-- Modal Header -->
+  <text x="430" y="170" font-family="Archivo Black, sans-serif" font-size="32" font-weight="900" fill="#ffffff">CREATE NEW POST</text>
+  <line x1="430" y1="185" x2="680" y2="185" stroke="#667eea" stroke-width="3" opacity="0.6" filter="url(#neon)"/>
+  
+  <!-- Close Button -->
+  <circle cx="1005" cy="150" r="25" fill="#0a0e27" stroke="#667eea" stroke-width="3" filter="url(#neon)"/>
+  <text x="1005" y="162" font-family="Archivo Black, sans-serif" font-size="28" font-weight="900" fill="#667eea" text-anchor="middle">×</text>
+  
+  <!-- Upload Images Section -->
+  <rect x="430" y="220" width="580" height="140" fill="#0a0e27" stroke="#764ba2" stroke-width="4" stroke-dasharray="12,6" filter="url(#neon)"/>
+  <text x="720" y="278" font-family="Archivo Black, sans-serif" font-size="36" text-anchor="middle">📷</text>
+  <text x="720" y="315" font-family="Archivo Black, sans-serif" font-size="18" font-weight="900" fill="#764ba2" text-anchor="middle">UPLOAD IMAGES</text>
+  <text x="720" y="340" font-family="Space Grotesk, sans-serif" font-size="14" font-weight="500" fill="#6b7280" text-anchor="middle">click or drag files here</text>
+  
+  <!-- Title Field -->
+  <text x="430" y="400" font-family="Archivo Black, sans-serif" font-size="14" font-weight="900" fill="#ffffff">TITLE</text>
+  <rect x="430" y="410" width="580" height="52" fill="#0a0e27" stroke="#667eea" stroke-width="3" filter="url(#neon)"/>
+  <text x="450" y="442" font-family="Space Grotesk, sans-serif" font-size="16" fill="#9ca3af">today</text>
+  
+  <!-- Date Icon -->
+  <rect x="960" y="420" width="35" height="35" fill="#1e2139"/>
+  <text x="977" y="445" font-family="Space Grotesk, sans-serif" font-size="18" text-anchor="middle">📅</text>
+  
+  <!-- Tags Section -->
+  <text x="430" y="505" font-family="Archivo Black, sans-serif" font-size="14" font-weight="900" fill="#ffffff">TAGS (SELECT MULTIPLE)</text>
+  
+  <g transform="translate(430, 520)">
+    <!-- Row 1 -->
+    <rect x="0" y="0" width="90" height="36" fill="#667eea" filter="url(#neon)"/>
+    <text x="45" y="23" font-family="Space Grotesk, sans-serif" font-size="12" font-weight="700" fill="#0a0e27" text-anchor="middle">BATHROOM</text>
+    
+    <rect x="100" y="0" width="145" height="36" fill="#ff6b35" filter="url(#neon)"/>
+    <text x="172" y="23" font-family="Space Grotesk, sans-serif" font-size="12" font-weight="700" fill="#0a0e27" text-anchor="middle">DISASTERS/OH NO</text>
+    
+    <rect x="255" y="0" width="60" height="36" fill="#ffa600" filter="url(#neon)"/>
+    <text x="285" y="23" font-family="Space Grotesk, sans-serif" font-size="12" font-weight="700" fill="#0a0e27" text-anchor="middle">FOOD</text>
+    
+    <rect x="325" y="0" width="65" height="36" fill="#f093fb" filter="url(#neon)"/>
+    <text x="357" y="23" font-family="Space Grotesk, sans-serif" font-size="12" font-weight="700" fill="#0a0e27" text-anchor="middle">MUSIC</text>
+    
+    <!-- Row 2 -->
+    <rect x="0" y="46" width="135" height="36" fill="#764ba2" filter="url(#neon)"/>
+    <text x="67" y="69" font-family="Space Grotesk, sans-serif" font-size="12" font-weight="700" fill="#ffffff" text-anchor="middle">CINEMA/MOVIES</text>
+    
+    <rect x="145" y="46" width="65" height="36" fill="#1e2139" stroke="#667eea" stroke-width="2"/>
+    <text x="177" y="69" font-family="Space Grotesk, sans-serif" font-size="12" font-weight="700" fill="#667eea" text-anchor="middle">BOOKS</text>
+    
+    <rect x="220" y="46" width="110" height="36" fill="#1e2139" stroke="#764ba2" stroke-width="2"/>
+    <text x="275" y="69" font-family="Space Grotesk, sans-serif" font-size="12" font-weight="700" fill="#764ba2" text-anchor="middle">VIDEOGAMES</text>
+    
+    <rect x="340" y="46" width="65" height="36" fill="#1e2139" stroke="#ff6b35" stroke-width="2"/>
+    <text x="372" y="69" font-family="Space Grotesk, sans-serif" font-size="12" font-weight="700" fill="#ff6b35" text-anchor="middle">OTHER</text>
+  </g>
+  
+  <!-- Star Rating Section -->
+  <text x="430" y="650" font-family="Archivo Black, sans-serif" font-size="14" font-weight="900" fill="#ffffff">RATING</text>
+  <text x="430" y="690" fill="#ffa600" font-size="38" filter="url(#neon)">⭐⭐⭐⭐⭐</text>
+  
+  <!-- Mark as Favorite -->
+  <rect x="430" y="710" width="240" height="50" fill="#0a0e27" stroke="#f093fb" stroke-width="3" filter="url(#neon)"/>
+  <text x="550" y="741" font-family="Space Grotesk, sans-serif" font-size="16" font-weight="700" fill="#f093fb" text-anchor="middle">❤️ MARK AS FAVORITE</text>
+  
+  <!-- Post Button -->
+  <rect x="720" y="710" width="290" height="50" fill="url(#buttonGradient)" filter="url(#neon)"/>
+  <text x="865" y="741" font-family="Archivo Black, sans-serif" font-size="18" font-weight="900" fill="#0a0e27" text-anchor="middle">POST</text>
+  
+  <!-- Decorative corner dots -->
+  <circle cx="410" cy="130" r="6" fill="#ffa600" opacity="0.8"/>
+  <circle cx="1030" cy="770" r="6" fill="#667eea" opacity="0.8"/>
+</svg>
