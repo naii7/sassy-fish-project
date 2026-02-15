@@ -1,0 +1,104 @@
+@startuml domainmodel
+
+class User {
+  id: Long
+  username: String
+  password: String
+  email: String
+  bio: String
+  profilePicture: String
+  isPublic: boolean
+  createdAt: Date
+  updatedAt: Date
+}
+
+class Post {
+  id: Long
+  title: String
+  image: String
+  date: Date
+  rating: int
+  createdAt: Date
+  updatedAt: Date
+}
+
+class Comment {
+  id: Long
+  content: String
+  createdAt: Date
+  updatedAt: Date
+}
+
+enum TagType {
+  BOOKS
+  CLOTHES
+  FOOD
+  GAMES
+  CONCERTS
+  ALBUMS
+  THEATRE
+  BATHROOM
+  DISASTERS
+  OH_NO
+  CINEMA_MOVIES
+  MUSIC
+  VIDEOGAMES
+}
+
+class Tag {
+  id: Long
+  name: String
+  type: TagType
+  color: String
+}
+
+class Favorite {
+  id: Long
+  createdAt: Date
+}
+
+class Follow {
+  id: Long
+  createdAt: Date
+}
+
+class Feed {
+  id: Long
+  visibility: String
+  createdAt: Date
+}
+
+class Profile {
+  id: Long
+  displayName: String
+  location: String
+  website: String
+  joinDate: Date
+}
+
+' Relationships
+
+User ||--|| Profile : has
+User ||--o{ Post : creates
+User ||--o{ Comment : writes
+User ||--o{ Favorite : creates
+
+Post ||--o{ Comment : has
+Post }|--|| Tag : tagged_with
+Post ||--o{ Favorite : favorited_by
+
+Comment }o--|| User : written_by
+Comment }o--|| Post : belongs_to
+
+Favorite }o--|| User : created_by
+Favorite }o--|| Post : favorites
+
+User ||--o{ Follow : follows
+Follow }o--|| User : followed_by
+
+Feed ||--o{ Post : contains
+Feed }o--|| User : belongs_to
+
+Tag }o--|| TagType : categorized_as
+
+@enduml
