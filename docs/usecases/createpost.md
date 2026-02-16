@@ -30,13 +30,14 @@ This use case describes how a user creates a new post in the application.
 
 ## Alternative Event Flows
 
-### 4a: Missing Required Information
-- If the user tries to submit the form without required fields (image, title, tag, rating):
-    - The system shows an error message on the required feild
-    - The post is not saved.
-    - The user remains on the Create Post form.
+### A1: Missing Required Information
+* At step 4, if the user tries to submit the form without required fields (image, title, tag, rating):
+1. The system shows an error message on the required feild
+2. The post is not saved.
+3. The user remains on the Create Post form.
 
 ### 4b: User Cancels Creation
-- The user clicks a "Cancel" button.
-- The system discards the entered information.
-- The user is redirected back to their profile.
+* At step 4, if the user cancels the creation of the post.
+1. The user clicks a "Cancel" button.
+2. The system discards the entered information.
+3. The user is redirected back to their profile.
