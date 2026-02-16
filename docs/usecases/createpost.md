@@ -1,13 +1,5 @@
 # Use Case: Create Post
 
-## Actor
-Registered User
-
-## Description
-This use case describes how a user creates a new post in the application.
-
----
-
 ## Main Event Flow
 
 1. The user logs into the application.
@@ -36,7 +28,7 @@ This use case describes how a user creates a new post in the application.
 2. The post is not saved.
 3. The user remains on the Create Post form.
 
-### 4b: User Cancels Creation
+### A2: User Cancels Creation
 * At step 4, if the user cancels the creation of the post.
 1. The user clicks a "Cancel" button.
 2. The system discards the entered information.
