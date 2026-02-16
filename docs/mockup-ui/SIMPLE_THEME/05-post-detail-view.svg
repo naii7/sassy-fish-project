@@ -1,0 +1,159 @@
+<svg width="1440" height="900" viewBox="0 0 1440 900" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="2" stdDeviation="10" flood-opacity="0.25"/>
+    </filter>
+    <filter id="cardShadow">
+      <feDropShadow dx="0" dy="2" stdDeviation="6" flood-opacity="0.2"/>
+    </filter>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <linearGradient id="navGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#fef3c7;stop-opacity:0.5" />
+    </linearGradient>
+    <linearGradient id="buttonGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#ff6b9d;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#ffa500;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="fishGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#c084fc;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#818cf8;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#60a5fa;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="image1Gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#334155;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0f172a;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="image2Gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#fed7aa;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#fbbf24;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="image3Gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ef4444;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#b91c1c;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background with subtle gradient -->
+  <rect width="1440" height="900" fill="#fefce8"/>
+  <rect width="1440" height="900" fill="url(#navGradient)" opacity="0.2"/>
+  
+  <!-- Top Navigation Bar -->
+  <rect width="1440" height="70" fill="url(#navGradient)" filter="url(#shadow)"/>
+  <text x="60" y="45" font-family="Playfair Display, serif" font-size="30" font-weight="700" fill="url(#buttonGradient)">Sassy-me</text>
+  
+  <!-- Decorative accent under logo -->
+  <rect x="60" y="52" width="140" height="2" fill="#ff6b9d" opacity="0.5"/>
+  
+  <!-- Navigation Items -->
+  <text x="900" y="45" font-family="Inter, sans-serif" font-size="15" font-weight="500" fill="#6b7280">Home</text>
+  <text x="990" y="45" font-family="Inter, sans-serif" font-size="15" font-weight="500" fill="#6b7280">Trending</text>
+  <text x="1090" y="45" font-family="Inter, sans-serif" font-size="15" font-weight="500" fill="#6b7280">Tags</text>
+  <text x="1170" y="45" font-family="Inter, sans-serif" font-size="15" font-weight="500" fill="#6b7280">Friends</text>
+  
+  <!-- New Post Button -->
+  <rect x="1280" y="25" width="120" height="40" fill="url(#buttonGradient)" filter="url(#glow)"/>
+  <text x="1340" y="50" font-family="Inter, sans-serif" font-size="14" font-weight="700" fill="#ffffff" text-anchor="middle">+ New Post</text>
+  
+  <!-- Main Post Card -->
+  <g transform="translate(200, 110)">
+    <rect x="0" y="0" width="1040" height="370" fill="#ffffff" filter="url(#cardShadow)"/>
+    
+    <!-- Decorative accent bar -->
+    <rect x="0" y="0" width="6" height="370" fill="url(#buttonGradient)"/>
+    
+    <!-- User Avatar with gradient -->
+    <circle cx="50" cy="50" r="28" fill="url(#fishGradient)" filter="url(#glow)"/>
+    <ellipse cx="50" cy="50" rx="16" ry="11" fill="#818cf8"/>
+    <circle cx="60" cy="48" r="4" fill="#ffffff"/>
+    
+    <!-- Username and Time -->
+    <text x="95" y="48" font-family="Inter, sans-serif" font-size="17" font-weight="700" fill="#1e293b">SassyFish</text>
+    <text x="95" y="68" font-family="Inter, sans-serif" font-size="13" font-weight="500" fill="#7c3aed">2 hours ago</text>
+    
+    <!-- Post Title -->
+    <text x="30" y="120" font-family="Playfair Display, serif" font-size="28" font-weight="700" fill="#1e293b">Epic Movie Night!</text>
+    
+    <!-- Tags with glow effect -->
+    <rect x="30" y="135" width="118" height="30" fill="#7c3aed" filter="url(#glow)"/>
+    <text x="89" y="156" font-family="Inter, sans-serif" font-size="13" font-weight="700" fill="#ffffff" text-anchor="middle">Cinema / Movies</text>
+    
+    <rect x="158" y="135" width="58" height="30" fill="#059669" filter="url(#glow)"/>
+    <text x="187" y="156" font-family="Inter, sans-serif" font-size="13" font-weight="700" fill="#ffffff" text-anchor="middle">Food</text>
+    
+    <!-- Rating and Favorite with glow -->
+    <text x="30" y="200" fill="#fbbf24" font-size="28" filter="url(#glow)">⭐⭐⭐⭐⭐</text>
+    <text x="175" y="200" font-size="28" filter="url(#glow)">❤️</text>
+    
+    <!-- Post Images with gradients -->
+    <rect x="30" y="220" width="230" height="130" fill="url(#image1Gradient)" filter="url(#cardShadow)"/>
+    <rect x="85" y="250" width="130" height="75" fill="#475569" opacity="0.8"/>
+    <circle cx="150" cy="287" r="14" fill="#fbbf24" filter="url(#glow)"/>
+    <ellipse cx="150" cy="268" rx="18" ry="10" fill="#60a5fa" opacity="0.4"/>
+    
+    <rect x="275" y="220" width="230" height="130" fill="url(#image2Gradient)" filter="url(#cardShadow)"/>
+    <circle cx="390" cy="265" r="40" fill="#fbbf24" filter="url(#glow)"/>
+    <circle cx="370" cy="275" r="15" fill="#fef3c7" opacity="0.8"/>
+    <circle cx="405" cy="282" r="18" fill="#fef3c7" opacity="0.7"/>
+    <circle cx="390" cy="295" r="13" fill="#fef3c7" opacity="0.6"/>
+    
+    <rect x="520" y="220" width="230" height="130" fill="url(#image3Gradient)" filter="url(#cardShadow)"/>
+    <rect x="575" y="250" width="35" height="65" fill="#fef3c7" opacity="0.9"/>
+    <rect x="615" y="250" width="35" height="65" fill="#fef3c7" opacity="0.9"/>
+    <rect x="655" y="250" width="35" height="65" fill="#fef3c7" opacity="0.9"/>
+    
+    <!-- Post Description with elegant spacing -->
+    <text x="770" y="242" font-family="Inter, sans-serif" font-size="16" font-weight="500" fill="#334155">Best movie night ever! Had an amazing</text>
+    <text x="770" y="265" font-family="Inter, sans-serif" font-size="16" font-weight="500" fill="#334155">time watching classics with friends.</text>
+    <text x="770" y="288" font-family="Inter, sans-serif" font-size="16" font-weight="500" fill="#334155">The popcorn was perfect! 🍿 🎬</text>
+    
+    <!-- Decorative corner accent -->
+    <circle cx="1020" cy="20" r="6" fill="#fbbf24" opacity="0.4"/>
+    <circle cx="1010" cy="350" r="5" fill="#ec4899" opacity="0.4"/>
+  </g>
+  
+  <!-- Engagement Bar -->
+  <g transform="translate(200, 500)">
+    <rect x="0" y="0" width="1040" height="70" fill="#ffffff" filter="url(#cardShadow)"/>
+    <rect x="0" y="0" width="1040" height="4" fill="url(#buttonGradient)" opacity="0.3"/>
+    
+    <text x="35" y="43" font-family="Inter, sans-serif" font-size="17" font-weight="600" fill="#ec4899">❤️ 87</text>
+    <text x="130" y="43" font-family="Inter, sans-serif" font-size="15" font-weight="500" fill="#9ca3af">Likes</text>
+    
+    <text x="250" y="43" font-family="Inter, sans-serif" font-size="17" font-weight="600" fill="#7c3aed">💬 24</text>
+    <text x="345" y="43" font-family="Inter, sans-serif" font-size="15" font-weight="500" fill="#9ca3af">Comments</text>
+    
+    <text x="480" y="43" font-family="Inter, sans-serif" font-size="17" font-weight="600" fill="#10b981">🔗</text>
+    <text x="520" y="43" font-family="Inter, sans-serif" font-size="15" font-weight="500" fill="#9ca3af">Share</text>
+  </g>
+  
+  <!-- Comments Section -->
+  <g transform="translate(200, 590)">
+    <rect x="0" y="0" width="1040" height="300" fill="#ffffff" filter="url(#cardShadow)"/>
+    
+    <text x="30" y="40" font-family="Playfair Display, serif" font-size="22" font-weight="700" fill="#1e293b">Comments</text>
+    <line x1="30" y1="50" x2="170" y2="50" stroke="#ff6b9d" stroke-width="2" opacity="0.4"/>
+    
+    <!-- Comment 1 -->
+    <circle cx="55" cy="90" r="24" fill="#10b981" opacity="0.8" filter="url(#glow)"/>
+    <text x="95" y="87" font-family="Inter, sans-serif" font-size="16" font-weight="700" fill="#1e293b">MovieBuff87</text>
+    <text x="95" y="106" font-family="Inter, sans-serif" font-size="13" font-weight="500" fill="#7c3aed">1 hour ago</text>
+    <text x="95" y="133" font-family="Inter, sans-serif" font-size="15" fill="#334155">This looks amazing! What movies did you watch?</text>
+    <text x="95" y="158" font-family="Inter, sans-serif" font-size="13" font-weight="600" fill="#ec4899">❤️ 5</text>
+    <text x="148" y="158" font-family="Inter, sans-serif" font-size="13" font-weight="500" fill="#7c3aed">💬 Reply</text>
+    
+    <!-- Comment 2 -->
+    <circle cx="55" cy="200" r="24" fill="#f59e0b" opacity="0.8" filter="url(#glow)"/>
+    <text x="95" y="197" font-family="Inter, sans-serif" font-size="16" font-weight="700" fill="#1e293b">FoodieFan</text>
+    <text x="95" y="216" font-family="Inter, sans-serif" font-size="13" font-weight="500" fill="#7c3aed">30 minutes ago</text>
+    <text x="95" y="243" font-family="Inter, sans-serif" font-size="15" fill="#334155">That popcorn looks delicious! Recipe?</text>
+    <text x="95" y="268" font-family="Inter, sans-serif" font-size="13" font-weight="600" fill="#ec4899">❤️ 3</text>
+    <text x="148" y="268" font-family="Inter, sans-serif" font-size="13" font-weight="500" fill="#7c3aed">💬 Reply</text>
+  </g>
+</svg>

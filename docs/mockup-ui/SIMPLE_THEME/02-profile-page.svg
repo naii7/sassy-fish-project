@@ -1,0 +1,207 @@
+<svg width="1440" height="900" viewBox="0 0 1440 900" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="headerGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ff6b9d;stop-opacity:1" />
+      <stop offset="25%" style="stop-color:#c44569;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#f093fb;stop-opacity:1" />
+      <stop offset="75%" style="stop-color:#a78bfa;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#60a5fa;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="fishGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#c084fc;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#818cf8;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#60a5fa;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="navGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#fef3c7;stop-opacity:0.5" />
+    </linearGradient>
+    <linearGradient id="buttonGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#ff6b9d;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#ffa500;stop-opacity:1" />
+    </linearGradient>
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="2" stdDeviation="10" flood-opacity="0.25"/>
+    </filter>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <radialGradient id="favorite1">
+      <stop offset="0%" style="stop-color:#fef3c7;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#fbbf24;stop-opacity:1" />
+    </radialGradient>
+    <radialGradient id="favorite2">
+      <stop offset="0%" style="stop-color:#334155;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0f172a;stop-opacity:1" />
+    </radialGradient>
+    <radialGradient id="favorite3">
+      <stop offset="0%" style="stop-color:#ef4444;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#b91c1c;stop-opacity:1" />
+    </radialGradient>
+    <radialGradient id="favorite4">
+      <stop offset="0%" style="stop-color:#a8a29e;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#57534e;stop-opacity:1" />
+    </radialGradient>
+  </defs>
+  
+  <!-- Background with subtle gradient -->
+  <rect width="1440" height="900" fill="#fefce8"/>
+  <rect width="1440" height="900" fill="url(#navGradient)" opacity="0.3"/>
+  
+  <!-- Top Navigation Bar -->
+  <rect width="1440" height="70" fill="url(#navGradient)" filter="url(#shadow)"/>
+  
+  <!-- Logo with gradient -->
+  <text x="60" y="45" font-family="Playfair Display, serif" font-size="30" font-weight="700" fill="url(#buttonGradient)">Sassy-me</text>
+  
+  <!-- Decorative accent under logo -->
+  <rect x="60" y="52" width="140" height="2" fill="#ff6b9d" opacity="0.5"/>
+  
+  <!-- Navigation Items with hover state colors -->
+  <text x="900" y="45" font-family="Inter, sans-serif" font-size="15" font-weight="600" fill="#7c3aed">Home</text>
+  <text x="990" y="45" font-family="Inter, sans-serif" font-size="15" font-weight="500" fill="#6b7280">Trending</text>
+  <text x="1090" y="45" font-family="Inter, sans-serif" font-size="15" font-weight="500" fill="#6b7280">Tags</text>
+  <text x="1170" y="45" font-family="Inter, sans-serif" font-size="15" font-weight="500" fill="#6b7280">Friends</text>
+  
+  <!-- New Post Button -->
+  <rect x="1280" y="25" width="120" height="40" fill="url(#buttonGradient)" filter="url(#glow)"/>
+  <text x="1340" y="50" font-family="Inter, sans-serif" font-size="14" font-weight="700" fill="#ffffff" text-anchor="middle">+ New Post</text>
+  
+  <!-- Profile Header Banner -->
+  <rect x="0" y="70" width="1440" height="200" fill="url(#headerGradient)"/>
+  
+  <!-- Decorative pattern overlay on banner -->
+  <circle cx="200" cy="120" r="60" fill="#ffffff" opacity="0.1"/>
+  <circle cx="1300" cy="200" r="80" fill="#ffffff" opacity="0.08"/>
+  <circle cx="600" cy="180" r="40" fill="#fbbf24" opacity="0.15"/>
+  <circle cx="900" cy="100" r="50" fill="#ec4899" opacity="0.12"/>
+  
+  <!-- Profile Picture Container with elegant ring -->
+  <circle cx="720" cy="220" r="90" fill="#fbbf24" opacity="0.3" filter="url(#glow)"/>
+  <circle cx="720" cy="220" r="85" fill="#1e293b" filter="url(#shadow)"/>
+  <circle cx="720" cy="220" r="82" fill="url(#fishGradient)"/>
+  
+  <!-- Enhanced Stylized Fish Avatar -->
+  <ellipse cx="720" cy="220" rx="52" ry="36" fill="url(#fishGradient)" filter="url(#glow)"/>
+  <ellipse cx="747" cy="214" rx="10" ry="10" fill="#ffffff" opacity="0.9"/>
+  <circle cx="750" cy="214" r="4" fill="#1e293b"/>
+  <path d="M 660 220 L 682 208 L 682 232 Z" fill="#a78bfa" opacity="0.8"/>
+  <path d="M 720 245 L 714 262 L 726 262 Z" fill="#818cf8"/>
+  <ellipse cx="735" cy="225" rx="3" ry="5" fill="#60a5fa" opacity="0.6"/>
+  
+  <!-- Username with shadow effect -->
+  <text x="720" y="330" font-family="Playfair Display, serif" font-size="32" font-weight="700" fill="#1e293b" text-anchor="middle" filter="url(#shadow)">SassyFish</text>
+  <text x="720" y="360" font-family="Inter, sans-serif" font-size="15" font-weight="500" fill="#7c3aed" text-anchor="middle">@sassyfish</text>
+  
+  <!-- Bio with colorful emojis -->
+  <text x="720" y="395" font-family="Inter, sans-serif" font-size="16" font-weight="500" fill="#334155" text-anchor="middle">Living life with sass! ⭐ Movie lover, foodie, and adventure seeker 🎬 📱</text>
+  
+  <!-- Stats with colorful backgrounds -->
+  <g transform="translate(560, 408)">
+    <rect x="-50" y="0" width="100" height="55" fill="#fef3c7" opacity="0.4"/>
+    <text x="0" y="22" font-family="Inter, sans-serif" font-size="24" font-weight="700" fill="#1e293b" text-anchor="middle">245</text>
+    <text x="0" y="42" font-family="Inter, sans-serif" font-size="13" font-weight="500" fill="#7c3aed" text-anchor="middle">Posts</text>
+  </g>
+  
+  <g transform="translate(720, 408)">
+    <rect x="-55" y="0" width="110" height="55" fill="#ddd6fe" opacity="0.4"/>
+    <text x="0" y="22" font-family="Inter, sans-serif" font-size="24" font-weight="700" fill="#1e293b" text-anchor="middle">1.2k</text>
+    <text x="0" y="42" font-family="Inter, sans-serif" font-size="13" font-weight="500" fill="#7c3aed" text-anchor="middle">Followers</text>
+  </g>
+  
+  <g transform="translate(880, 408)">
+    <rect x="-55" y="0" width="110" height="55" fill="#fbcfe8" opacity="0.4"/>
+    <text x="0" y="22" font-family="Inter, sans-serif" font-size="24" font-weight="700" fill="#1e293b" text-anchor="middle">980</text>
+    <text x="0" y="42" font-family="Inter, sans-serif" font-size="13" font-weight="500" fill="#7c3aed" text-anchor="middle">Following</text>
+  </g>
+  
+  <!-- Tab Navigation with accent -->
+  <rect x="0" y="480" width="1440" height="50" fill="#ffffff" opacity="0.9"/>
+  <text x="620" y="512" font-family="Inter, sans-serif" font-size="16" font-weight="700" fill="#1e293b">Posts</text>
+  <rect x="602" y="525" width="56" height="4" fill="url(#buttonGradient)"/>
+  
+  <text x="760" y="512" font-family="Inter, sans-serif" font-size="16" font-weight="500" fill="#6b7280">Favorites</text>
+  <text x="880" y="512" font-family="Inter, sans-serif" font-size="16" font-weight="500" fill="#6b7280">Tags</text>
+  
+  <!-- Favorites Grid (4 items) with enhanced styling -->
+  <g transform="translate(340, 560)">
+    <!-- Favorite 1: Popcorn -->
+    <rect x="0" y="0" width="185" height="185" fill="url(#favorite1)" filter="url(#shadow)"/>
+    <rect x="0" y="0" width="185" height="6" fill="#fbbf24"/>
+    <circle cx="92" cy="75" r="32" fill="#fbbf24" filter="url(#glow)"/>
+    <circle cx="75" cy="58" r="10" fill="#fef3c7"/>
+    <circle cx="108" cy="63" r="12" fill="#fef3c7"/>
+    <circle cx="92" cy="90" r="14" fill="#fef3c7"/>
+    <circle cx="80" cy="78" r="8" fill="#fef3c7"/>
+    <circle cx="104" cy="82" r="9" fill="#fef3c7"/>
+    <text x="15" y="155" font-family="Inter, sans-serif" font-size="13" font-weight="700" fill="#92400e">Popcorn Night</text>
+    <text x="15" y="172" fill="#fbbf24" font-size="18">⭐⭐⭐⭐⭐</text>
+  </g>
+  
+  <g transform="translate(545, 560)">
+    <!-- Favorite 2: Interstellar -->
+    <rect x="0" y="0" width="185" height="185" fill="url(#favorite2)" filter="url(#shadow)"/>
+    <rect x="0" y="0" width="185" height="6" fill="#0ea5e9"/>
+    <circle cx="92" cy="75" r="38" fill="#475569" filter="url(#glow)"/>
+    <circle cx="92" cy="75" r="24" fill="#1e293b"/>
+    <circle cx="92" cy="75" r="14" fill="#0f172a"/>
+    <circle cx="120" cy="55" r="6" fill="#fbbf24" opacity="0.6"/>
+    <circle cx="65" cy="95" r="4" fill="#ec4899" opacity="0.4"/>
+    <text x="15" y="155" font-family="Inter, sans-serif" font-size="13" font-weight="700" fill="#e2e8f0">Interstellar</text>
+    <text x="15" y="172" fill="#fbbf24" font-size="18">⭐⭐⭐⭐⭐</text>
+  </g>
+  
+  <g transform="translate(750, 560)">
+    <!-- Favorite 3: Catan -->
+    <rect x="0" y="0" width="185" height="185" fill="url(#favorite3)" filter="url(#shadow)"/>
+    <rect x="0" y="0" width="185" height="6" fill="#fbbf24"/>
+    <rect x="55" y="45" width="75" height="95" fill="#fbbf24" transform="rotate(12 92 92)" filter="url(#glow)"/>
+    <rect x="60" y="50" width="65" height="85" fill="#dc2626" transform="rotate(12 92 92)"/>
+    <text x="60" y="105" font-family="Playfair Display, serif" font-size="24" font-weight="700" fill="#fef3c7" transform="rotate(12 92 92)">CATAN</text>
+    <circle cx="35" cy="150" r="8" fill="#fbbf24" opacity="0.6"/>
+    <circle cx="150" cy="35" r="6" fill="#fef3c7" opacity="0.5"/>
+    <text x="15" y="155" font-family="Inter, sans-serif" font-size="13" font-weight="700" fill="#fee2e2">Board Game</text>
+    <text x="15" y="172" fill="#fbbf24" font-size="18">⭐⭐⭐⭐⭐</text>
+  </g>
+  
+  <g transform="translate(955, 560)">
+    <!-- Favorite 4: Don Quijote -->
+    <rect x="0" y="0" width="185" height="185" fill="url(#favorite4)" filter="url(#shadow)"/>
+    <rect x="0" y="0" width="185" height="6" fill="#a78bfa"/>
+    <rect x="50" y="30" width="85" height="110" fill="#e7e5e4" filter="url(#shadow)"/>
+    <rect x="55" y="35" width="75" height="100" fill="#fafaf9"/>
+    <text x="92" y="75" font-family="Playfair Display, serif" font-size="13" font-weight="700" fill="#44403c" text-anchor="middle">Don Quijote</text>
+    <text x="92" y="92" font-family="Playfair Display, serif" font-size="11" font-style="italic" fill="#78716c" text-anchor="middle">de la Mancha</text>
+    <line x1="65" y1="100" x2="120" y2="100" stroke="#d6d3d1" stroke-width="1"/>
+    <text x="15" y="155" font-family="Inter, sans-serif" font-size="13" font-weight="700" fill="#f5f5f4">Classic Novel</text>
+    <text x="15" y="172" fill="#fbbf24" font-size="18">⭐⭐⭐⭐⭐</text>
+  </g>
+  
+  <!-- Tag Filters with colorful design -->
+  <g transform="translate(340, 775)">
+    <rect x="0" y="0" width="85" height="36" fill="#1e293b"/>
+    <text x="42" y="23" font-family="Inter, sans-serif" font-size="13" font-weight="600" fill="#ffffff" text-anchor="middle">All tags</text>
+    
+    <rect x="100" y="0" width="135" height="36" fill="#7c3aed"/>
+    <text x="167" y="23" font-family="Inter, sans-serif" font-size="13" font-weight="600" fill="#ffffff" text-anchor="middle">Cinema / Movies</text>
+    
+    <rect x="250" y="0" width="75" height="36" fill="#78716c"/>
+    <text x="287" y="23" font-family="Inter, sans-serif" font-size="13" font-weight="600" fill="#ffffff" text-anchor="middle">Books</text>
+    
+    <rect x="340" y="0" width="70" height="36" fill="#db2777"/>
+    <text x="375" y="23" font-family="Inter, sans-serif" font-size="13" font-weight="600" fill="#ffffff" text-anchor="middle">Music</text>
+    
+    <rect x="425" y="0" width="105" height="36" fill="#3b82f6"/>
+    <text x="477" y="23" font-family="Inter, sans-serif" font-size="13" font-weight="600" fill="#ffffff" text-anchor="middle">Videogames</text>
+    
+    <rect x="545" y="0" width="65" height="36" fill="#ec4899"/>
+    <text x="577" y="23" font-family="Inter, sans-serif" font-size="13" font-weight="600" fill="#ffffff" text-anchor="middle">Other</text>
+    
+    <rect x="625" y="0" width="45" height="36" fill="#6b7280"/>
+    <text x="647" y="23" font-family="Inter, sans-serif" font-size="18" fill="#ffffff" text-anchor="middle">⋯</text>
+  </g>
+</svg>
