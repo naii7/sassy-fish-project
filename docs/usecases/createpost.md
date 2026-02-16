@@ -1,13 +1,5 @@
 # Use Case: Create Post
 
-## Actor
-Registered User
-
-## Description
-This use case describes how a user creates a new post in the application.
-
----
-
 ## Main Event Flow
 
 1. The user logs into the application.
