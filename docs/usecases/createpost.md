@@ -1,35 +1,37 @@
 # Use Case: Create Post
 
-## Main Event Flow
+## Main Flow
+### Preconditions:
+* The user is registered
+* The user is logged in
 
-1. The user logs into the application.
-2. The system redirects the user to their profile page.
-3. The user clicks the "+" button to create a new post.
-4. The system displays the "Create Post" form.
-5. The user uploads an image.
-6. The user enters a title.
-7. The user selects one tag from the available list.
-8. The user selects a date (dafault: today's date)
-9. The user selects a star rating.
-10. The user optionally marks the post as "Favourite".
-11. The user optionally writes a personal comment/description
-12. The user clicks the "Submit" button.
-13. The system saves the post.
-14. The system redirects the user back to their profile.
-15. The new post is visible on the profile page.
+### Main Event Flow
+1. The user enters the information for the post:
+	* title
+	* tags
+	* image
+	* description
+	* star rating
+	* optionally add post to favorites
+2. The user saves post.
+3. The system checks whether all requiered fields are filled.
+4. The system creates the post.
+5. The system shows post on the user’s profile.
 
----
 
-## Alternative Event Flows
+## Alternative Event Flow
+### AA. Cancel Post
+* At step 1, if the user cancels the creation of the post.
+1. The system cancels and deletes all information about the post.
+2. The system returns to the user's profile window.
 
-### A1: Missing Required Information
-* At step 4, if the user tries to submit the form without required fields (image, title, tag, rating):
-1. The system shows an error message on the required feild
-2. The post is not saved.
-3. The user remains on the Create Post form.
+### A2. Empty Field
+* At step 3, if the user tries to save post when requiered fields are missing.
+1. The system shows error message “ required fields missing”.
+2. The system asks the user to complete the requiered fields.
+3. The system does not save the post.
+4. The user stays on the create post window.
 
-### A2: User Cancels Creation
-* At step 4, if the user cancels the creation of the post.
-1. The user clicks a "Cancel" button.
-2. The system discards the entered information.
-3. The user is redirected back to their profile.
+
+
+
