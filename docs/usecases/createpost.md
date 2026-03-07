@@ -31,7 +31,3 @@
 2. The system asks the user to complete the requiered fields.
 3. The system does not save the post.
 4. The user stays on the create post window.
-
-
-
-
