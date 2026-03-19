@@ -6,7 +6,7 @@
 
 ## Main Flow
 
-1. THe user accesses the profile section of the application
+1. The user accesses the profile section of the application
 2. The system displays the user's current profile information
 3. The suer selects the edit profile option
 4. The user modifies the desired information (e.g., name, profile picture, bio, country)

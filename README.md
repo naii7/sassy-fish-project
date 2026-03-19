@@ -9,3 +9,7 @@
   - https://github.com/naii7/sassy-fish-project.git
 - Aitana Perez
   - https://github.com/a-perz/sassy-fish-project.git
+
+## Requirements
+- Java 21 (LTS)
+- Maven 3.8+
