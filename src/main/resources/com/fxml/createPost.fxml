@@ -6,13 +6,14 @@
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="TOP_CENTER" prefWidth="450.0" spacing="15.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1">
+<VBox alignment="TOP_CENTER" prefWidth="450.0" spacing="15.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.controllers.CreatePostController">
    <padding>
       <Insets bottom="20.0" left="25.0" right="25.0" top="20.0" />
    </padding>
@@ -24,13 +25,13 @@
          </font>
       </Label>
    </HBox>
-
-   <StackPane prefHeight="120.0" style="-fx-border-color: black; -fx-border-style: dashed; -fx-border-width: 1;">
-      <VBox alignment="CENTER" spacing="5.0">
-         <Label style="-fx-font-weight: bold; -fx-font-size: 14px;" text="📷 Upload Image" />
-         <Label text="Click or drag files here" />
-      </VBox>
-   </StackPane>
+   <AnchorPane fx:id="imageDropArea" prefHeight="150.0" prefWidth="300.0" style="-fx-border-color: black;">
+      <children>
+         <ImageView fx:id="imageView" fitHeight="150.0" fitWidth="300.0" onDragDropped="#handleDragDropped" onDragOver="#handleDragOver" onMouseClicked="#handleImageClick" pickOnBounds="true" preserveRatio="true" />
+         <Label layoutX="145.0" layoutY="55.0" style="-fx-font-weight: bold; -fx-font-size: 14px;" text="📷 Upload Image" />
+         <Label layoutX="141.0" layoutY="82.0" text="Click or drag files here" />
+      </children>
+   </AnchorPane>
 
    <VBox spacing="5.0">
       <Label style="-fx-font-weight: bold;" text="Title" />
@@ -43,42 +44,44 @@
    </VBox>
 
    <VBox spacing="5.0">
-      <Label style="-fx-font-weight: bold;" text="Tags (Select one)" />
-      <FlowPane hgap="8.0" vgap="8.0">
-         <Button text="Bathroom" />
-         <Button text="Disasters / Oh no" />
-         <Button text="Food" />
-         <Button text="Music" />
-         <Button text="Other" />
-      </FlowPane>
+      <Label style="-fx-font-weight: bold;" text="Tags (Ctrl+Click to select more than one)" />
+      <FlowPane fx:id="tagContainer" hgap="8.0" prefHeight="80.0" prefWidth="400.0" vgap="8.0" />
    </VBox>
 
    <VBox spacing="5.0">
       <Label style="-fx-font-weight: bold;" text="Star Rating" />
       <HBox spacing="10.0">
-         <Label text="☆">
+         <Label onMouseClicked="#handleStarClicked" text=" ★" textFill="#b9b9b9">
             <font><Font size="36.0" /></font>
          </Label>
-         <Label text="☆">
-            <font><Font size="36.0" /></font>
+         <Label onMouseClicked="#handleStarClicked" text=" ★" textFill="#b9b9b9">
+            <font>
+               <Font size="36.0" />
+            </font>
          </Label>
-         <Label text="☆">
-            <font><Font size="36.0" /></font>
+         <Label onMouseClicked="#handleStarClicked" text=" ★" textFill="#b9b9b9">
+            <font>
+               <Font size="36.0" />
+            </font>
          </Label>
-         <Label text="☆">
-            <font><Font size="36.0" /></font>
+         <Label onMouseClicked="#handleStarClicked" text=" ★" textFill="#b9b9b9">
+            <font>
+               <Font size="36.0" />
+            </font>
          </Label>
-         <Label text="☆">
-            <font><Font size="36.0" /></font>
+         <Label onMouseClicked="#handleStarClicked" text=" ★" textFill="#b9b9b9">
+            <font>
+               <Font size="36.0" />
+            </font>
          </Label>
       </HBox>
    </VBox>
 
    <HBox alignment="CENTER_LEFT" spacing="15.0" style="-fx-padding: 10 0 0 0;">
       
-      <ToggleButton style="-fx-background-color: transparent; -fx-font-weight: bold; -fx-cursor: hand;" text="Mark as Favorite">
+      <ToggleButton style="-fx-background-color: transparent; -fx-font-weight: bold; -fx-cursor: hand; -fx-border-color: black;" text="Mark as Favorite">
          <graphic>
-            <Label style="-fx-font-size: 32px;" text="♡" />
+            <Label style="-fx-font-size: 32px;" text="♥" textFill="WHITE" />
          </graphic>
       </ToggleButton>
       
