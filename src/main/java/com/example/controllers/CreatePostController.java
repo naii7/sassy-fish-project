@@ -102,28 +102,58 @@ public class CreatePostController {
 
     @FXML
     void handleStarClicked(MouseEvent event) {
-
+        
         // get the star that was clicked
         Label clickedStar = (Label) event.getSource();
 
-        // go though each star until we get to the clicked star
+        // go through each star until we get to the clicked star
         int i = 0;
         while (stars[i] != clickedStar)
           i++;
-    
-        // set style of each star
+
+        // SET STYLE (colour) of each star
         for (int j = 0; j < stars.length; j++) {
             
-            if (j <= i) // star <= clicked star -> gold
+            if (j <= i) { // star <= clicked star -> gold
                 stars[j].setStyle("-fx-text-fill: gold");
+                stars[j].setText("★"); // set to full star (in case it was a half star before)
             
-            else // star > clicked star -> grey
+            } else { // star > clicked star -> grey
                 stars[j].setStyle("-fx-text-fill: #b9b9b9");
+                stars[j].setText("★"); // set to full star (in case it was a half star before)
+            }
         }
 
-        // save star rating inside Post object (for later saving to db)
-        currentPost.setStarRating(i + 1); // i starts at 0, but star ratings start at 1, so we save i+1
+        // SET NEW RATING
+
+        // get the star rating from before (to check if user clicks the same star again)
+        double currentRating = currentPost.getStarRating();
+        
+        // check if user clicks the same star twice
+        // A. SAME STAR CLICKED WHEN IT WAS FULL -> CHANGE TO HALF STAR
+        if ( currentRating == i + 1 ) { // rating = clicked star index + 1 (cause arrays start at 0)
+            
+            clickedStar.setText("⯪"); // change star to half star
+
+            //save star rating w/ 0.5 (for half star) inside Post object (for later saving to db)
+            currentPost.setStarRating(i + 0.5); // set rating to clicked star index + 0.5 (cause arrays start at 0)
+        
+        // B. SAME STAR CLICKED WHEN IT WAS HALF -> CHANGE TO FULL STAR
+        } else if (currentRating == i + 0.5)  { // rating = clicked star index + 0.5 (cause arrays start at 0)
+            
+            clickedStar.setText("★"); // change star to full star
+
+            //save star rating w/ 1.0 (for full star) inside Post object (for later saving to db)
+            currentPost.setStarRating(i + 1.0); // set rating to clicked star index + 1.0 (cause arrays start at 0)
+
+        // C .DIFFERENT STAR CLICKED -> NORMAL BEHAVIOUR (CHANGE TO FULL STAR)
+        } else {
+
+            // save star rating inside Post object (for later saving to db)
+            currentPost.setStarRating(i + 1.0); // different star -> set rating to clicked star index + 1 (cause arrays start at 0)
+        }
     }
+
 
     @FXML
     void handleFavoriteToggle() {

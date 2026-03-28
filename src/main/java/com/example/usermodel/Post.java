@@ -17,7 +17,7 @@ public class Post {
     private String title;
     private String description;
     private boolean isFavourite;
-    private int starRating; // 1-5
+    private double starRating = 0.0; // 1-5
     private List<Tag> tags = new ArrayList<>(); // ENUM of tags
     private LocalDate date;
 
@@ -55,11 +55,11 @@ public class Post {
         this.isFavourite = isFavourite;
     }
 
-    public int getStarRating() {
+    public double getStarRating() {
         return starRating;
     }
 
-    public void setStarRating(int starRating) {
+    public void setStarRating(double starRating) {
         this.starRating = starRating;
     }
 

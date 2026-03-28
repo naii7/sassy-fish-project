@@ -29,7 +29,7 @@
    </AnchorPane>
    <AnchorPane fx:id="imageDropArea" prefHeight="150.0" prefWidth="300.0" style="-fx-border-color: black;">
       <children>
-         <ImageView fx:id="imageView" fitHeight="150.0" fitWidth="400.0" onDragDropped="#handleDragDropped" onDragOver="#handleDragOver" onMouseClicked="#handleImageClick" pickOnBounds="true" preserveRatio="true" />
+         <ImageView fx:id="imageView" fitHeight="150.0" fitWidth="400.0" onDragOver="#handleDragOver" onMouseClicked="#handleImageClick" pickOnBounds="true" preserveRatio="true" />
          <Label fx:id="imageUploadLabel" layoutX="138.0" layoutY="65.0" prefHeight="20.0" prefWidth="124.0" style="-fx-font-weight: bold; -fx-font-size: 14px;" text="📷 Upload Image *" />
       </children>
    </AnchorPane>
@@ -62,30 +62,34 @@
 
    <VBox prefHeight="81.0" prefWidth="402.0" spacing="5.0">
       <Label fx:id="starsLabel" prefHeight="17.0" prefWidth="79.0" style="-fx-font-weight: bold;" text="Star Rating *" />
-      <HBox fx:id="starContainer" prefHeight="53.0" prefWidth="348.0" spacing="10.0">
-         <Label onMouseClicked="#handleStarClicked" text=" ★" textFill="#b9b9b9">
-            <font><Font size="36.0" /></font>
-         </Label>
-         <Label onMouseClicked="#handleStarClicked" text=" ★" textFill="#b9b9b9">
-            <font>
-               <Font size="36.0" />
-            </font>
-         </Label>
-         <Label onMouseClicked="#handleStarClicked" text=" ★" textFill="#b9b9b9">
-            <font>
-               <Font size="36.0" />
-            </font>
-         </Label>
-         <Label onMouseClicked="#handleStarClicked" text=" ★" textFill="#b9b9b9">
-            <font>
-               <Font size="36.0" />
-            </font>
-         </Label>
-         <Label onMouseClicked="#handleStarClicked" text=" ★" textFill="#b9b9b9">
-            <font>
-               <Font size="36.0" />
-            </font>
-         </Label>
+      <HBox fx:id="starContainer">
+         <children>
+            <Label fx:id="star1" onMouseClicked="#handleStarClicked" text=" ★" textFill="#b9b9b9">
+               <font>
+                  <Font size="36.0" />
+               </font>
+            </Label>
+            <Label fx:id="star2" onMouseClicked="#handleStarClicked" text=" ★" textFill="#b9b9b9">
+               <font>
+                  <Font size="36.0" />
+               </font>
+            </Label>
+            <Label fx:id="star3" onMouseClicked="#handleStarClicked" text=" ★" textFill="#b9b9b9">
+               <font>
+                  <Font size="36.0" />
+               </font>
+            </Label>
+            <Label fx:id="star4" onMouseClicked="#handleStarClicked" text=" ★" textFill="#b9b9b9">
+               <font>
+                  <Font size="36.0" />
+               </font>
+            </Label>
+            <Label fx:id="star5" onMouseClicked="#handleStarClicked" text=" ★" textFill="#b9b9b9">
+               <font>
+                  <Font size="36.0" />
+               </font>
+            </Label>
+         </children>
       </HBox>
    </VBox>
    <AnchorPane prefHeight="81.0" prefWidth="402.0">
