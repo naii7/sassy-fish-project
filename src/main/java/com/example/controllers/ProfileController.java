@@ -6,20 +6,25 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.shape.Circle;
 
 public class ProfileController {
     @FXML private TextField usernameField;
-    @FXML private TextArea bioField;
+    @FXML private TextField bioField;
     @FXML private ComboBox<String> locationComboBox;
     @FXML private Label errorLabel;
-    //@FXML private ImageView profileImageView; (TO SOLVE: Image loading)
+    @FXML private ImageView profileImageView; 
+    @FXML private ImageView favourite1;
+    @FXML private ImageView favourite2;
+    @FXML private ImageView favourite3;
 
     @FXML private Button editButton;
     @FXML private Button saveButton;
     @FXML private Button cancelButton;
-    //@FXML private Button uploadPictureButton;
+    @FXML private ImageView editIconView;
 
     //private ManageProfileUseCase manageProfileUseCase;
     private User currentUser;
@@ -30,6 +35,8 @@ public class ProfileController {
         //manageProfileUseCase = new ManageProfileUseCase(); (TO SOLVE: Use case integration)
         loadUserProfile();
         setEditMode(false);
+        makeCircular(profileImageView);
+        setupHoverEffect();
     }
 
     private void loadUserProfile() {
@@ -43,9 +50,9 @@ public class ProfileController {
             bioField.setText(currentUser.getBio());
             locationComboBox.getItems().addAll("New York", "Los Angeles", "Chicago", "Houston", "Miami");
             locationComboBox.setValue(currentUser.getLocation());
-            //if (currentUser.getProfilePicturePath() != null) {
-            //    profileImageView.setImage(new Image(currentUser.getProfilePicturePath()));
-            //} 
+            if (currentUser.getProfilePicturePath() != null) {
+                profileImageView.setImage(new Image(currentUser.getProfilePicturePath()));
+            } 
         } catch (Exception e) {
             errorLabel.setText("Error loading profile: " + e.getMessage());
         }
@@ -83,6 +90,7 @@ public class ProfileController {
         }
     }
 
+    @FXML
     private void setEditMode(boolean editing) {
         isEditing = editing;
 
@@ -95,5 +103,28 @@ public class ProfileController {
         editButton.setDisable(editing);
         saveButton.setDisable(!editing);
         cancelButton.setDisable(!editing);
+    }
+
+    private void makeCircular(ImageView imageView){
+        double radius = Math.min(imageView.getFitWidth(), imageView.getFitHeight()) / 2;
+
+        Circle clip = new Circle (imageView.getFitWidth() / 2, imageView.getFitHeight() / 2, radius);
+        imageView.setClip(clip);
+    }
+
+    @FXML
+    private void handleCancelEdit() {
+        loadUserProfile();
+        setEditMode(false);
+    }
+
+    private void setupHoverEffect(){
+        profileImageView.setOnMouseEntered(e -> {
+            editIconView.setVisible(true);
+        });
+
+        profileImageView.setOnMouseExited(e -> {
+            editIconView.setVisible(false);
+        });
     }
 }

@@ -53,4 +53,6 @@ public class User {
     public void setProfilePicturePath(String profilePicturePath) { 
         this.profilePicturePath = profilePicturePath;
     }
+
+    
 }
