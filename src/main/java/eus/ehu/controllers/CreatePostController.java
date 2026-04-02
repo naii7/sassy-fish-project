@@ -5,6 +5,7 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 
+import eus.ehu.businesslogic.BlInterface;
 import eus.ehu.usermodel.Post;
 import eus.ehu.usermodel.Tag;
 
@@ -65,6 +66,11 @@ public class CreatePostController {
 
     private Post currentPost;
 
+    private BlInterface businessLogic;
+
+    public void initData(BlInterface bl) {
+        this.businessLogic = bl;
+    }
 
 
     @FXML
@@ -218,6 +224,7 @@ public class CreatePostController {
             // 4. save Post to db
                 // TO DO. create a FeedController w/ ObservableList<Post> feedPosts
                 // feedPosts.add(currentPost);
+                businessLogic.savePost(currentPost);
         
             // 5. CLOSE WINDOW get back to previous screen (main feed)
             imageDropArea.getScene().getWindow().hide();
