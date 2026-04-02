@@ -8,6 +8,7 @@ module eus.ehu {
     exports eus.ehu.controllers;
 
     opens eus.ehu.usermodel to javafx.fxml;
-    exports eus.ehu.usermodel;
 
+    opens eus.ehu.ui to javafx.graphics, javafx.fxml;
+    exports eus.ehu.ui;
 }
