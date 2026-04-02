@@ -1,0 +1,73 @@
+@startuml
+
+title SassyMe - Manage Profile Sequence Diagram
+
+actor User
+participant "UI Profile" as UP
+participant "BlInterface" as BL
+participant "DbAccessManager" as DB
+participant "EntityManager" as EM
+participant UserProfile
+' !!! User class = UserProfile to avoid confusion with Actor "User"
+
+== Initialization ==
+UP -> BL : getUserProfile(u)
+BL -> DB : getUserProfile(u)
+
+DB -> EM : createQuery(Q1)
+note right of EM
+    Q1: SELECT u FROM User u
+end note
+
+EM --> DB : UserProfile
+DB --> BL : UserProfile
+BL --> UP : UserProfile
+UP -> UP : display profile
+
+== Edit Profile ==
+User -> UP : click Edit Profile
+User -> UP : upload image
+alt image upload fails
+    UP -> UP : display error message
+else
+    UP -> UP : display image preview
+end
+
+User -> UP : enter username
+User -> UP : enter bio
+User -> UP : enter location
+
+
+
+== Cancel Edit ==
+User -> UP : click Cancel
+UP -> UP : discard changes
+UP -> UP : display original profile 
+
+== Save Changes ==
+User -> UP : click SaveProfile
+UP -> BL : updateUserProfile(u, picture, username, bio, location)
+BL -> BL : validate data
+
+alt validation fails
+    BL --> UP : validation error
+    UP -> UP : display error message
+
+else validation passes
+    BL -> DB : updateUserProfile(u, picture, username, bio, location)
+    
+    DB -> EM : getTransaction().begin()
+    
+    DB -> UserProfile : setProfilePicture(picture)
+    DB -> UserProfile : setUsername(username)
+    DB -> UserProfile: setBio(bio)
+    DB -> UserProfile : setLocation(location)
+    
+    DB -> EM : getTransaction().commit()
+
+    DB --> BL : updated profile data
+    BL --> UP : updated profile data
+    UP --> UP : display success message
+    UP --> UP : display updated profile
+end
+@enduml

@@ -116,11 +116,11 @@ public class CreatePostController {
             
             if (j <= i) { // star <= clicked star -> gold
                 stars[j].setStyle("-fx-text-fill: gold");
-                stars[j].setText("★"); // set to full star (in case it was a half star before)
+                stars[j].setText("★"); // set to full star (in case it was a half-star before)
             
             } else { // star > clicked star -> grey
                 stars[j].setStyle("-fx-text-fill: #b9b9b9");
-                stars[j].setText("★"); // set to full star (in case it was a half star before)
+                stars[j].setText("★"); // set to full star (in case it was a half-star before)
             }
         }
 
@@ -130,12 +130,12 @@ public class CreatePostController {
         double currentRating = currentPost.getStarRating();
         
         // check if user clicks the same star twice
-        // A. SAME STAR CLICKED WHEN IT WAS FULL -> CHANGE TO HALF STAR
+        // A. SAME STAR CLICKED WHEN IT WAS FULL -> CHANGE TO HALF-STAR
         if ( currentRating == i + 1 ) { // rating = clicked star index + 1 (cause arrays start at 0)
             
-            clickedStar.setText("⯪"); // change star to half star
+            clickedStar.setText("⯪"); // change star to half-star
 
-            //save star rating w/ 0.5 (for half star) inside Post object (for later saving to db)
+            //save star rating w/ 0.5 (for half-star) inside Post object (for later saving to db)
             currentPost.setStarRating(i + 0.5); // set rating to clicked star index + 0.5 (cause arrays start at 0)
         
         // B. SAME STAR CLICKED WHEN IT WAS HALF -> CHANGE TO FULL STAR
