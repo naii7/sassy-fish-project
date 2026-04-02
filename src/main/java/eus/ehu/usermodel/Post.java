@@ -1,4 +1,4 @@
-package com.example.usermodel;
+package eus.ehu.usermodel;
 
 import java.time.LocalDate;
 import java.util.ArrayList;

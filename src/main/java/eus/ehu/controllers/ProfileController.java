@@ -1,6 +1,6 @@
-package com.example.controllers;
+package eus.ehu.controllers;
 
-import com.example.usermodel.User;
+import eus.ehu.usermodel.User;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;

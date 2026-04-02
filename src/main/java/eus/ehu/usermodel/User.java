@@ -1,4 +1,4 @@
-package com.example.usermodel;
+package eus.ehu.usermodel;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
