@@ -1,12 +1,12 @@
-package com.example.controllers;
+package eus.ehu.controllers;
 
 import java.io.File;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 
-import com.example.usermodel.Post;
-import com.example.usermodel.Tag;
+import eus.ehu.usermodel.Post;
+import eus.ehu.usermodel.Tag;
 
 import javafx.animation.PauseTransition;
 import javafx.fxml.FXML;
