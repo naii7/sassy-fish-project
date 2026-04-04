@@ -27,14 +27,16 @@ public class User {
     private String profilePicturePath;
 
     @OneToMany(mappedBy = "user")
-    private java.util.List<Post> posts;
+    private java.util.List<Post> posts = new java.util.ArrayList<>();
 
     public User() {
+        this.posts = new java.util.ArrayList<>();
     }   //Default constructor for JPA  
 
     public User(String username, String email){
         this.username = username;
         this.email = email;
+        this.posts = new java.util.ArrayList<>();
     }
 
         // Getters y Setters básicos

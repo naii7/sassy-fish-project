@@ -33,7 +33,11 @@ public class DbAccessManager {
         System.out.println("DataBase opened");
 
     }
-    
+    public void storeUser(User user) {
+        db.getTransaction().begin();
+        db.persist(user);
+        db.getTransaction().commit();
+    }
     public void close() {
         db.close();
         System.out.println("DataBase is closed");
@@ -50,7 +54,11 @@ public class DbAccessManager {
                 managedAuthor = db.find(User.class, author.getId());
             }
             post.setUser(managedAuthor); // link the post to the managed user entity
+            if (post.getAuthor() == null) {
+                post.setAuthor(managedAuthor.getUsername());
+            }
             managedAuthor.getPosts().add(post); // link the post to the user in memory
+            db.persist(post);
         }         else {
             System.out.println("Post has no author!");
         }

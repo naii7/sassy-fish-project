@@ -65,7 +65,7 @@ public class ProfileController {
     private void loadFeedAndFavorites() {
         try {
             DbAccessManager dbManager = new DbAccessManager();
-            List<Post> posts = dbManager.getAllPosts();
+            List<Post> posts = dbManager.getPostsByUser(currentUser.getUsername());
             showFeedPosts(posts);
             showFavouritePosts(posts);
         } catch (Exception e) {
@@ -89,6 +89,10 @@ public class ProfileController {
         for (Post post : posts) {
             feedContainer.getChildren().add(createPostCard(post));
         } // Ineficiente, pero suficiente para esta demo. Para mejorar, se podría implementar paginación o carga bajo demanda.
+    }
+
+    public void showPosts(List<Post> posts) {
+        showFeedPosts(posts);
     }
 
     private void showFavouritePosts(List<Post> posts) {
@@ -116,7 +120,7 @@ public class ProfileController {
             return;
         }
 
-        Label emptyLabel = new Label("No hay posts todavía.");
+        Label emptyLabel = new Label("No posts yet.");
         emptyLabel.setStyle("-fx-text-fill: #64748b; -fx-font-size: 15px; -fx-padding: 12 8 12 8;");
         feedContainer.getChildren().setAll(emptyLabel);
     }

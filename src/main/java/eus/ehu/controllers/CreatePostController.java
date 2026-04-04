@@ -8,7 +8,7 @@ import java.util.ResourceBundle;
 import eus.ehu.businesslogic.BlInterface;
 import eus.ehu.usermodel.Post;
 import eus.ehu.usermodel.Tag;
-
+import eus.ehu.usermodel.User;
 import javafx.animation.PauseTransition;
 import javafx.fxml.FXML;
 import javafx.scene.Node;

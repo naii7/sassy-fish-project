@@ -51,48 +51,49 @@ public class FeedController {
     void openProfile() {
         System.out.println("Profile button clicked!");
     }
-    public HBox createPostCard(Post post) {
-        HBox postCard = new HBox();
-        Image postImage = null;
-        String imagePath = post.getImagePath();
-        if (imagePath != null && !imagePath.isBlank()) {
-            try {
-                postImage = new Image(imagePath);
-            } catch (Exception ignored) {
-                postImage = null;
-            }
-        }
+    private HBox createPostCard(Post post) {
+        HBox postCard = new HBox(16);
+        postCard.setStyle("-fx-background-color: white; -fx-background-radius: 18; -fx-border-radius: 18; -fx-border-color: #e2e8f0; -fx-effect: dropshadow(gaussian, rgba(15,23,42,0.08), 12, 0, 0, 3);");
+        postCard.setPrefWidth(680);
 
-        if (postImage == null) {
-            var defaultImageStream = getClass().getResourceAsStream("/default.png");
-            if (defaultImageStream != null) {
-                postImage = new Image(defaultImageStream);
-            }
-        }
+        ImageView postImageView = new ImageView(loadImage(post.getImagePath(), "/default.png"));
+        postImageView.setFitWidth(180);
+        postImageView.setFitHeight(135);
+        postImageView.setPreserveRatio(true);
+        postImageView.setSmooth(true);
 
-        if (postImage != null) {
-            ImageView imageView = new ImageView(postImage);
-            imageView.setFitWidth(200);
-            imageView.setFitHeight(150);
-            imageView.setPreserveRatio(true);
-            postCard.getChildren().add(imageView);
-        }
+        VBox postContent = new VBox(6);
+        postContent.setStyle("-fx-padding: 18;");
 
-        VBox postContent = new VBox();
-        Label titleLabel = new Label(post.getTitle());
-        titleLabel.setStyle("-fx-text-fill: #111111;");
+        Label titleLabel = new Label(post.getTitle() == null ? "Untitled post" : post.getTitle());
+        titleLabel.setStyle("-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #0f172a;");
 
-        Label authorLabel = new Label("by " + post.getAuthor());
-        authorLabel.setStyle("-fx-text-fill: #222222;");
+        Label authorLabel = new Label(post.getAuthor() == null ? "Unknown author" : "by " + post.getAuthor());
+        authorLabel.setStyle("-fx-font-size: 13px; -fx-text-fill: #64748b;");
 
-        Label descriptionLabel = new Label(post.getDescription());
-        descriptionLabel.setStyle("-fx-text-fill: #1f2937;");
+        Label descriptionLabel = new Label(post.getDescription() == null ? "" : post.getDescription());
+        descriptionLabel.setWrapText(true);
+        descriptionLabel.setStyle("-fx-font-size: 14px; -fx-text-fill: #334155;");
 
         postContent.getChildren().addAll(titleLabel, authorLabel, descriptionLabel);
-        postCard.getChildren().add(postContent);
-        // Here you would create and style the components of the post card
-        // For example, you could add Labels for the title, author, and content
+        postCard.getChildren().addAll(postImageView, postContent);
         return postCard;
+    }
+
+    private Image loadImage(String imagePath, String fallbackResource) {
+        try {
+            if (imagePath != null && !imagePath.isBlank()) {
+                return new Image(imagePath, true);
+            }
+        } catch (Exception ignored) {
+            // Fall back to bundled resource below.
+        }
+
+        var fallbackUrl = getClass().getResource(fallbackResource);
+        if (fallbackUrl != null) {
+            return new Image(fallbackUrl.toExternalForm(), true);
+        }
+        return null;
     }
     
 }
