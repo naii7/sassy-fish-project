@@ -242,4 +242,19 @@ public class ProfileController {
         imageView.setClip(clip);
     }
 
+    @FXML
+    private void backButtonClicked() {
+        try {
+            javafx.fxml.FXMLLoader loader = new javafx.fxml.FXMLLoader(getClass().getResource("/eus/ehu/FeedPage.fxml"));
+            javafx.scene.Parent root = loader.load();
+            
+            // Navigate back to the feed in the current window.
+            javafx.stage.Stage stage = (javafx.stage.Stage) feedScroll.getScene().getWindow();
+            stage.setScene(new javafx.scene.Scene(root));
+            stage.setTitle("Feed");
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

@@ -13,6 +13,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextFormatter;
+import javafx.stage.Stage;
 
 public class CommentOnPostController {
 
@@ -93,5 +94,22 @@ public class CommentOnPostController {
         
         // clear the comment area after saving
         commentArea.clear();
+        openFeedAndCloseComment();
+    }
+
+    private void openFeedAndCloseComment() {
+        try {
+            javafx.fxml.FXMLLoader loader = new javafx.fxml.FXMLLoader(getClass().getResource("/eus/ehu/FeedPage.fxml"));
+            javafx.scene.Parent root = loader.load();
+
+            Stage feedStage = new Stage();
+            feedStage.setScene(new javafx.scene.Scene(root));
+            feedStage.show();
+
+            Stage commentStage = (Stage) saveButton.getScene().getWindow();
+            commentStage.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
