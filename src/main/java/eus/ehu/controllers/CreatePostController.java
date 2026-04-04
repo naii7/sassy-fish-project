@@ -64,12 +64,21 @@ public class CreatePostController {
     @FXML private Button cancelPostButton;
     @FXML private Label errorLabel;
 
+
     private Post currentPost;
-
     private BlInterface businessLogic;
+    private User currentUser; // who is creating the post
 
-    public void initData(BlInterface bl) {
+    // updated to receive the logged-in user
+    public void initData(BlInterface bl, User user) {
         this.businessLogic = bl;
+        this.currentUser = user;
+
+        // assign the user to the post immediately so the database knows the author
+        if (this.currentPost != null && this.currentUser != null) {
+            this.currentPost.setUser(this.currentUser);
+            this.currentPost.setAuthor(this.currentUser.getUsername());
+        }
     }
 
 

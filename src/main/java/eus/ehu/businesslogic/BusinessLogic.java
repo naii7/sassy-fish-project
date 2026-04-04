@@ -15,7 +15,7 @@ public class BusinessLogic implements BlInterface {
     public void addCommentToPost(Post post, Comment comment) {
         
         dbManager.storeComment(post, comment); // db stores the comment and updates the post's comment list
-        System.out.println("real db: saved comment '" + comment.getText() + "' from user '" + comment.getAuthor() + "'");
+        System.out.println("saved comment '" + comment.getText() + "' from user '" + comment.getAuthor() + "'");
 
     }
 
@@ -23,7 +23,7 @@ public class BusinessLogic implements BlInterface {
     public void savePost(Post post) {
         
         dbManager.storePost(post); // db stores the post and also updates the user's post list
-        System.out.println("mock db: successfully saved post titled '" + post.getTitle() + "'");
+        System.out.println("successfully saved post titled '" + post.getTitle() + "'");
     }
 
     @Override
