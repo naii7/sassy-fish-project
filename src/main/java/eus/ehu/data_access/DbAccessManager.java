@@ -38,6 +38,44 @@ public class DbAccessManager {
         db.persist(user);
         db.getTransaction().commit();
     }
+
+    public User findUserByUsername(String username) {
+        if (username == null || username.isBlank()) {
+            return null;
+        }
+
+        return db.createQuery("FROM User WHERE username = :username", User.class)
+                 .setParameter("username", username)
+                 .getResultStream()
+                 .findFirst()
+                 .orElse(null);
+    }
+
+    public User storeUserIfNotExists(User user) {
+        User existingUser = findUserByUsername(user.getUsername());
+        if (existingUser != null) {
+            return existingUser;
+        }
+
+        storeUser(user);
+        return user;
+    }
+
+    private boolean userAlreadyHasPostWithTitle(String username, String title) {
+        if (username == null || username.isBlank() || title == null || title.isBlank()) {
+            return false;
+        }
+
+        Long count = db.createQuery(
+                "SELECT COUNT(p) FROM Post p WHERE p.author = :username AND p.title = :title",
+                Long.class)
+                .setParameter("username", username)
+                .setParameter("title", title)
+                .getSingleResult();
+
+        return count != null && count > 0;
+    }
+
     public void close() {
         db.close();
         System.out.println("DataBase is closed");
@@ -72,6 +110,12 @@ public class DbAccessManager {
                 // Link the post and the author in both directions
                 post.setUser(managedAuthor); 
                 managedAuthor.getPosts().add(post); 
+
+                if (userAlreadyHasPostWithTitle(managedAuthor.getUsername(), post.getTitle())) {
+                    db.getTransaction().rollback();
+                    System.out.println("Post already exists for this user/title. Skipping insert.");
+                    return;
+                }
             } else {
                 System.out.println("Post has no author!");
             }

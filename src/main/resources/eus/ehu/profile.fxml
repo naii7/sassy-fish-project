@@ -32,7 +32,7 @@
                            </children>
                         </StackPane>
                         <Label style="-fx-font-family: 'System'; -fx-font-size: 13px; -fx-text-fill: #64748b;" text="Usuario" />
-                        <Label fx:id="usernameLabel" style="-fx-font-family: 'System'; -fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #0f172a;" text="@user" wrapText="true" />
+                        <Label fx:id="usernameLabel" style="-fx-font-family: 'System'; -fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #0f172a;" text="user" wrapText="true" />
                         <Label style="-fx-font-family: 'System'; -fx-font-size: 13px; -fx-text-fill: #64748b;" text="Biografía" />
                         <Label fx:id="bioLabel" style="-fx-font-family: 'System'; -fx-font-size: 14px; -fx-text-fill: #334155;" text="Bio del usuario" wrapText="true" />
                      </children>

@@ -1,6 +1,5 @@
 package eus.ehu.controllers;
 
-import eus.ehu.data_access.DbAccessManager;
 import eus.ehu.businesslogic.BlInterface;
 import eus.ehu.usermodel.Post;
 import eus.ehu.usermodel.User;
@@ -66,9 +65,11 @@ public class ProfileController {
 
     private void loadUserProfile() {
         try {
-            // Simulación de carga de usuario actual (TO SOLVE: Integrar con base de datos)
-            currentUser = new User("sassy_user", "Sassy User");
-            currentUser.setBio("This is my bio!");
+            // Keep the injected user when available; only use a fallback for standalone UI previews.
+            if (currentUser == null) {
+                currentUser = new User("sassy_user", "sassy_user@example.com");
+                currentUser.setBio("This is my bio!");
+            }
             //currentUser.setProfilePicturePath("path/to/profile/picture.jpg"); (cosa que no funciona de momento, las bases de datos pueden guardar .jpg??)
             if (usernameLabel != null) {
                 usernameLabel.setText("@" + currentUser.getUsername());

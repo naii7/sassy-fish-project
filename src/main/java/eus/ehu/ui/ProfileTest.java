@@ -1,10 +1,10 @@
 package eus.ehu.ui;
 
+import eus.ehu.businesslogic.BusinessLogic;
 import eus.ehu.controllers.ProfileController;
 import eus.ehu.data_access.DbAccessManager;
 import eus.ehu.usermodel.Post;
 import eus.ehu.usermodel.User;
-import java.util.List;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -18,11 +18,11 @@ public class ProfileTest extends Application {
         DbAccessManager dbManager = new DbAccessManager();
         User profileUser = new User("sassy_user", "sassy_user@example.com");
         profileUser.setBio("Profile smoke test user");
-        dbManager.storeUser(profileUser);
+        profileUser = dbManager.storeUserIfNotExists(profileUser);
 
         User notProfileUser = new User("qa-user", "qa-user@example.com");
         notProfileUser.setBio("Another user for testing.");
-        dbManager.storeUser(notProfileUser);
+        notProfileUser = dbManager.storeUserIfNotExists(notProfileUser);
 
         Post post1 = new Post();
         post1.setTitle("My first post");
@@ -49,6 +49,7 @@ public class ProfileTest extends Application {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/eus/ehu/profile.fxml"));
         Parent root = loader.load();
         ProfileController controller = loader.getController();
+        controller.initData(new BusinessLogic(), profileUser);
         // Loading posts after having creted posts in DB to ensure they have IDs and are properly linked to the user
         primaryStage.setTitle("Test - Profile");
         primaryStage.setScene(new Scene(root));
