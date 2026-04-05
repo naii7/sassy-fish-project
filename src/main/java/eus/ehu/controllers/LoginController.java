@@ -15,9 +15,6 @@ import javafx.stage.Stage;
 public class LoginController {
 
     @FXML
-    private Button cancelButton;
-
-    @FXML
     private Button loginButton;
 
     @FXML
@@ -44,7 +41,7 @@ public class LoginController {
         // avoid empty credentials
         if (username.isEmpty() || password.isEmpty()) {
             errorLabel.setVisible(true);
-            errorLabel.setText("Please enter both username and password!");
+            errorLabel.setText("Please enter username and password!");
 
             // after 3 secs. 
             PauseTransition pause = new PauseTransition(javafx.util.Duration.seconds(3));
