@@ -9,7 +9,6 @@ import eus.ehu.businesslogic.BlInterface;
 import eus.ehu.usermodel.Post;
 import eus.ehu.usermodel.Tag;
 import eus.ehu.usermodel.User;
-
 import javafx.animation.PauseTransition;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -21,11 +20,11 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.DragEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.FileChooser;
-import javafx.scene.input.DragEvent;
 
 public class CreatePostController {
 
@@ -201,11 +200,8 @@ public class CreatePostController {
     void cancelPost() {
 
         // CLOSE WINDOW get back to previous screen (main feed)
-        //imageDropArea.getScene().getWindow().hide();
-
-            // no need to clear and reset everything cause we create a new CreatePostController (with empty Post and unselected fields) every time we open the CreatePost screen
-    
         goBackToFeed();
+            // no need to clear and reset everything cause we create a new CreatePostController (with empty Post and unselected fields) every time we open the CreatePost screen
     }
 
     @FXML
@@ -288,7 +284,7 @@ public class CreatePostController {
         errorLabel.setVisible(missing);
 
         if (missing) {
-
+            
             // after 3 secs. 
             PauseTransition pause = new PauseTransition(javafx.util.Duration.seconds(3));
                     

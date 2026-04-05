@@ -2,14 +2,15 @@ package eus.ehu.controllers;
 
 import java.time.LocalDate;
 
+import eus.ehu.businesslogic.BlInterface;
 import eus.ehu.usermodel.Comment;
 import eus.ehu.usermodel.Post;
 import eus.ehu.usermodel.User;
-import eus.ehu.businesslogic.BlInterface;
-
+import javafx.animation.PauseTransition;
 import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextFormatter;
@@ -25,6 +26,9 @@ public class CommentOnPostController {
 
     @FXML
     private Button saveButton;
+
+    @FXML
+    private Label errorLabel;
 
     // variables to store the context of the comment
     private Post currentPost;
@@ -73,8 +77,20 @@ public class CommentOnPostController {
 
         if (commentText.trim().isEmpty()) {
             System.out.println("comment is empty!");
+            errorLabel.setVisible(true);
+            
+            // after 3 secs. -> hide the error label again
+            PauseTransition pause = new PauseTransition(javafx.util.Duration.seconds(3));
+                    
+            pause.setOnFinished(e -> { 
+                
+                // remove error label
+                errorLabel.setVisible(false);
+            });
+            pause.play();
             return;
         }
+
         if(currentPost == null || currentUser == null) {
             System.out.println("post or user context is missing!");
             return;
@@ -94,6 +110,12 @@ public class CommentOnPostController {
         
         // clear the comment area after saving
         commentArea.clear();
+        openFeedAndCloseComment();
+    }
+
+    //handle the cancel button click event
+    @FXML
+    private void cancelComment() {
         openFeedAndCloseComment();
     }
 
