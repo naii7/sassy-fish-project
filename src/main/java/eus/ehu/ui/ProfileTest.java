@@ -44,6 +44,18 @@ public class ProfileTest extends Application {
         post3.setDescription("No real DB, just checking if cards render in the scroll feed.");
         dbManager.storePost(post3); // Guardamos el post para que tenga un ID y NO se muestre en el perfil
 
+        Post post4 = new Post();
+        post4.setTitle("Favorite post and picture trial");
+        post4.setAuthor("sassy_user");
+        post4.setUser(profileUser);
+        post4.setDescription("This is my favorite post!");
+        post4.setIsFavourite(true);
+        var shrekUrl = getClass().getResource("/Shrek.png");
+        if (shrekUrl != null) {
+            post4.setImagePath(shrekUrl.toExternalForm());
+        }
+        dbManager.storePost(post4); // Guardamos el post para que tenga un ID y se pueda mostrar en el perfil
+
         dbManager.close();
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/eus/ehu/profile.fxml"));

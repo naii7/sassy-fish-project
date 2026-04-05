@@ -7,7 +7,6 @@ import eus.ehu.businesslogic.BusinessLogic;
 import eus.ehu.usermodel.Post;
 import eus.ehu.usermodel.User;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -203,7 +202,8 @@ public class FeedController {
             ImageView imageView = new ImageView(postImage);
             imageView.setFitWidth(300);
             imageView.setFitHeight(200);
-            imageView.setPreserveRatio(true);
+            imageView.setPreserveRatio(false);
+            imageView.setSmooth(true);
             postCard.getChildren().add(imageView);
         }
 
@@ -213,15 +213,21 @@ public class FeedController {
         // create the title label and style it to be bold
         Label titleLabel = new Label(post.getTitle());
         titleLabel.setStyle("-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #111111;");
+        titleLabel.setWrapText(true);
+        titleLabel.setMaxWidth(270);
 
         // create the author label
         Label authorLabel = new Label("by " + post.getAuthor());
         authorLabel.setStyle("-fx-text-fill: #666666; -fx-font-size: 12px;");
+        authorLabel.setMaxWidth(270);
 
         // create the description label and allow it to wrap to the next line if the text is long
         Label descriptionLabel = new Label(post.getDescription());
         descriptionLabel.setStyle("-fx-text-fill: #1f2937; -fx-font-size: 14px;");
         descriptionLabel.setWrapText(true);
+        descriptionLabel.setMaxWidth(270);
+        descriptionLabel.setMinHeight(84);
+        descriptionLabel.setPrefHeight(84);
 
         // add the three text labels into the inner text box
         postContent.getChildren().addAll(titleLabel, authorLabel, descriptionLabel);

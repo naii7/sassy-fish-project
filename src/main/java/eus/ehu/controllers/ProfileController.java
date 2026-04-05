@@ -184,7 +184,7 @@ public class ProfileController {
         ImageView postImageView = new ImageView(loadImage(post.getImagePath(), "/default.png"));
         postImageView.setFitWidth(180);
         postImageView.setFitHeight(135);
-        postImageView.setPreserveRatio(true);
+        postImageView.setPreserveRatio(false);
         postImageView.setSmooth(true);
 
         VBox postContent = new VBox(6);
@@ -192,13 +192,19 @@ public class ProfileController {
 
         Label titleLabel = new Label(post.getTitle() == null ? "Untitled post" : post.getTitle());
         titleLabel.setStyle("-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #0f172a;");
+        titleLabel.setWrapText(true);
+        titleLabel.setMaxWidth(420);
 
         Label authorLabel = new Label(post.getAuthor() == null ? "Unknown author" : "by " + post.getAuthor());
         authorLabel.setStyle("-fx-font-size: 13px; -fx-text-fill: #64748b;");
+        authorLabel.setMaxWidth(420);
 
         Label descriptionLabel = new Label(post.getDescription() == null ? "" : post.getDescription());
         descriptionLabel.setWrapText(true);
         descriptionLabel.setStyle("-fx-font-size: 14px; -fx-text-fill: #334155;");
+        descriptionLabel.setMaxWidth(420);
+        descriptionLabel.setMinHeight(66);
+        descriptionLabel.setPrefHeight(66);
 
         postContent.getChildren().addAll(titleLabel, authorLabel, descriptionLabel);
         postCard.getChildren().addAll(postImageView, postContent);
