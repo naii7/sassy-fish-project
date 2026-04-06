@@ -38,6 +38,7 @@ public class Post {
     private LocalDate date;
 
     private Integer likeCount;
+    private boolean isFavourite = false;
 
     // cascade: if a post is deleted, its comments are also deleted
     @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -159,6 +160,14 @@ public class Post {
 
     public void setLikeCount(int likeCount) {
         this.likeCount = likeCount;
+    }
+
+    public boolean getIsFavourite() {
+        return isFavourite;
+    }
+
+    public void setIsFavourite(boolean isFavourite) {
+        this.isFavourite = isFavourite;
     }
     
 }
