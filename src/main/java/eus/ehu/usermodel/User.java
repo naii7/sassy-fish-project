@@ -5,6 +5,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
@@ -29,8 +32,17 @@ public class User {
     @OneToMany(mappedBy = "user")
     private java.util.List<Post> posts = new java.util.ArrayList<>();
 
+    @ManyToMany
+    @JoinTable(
+        name = "user_favourite_posts",
+        joinColumns = @JoinColumn(name = "user_id"),
+        inverseJoinColumns = @JoinColumn(name = "post_id")
+    )
+    private java.util.List<Post> favoritePosts = new java.util.ArrayList<>();
+
     public User() {
         this.posts = new java.util.ArrayList<>();
+        this.favoritePosts = new java.util.ArrayList<>();
     }   //Default constructor for JPA  
 
     public User(String username, String password){
@@ -39,7 +51,9 @@ public class User {
 
         this.bio="Hello! I'm new here.";
         this.location="Unknown";
-        this.profilePicturePath="default.png";
+        this.profilePicturePath="default_pfp.jpg";
+        this.posts = new java.util.ArrayList<>();
+        this.favoritePosts = new java.util.ArrayList<>();
     }
 
         // Getters y Setters básicos
@@ -57,6 +71,41 @@ public class User {
     
     public java.util.List<Post> getPosts() {
         return posts;
+    }
+
+    public java.util.List<Post> getFavoritePosts() {
+        return favoritePosts;
+    }
+
+    public void addFavoritePost(Post post) {
+        if (post == null) {
+            return;
+        }
+        if (!hasFavoritePost(post)) {
+            favoritePosts.add(post);
+        }
+    }
+
+    public void removeFavoritePost(Post post) {
+        if (post == null) {
+            return;
+        }
+        if (post.getId() == null) {
+            favoritePosts.remove(post);
+            return;
+        }
+        favoritePosts.removeIf(p -> p.getId() != null && p.getId().equals(post.getId()));
+    }
+
+    public boolean hasFavoritePost(Post post) {
+        if (post == null) {
+            return false;
+        }
+        if (post.getId() == null) {
+            return favoritePosts.contains(post);
+        }
+        return favoritePosts.stream()
+                .anyMatch(p -> p.getId() != null && p.getId().equals(post.getId()));
     }
 
     public String getLocation() { return location; }

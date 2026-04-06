@@ -72,6 +72,7 @@ public class CreatePostController {
     private Post currentPost;
     private BusinessLogic businessLogic;
     private User currentUser; // who is creating the post
+    private boolean postShouldBeFavourite;
 
     // updated to receive the logged-in user
     public void initData(BusinessLogic bl) {
@@ -190,8 +191,8 @@ public class CreatePostController {
             favouriteButton.setStyle("-fx-text-fill: #b9b9b9; -fx-font-size: 40px; -fx-background-color: transparent;");
         }
 
-        // save value inside Post object (for later saving to db)
-        currentPost.setIsFavourite(isSelected);
+        // keep local state and persist it after the post has been saved and has an id
+        postShouldBeFavourite = isSelected;
     }
 
     @FXML
@@ -214,6 +215,9 @@ public class CreatePostController {
         // 2. set author of the post to the current logged-in user (get it from the bl)
         User postUser = businessLogic.getCurrentUser();
         currentPost.setUser(postUser);
+        if (postUser != null) {
+            currentPost.setAuthor(postUser.getUsername());
+        }
 
         // 3. collect the selected tags
 
@@ -245,11 +249,18 @@ public class CreatePostController {
                 // TO DO. create a FeedController w/ ObservableList<Post> feedPosts
                 // feedPosts.add(currentPost);
                 businessLogic.savePost(currentPost);
-        
-            // 6. CLOSE WINDOW get back to previous screen (main feed)
-            //imageDropArea.getScene().getWindow().hide();
 
-            // 7. go back to feed and refresh the posts to show the new post (instead of just going back without refreshing and having to click the profile button to see the new post in the feed)
+            // 6. save favourite relationship for the logged-in user
+            User favouriteUser = businessLogic.getCurrentUser();
+            if (favouriteUser != null) {
+                businessLogic.updateFavouriteForUser(
+                    favouriteUser.getUsername(),
+                    currentPost,
+                    postShouldBeFavourite
+                );
+            }
+
+            // 8. go back to feed and refresh the posts to show the new post (instead of just going back without refreshing and having to click the profile button to see the new post in the feed)
             goBackToFeed();
         }
     }
@@ -335,6 +346,7 @@ public class CreatePostController {
         // 3. favourite starts unselected
         favouriteButton.setSelected(false);
         favouriteButton.setStyle("-fx-text-fill: #b9b9b9; -fx-font-size: 40px; -fx-background-color: transparent;");
+        postShouldBeFavourite = false;
 
         // 4. add today's date (date format: yyyy-mm-dd)
         currentPost.setDate(LocalDate.now() ); // add date to the Post object db

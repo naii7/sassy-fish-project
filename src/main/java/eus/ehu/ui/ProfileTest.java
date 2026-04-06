@@ -49,20 +49,27 @@ public class ProfileTest extends Application {
         post4.setAuthor("sassy_user");
         post4.setUser(profileUser);
         post4.setDescription("This is my favorite post!");
-        post4.setIsFavourite(true);
+        post4.setStarRating(3.5);
         var shrekUrl = getClass().getResource("/Shrek.png");
         if (shrekUrl != null) {
             post4.setImagePath(shrekUrl.toExternalForm());
         }
         dbManager.storePost(post4); // Guardamos el post para que tenga un ID y se pueda mostrar en el perfil
+        dbManager.updateFavouritePostForUser(profileUser.getUsername(), post4, true);
 
         dbManager.close();
+
+        // Para navegar entre todo, el feed el profile y el create post y comentario use el mismo usuario
+        BusinessLogic bl = new BusinessLogic();
+        boolean loggedIn = bl.login(profileUser.getUsername(), profileUser.getPassword());
+        if (!loggedIn) {
+            throw new IllegalStateException("ProfileTest could not log in test user: " + profileUser.getUsername());
+        }
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/eus/ehu/profile.fxml"));
         Parent root = loader.load();
         ProfileController controller = loader.getController();
-        controller.initData(new BusinessLogic());
-        // Loading posts after having creted posts in DB to ensure they have IDs and are properly linked to the user
+        controller.initData(bl, profileUser);
         primaryStage.setTitle("Test - Profile");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();

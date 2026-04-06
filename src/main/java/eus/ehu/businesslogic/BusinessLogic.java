@@ -31,7 +31,7 @@ public class BusinessLogic implements BlInterface {
             System.out.println("new user '" + username + "' created and logged in successfully");
             return true; // we consider that creating a new user is also a successful login
 
-        }  else if (dbUser.getPassword().equals(password)) {
+        }  else if (java.util.Objects.equals(dbUser.getPassword(), password)) {
             // we found the user + valid credentials
             
             this.currentUser = dbUser; // save the user in the bl for the rest of the controllers to access
@@ -65,6 +65,11 @@ public class BusinessLogic implements BlInterface {
     }
 
     @Override
+    public void updateFavouriteForUser(String username, Post post, boolean isFavourite) {
+        dbManager.updateFavouritePostForUser(username, post, isFavourite);
+    }
+
+    @Override
     public List<Post> getAllPosts() {
         
         return dbManager.getAllPosts(); // ask the real database to fetch all posts
@@ -73,6 +78,11 @@ public class BusinessLogic implements BlInterface {
     @Override 
     public List<Post> getPostsByUser(String username) {
         return dbManager.getPostsByUser(username); // ask the real database to fetch posts by a specific user
+    }
+
+    @Override
+    public List<Post> getFavouritePostsByUser(String username) {
+        return dbManager.getFavouritePostsByUser(username);
     }
 
     @Override

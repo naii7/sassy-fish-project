@@ -30,7 +30,22 @@ public class DbAccessManager {
 
         db = emf.createEntityManager();
         System.out.println("DataBase opened");
+        ensureLegacySchemaCompatibility();
 
+    }
+
+    private void ensureLegacySchemaCompatibility() {
+        try {
+            db.getTransaction().begin();
+            // Legacy DBs may still have ISFAVOURITE as NOT NULL in posts.
+            db.createNativeQuery("ALTER TABLE posts ALTER COLUMN ISFAVOURITE SET DEFAULT FALSE").executeUpdate();
+            db.getTransaction().commit();
+        } catch (Exception ignored) {
+            if (db.getTransaction().isActive()) {
+                db.getTransaction().rollback();
+            }
+            // Ignore when the column doesn't exist in fresh schemas.
+        }
     }
     public void storeUser(User user) {
         db.getTransaction().begin();
@@ -53,26 +68,17 @@ public class DbAccessManager {
     public User storeUserIfNotExists(User user) {
         User existingUser = findUserByUsername(user.getUsername());
         if (existingUser != null) {
+            if (existingUser.getPassword() == null && user.getPassword() != null) {
+                db.getTransaction().begin();
+                existingUser.setPassword(user.getPassword());
+                db.merge(existingUser);
+                db.getTransaction().commit();
+            }
             return existingUser;
         }
 
         storeUser(user);
         return user;
-    }
-
-    private boolean userAlreadyHasPostWithTitle(String username, String title) {
-        if (username == null || username.isBlank() || title == null || title.isBlank()) {
-            return false;
-        }
-
-        Long count = db.createQuery(
-                "SELECT COUNT(p) FROM Post p WHERE p.author = :username AND p.title = :title",
-                Long.class)
-                .setParameter("username", username)
-                .setParameter("title", title)
-                .getSingleResult();
-
-        return count != null && count > 0;
     }
 
     public void close() {
@@ -81,7 +87,6 @@ public class DbAccessManager {
     }
 
 
-    // retrieves a user by their username (used to verify login)
     public User getUserByUsername(String username) {
         try{
             return db.createQuery("FROM User u WHERE u.username = :username", User.class)
@@ -94,46 +99,68 @@ public class DbAccessManager {
         }
     }
 
-    // vNEW VERSION W/ FIXED USER-POST LINKING LOGIC
     public void storePost(Post post) {
-        // 1. Prevent the "Transaction already active" error
-        // Check if there is an ongoing transaction before starting a new one
+        // Llama a la database y si está cerrada, la vuelve a abrir para evitar errores de conexión
         if (!db.getTransaction().isActive()) {
             db.getTransaction().begin();
         }
         
         try {
+            //Conseguimos el autor.java del post para asegurarnos de que está guardado en la base de datos, confirmar que lo tenemos vaya
             User author = post.getUser();
             if(author != null) {
                 User managedAuthor = null;
                 
-                // 2. ONLY query the database if the user already has an ID assigned
-                // This prevents IllegalArgumentException for fake/unsaved users
+                // Y una vez conseguido el autor, intentamos encontrarlo en la base de datos por su ID (si lo tiene) para obtener el username desde la DB
                 if (author.getId() != null) {
                     managedAuthor = db.find(User.class, author.getId());
                 }
                 
-                // 3. If we didn't find them (or if it was our fake user without an ID), save them first
+                // Si el autor no tiene ID o no se encuentra en la base de datos, lo guardamos primero para asegurarnos de que tiene un ID válido y evitar problemas de integridad referencial al guardar el post
                 if(managedAuthor == null) {
                     System.out.println("Author is new or fake, saving to database first to get an ID...");
                     db.persist(author); // This automatically assigns a real ID to the user object
                     managedAuthor = author; 
                 }
-                
-                // Link the post and the author in both directions
-                post.setUser(managedAuthor); 
-                managedAuthor.getPosts().add(post); 
 
-                if (userAlreadyHasPostWithTitle(managedAuthor.getUsername(), post.getTitle())) {
-                    db.getTransaction().rollback();
-                    System.out.println("Post already exists for this user/title. Skipping insert.");
+                Post existingPost = findPostByAuthorAndTitle(managedAuthor.getUsername(), post.getTitle());
+                if (existingPost != null) {
+                    // Keep legacy rows up to date instead of skipping inserts silently.
+                    if (existingPost.getUser() == null) {
+                        existingPost.setUser(managedAuthor);
+                    }
+                    if (existingPost.getAuthor() == null || existingPost.getAuthor().isBlank()) {
+                        existingPost.setAuthor(managedAuthor.getUsername());
+                    }
+                    if (post.getDescription() != null && !post.getDescription().isBlank()) {
+                        existingPost.setDescription(post.getDescription());
+                    }
+                    if (post.getImagePath() != null && !post.getImagePath().isBlank()) {
+                        existingPost.setImagePath(post.getImagePath());
+                    }
+                    if (post.getStarRating() > 0.0) {
+                        existingPost.setStarRating(post.getStarRating());
+                    }
+
+                    db.merge(existingPost);
+                    post.setId(existingPost.getId());
+                    post.setUser(existingPost.getUser());
+                    post.setAuthor(existingPost.getAuthor());
+                    db.getTransaction().commit();
+                    System.out.println("Post already existed. Updated legacy fields for id: " + existingPost.getId());
                     return;
                 }
+
+                post.setUser(managedAuthor);
+                if (post.getAuthor() == null || post.getAuthor().isBlank()) {
+                    post.setAuthor(managedAuthor.getUsername());
+                }
+                managedAuthor.getPosts().add(post);
             } else {
                 System.out.println("Post has no author!");
             }
             
-            // 4. Actually save the post to the database!
+            //Aqui ya si que guardas el post despues de tantas comprobaciones
             db.persist(post);
             
             // Commit the transaction to make changes permanent
@@ -149,13 +176,79 @@ public class DbAccessManager {
         }
     }
 
+    private Post findPostByAuthorAndTitle(String username, String title) {
+        if (username == null || username.isBlank() || title == null || title.isBlank()) {
+            return null;
+        }
+
+        return db.createQuery(
+                "FROM Post p WHERE p.author = :username AND p.title = :title",
+                Post.class)
+                .setParameter("username", username)
+                .setParameter("title", title)
+                .getResultStream()
+                .findFirst()
+                .orElse(null);
+    }
+
     public List<Post> getAllPosts() {
-        return db.createQuery("FROM Post", Post.class).getResultList();
+        return db.createQuery("FROM Post p ORDER BY p.id DESC", Post.class).getResultList();
     }
     public List<Post> getPostsByUser(String username) {
-        return db.createQuery("FROM Post p WHERE p.user.username = :username", Post.class)
+        return db.createQuery(
+            "FROM Post p WHERE (p.user IS NOT NULL AND p.user.username = :username) OR p.author = :username ORDER BY p.id DESC",
+            Post.class)
                  .setParameter("username", username)
                  .getResultList();
+    }
+
+    public void updateFavouritePostForUser(String username, Post post, boolean isFavourite) {
+        if (username == null || username.isBlank() || post == null || post.getId() == null) {
+            return;
+        }
+
+        db.getTransaction().begin();
+        try {
+            User managedUser = db.createQuery("FROM User u LEFT JOIN FETCH u.favoritePosts WHERE u.username = :username", User.class)
+                    .setParameter("username", username)
+                    .getResultStream()
+                    .findFirst()
+                    .orElse(null);
+            Post managedPost = db.find(Post.class, post.getId());
+
+            if (managedUser == null || managedPost == null) {
+                db.getTransaction().rollback();
+                return;
+            }
+
+            if (isFavourite) {
+                if (!managedUser.hasFavoritePost(managedPost)) {
+                    managedUser.addFavoritePost(managedPost);
+                }
+            } else {
+                managedUser.removeFavoritePost(managedPost);
+            }
+
+            db.merge(managedUser);
+            db.getTransaction().commit();
+        } catch (Exception e) {
+            if (db.getTransaction().isActive()) {
+                db.getTransaction().rollback();
+            }
+            e.printStackTrace();
+        }
+    }
+
+    public List<Post> getFavouritePostsByUser(String username) {
+        if (username == null || username.isBlank()) {
+            return List.of();
+        }
+
+        return db.createQuery(
+            "SELECT p FROM User u JOIN u.favoritePosts p WHERE u.username = :username ORDER BY p.id DESC",
+                Post.class)
+                .setParameter("username", username)
+                .getResultList();
     }
 
     public void storeComment(Post post, Comment comment) {

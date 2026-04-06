@@ -5,7 +5,6 @@ import eus.ehu.businesslogic.BusinessLogic;
 //import eus.ehu.controllers.CommentOnPostController;
 //import eus.ehu.controllers.CreatePostController;
 import eus.ehu.usermodel.Post;
-import eus.ehu.usermodel.User;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,6 +12,7 @@ import java.util.List;
 import eus.ehu.usermodel.Tag;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -85,6 +85,10 @@ public class FeedController {
     @FXML
     // one like button for each post, so we pass the specific button and post that was clicked as parameters
     private void handleLikeButton(ToggleButton likeBtn, Post post) {
+
+        if (this.businessLogic == null) {
+            return;
+        }
         
         int likes = post.getLikeCount();
 
@@ -231,14 +235,20 @@ public class FeedController {
             }
         }
 
-        // 3. if we successfully got an image, create an imageview to display it and add it to the card
+        // 3. left column with image + comments button underneath
+        VBox mediaColumn = new VBox(6);
+        mediaColumn.setPrefWidth(240);
+        mediaColumn.setMinWidth(240);
+        mediaColumn.setMaxWidth(240);
+        mediaColumn.setAlignment(Pos.TOP_LEFT);
+
         if (postImage != null) {
             ImageView imageView = new ImageView(postImage);
-            imageView.setFitWidth(300);
-            imageView.setFitHeight(200);
+            imageView.setFitWidth(240);
+            imageView.setFitHeight(160);
             imageView.setPreserveRatio(false);
             imageView.setSmooth(true);
-            postCard.getChildren().add(imageView);
+            mediaColumn.getChildren().add(imageView);
         }
 
         // 4. create a smaller inner vertical box just for the text elements
@@ -251,7 +261,14 @@ public class FeedController {
         titleLabel.setMaxWidth(270);
 
         // create the author label
-        Label authorLabel = new Label("by " + post.getUser().getUsername());
+        String author = post.getAuthor();
+        if ((author == null || author.isBlank()) && post.getUser() != null) {
+            author = post.getUser().getUsername();
+        }
+        if (author == null || author.isBlank()) {
+            author = "unknown";
+        }
+        Label authorLabel = new Label("by " + author);
         authorLabel.setStyle("-fx-text-fill: #666666; -fx-font-size: 12px;");
         authorLabel.setMaxWidth(270);
 
@@ -267,11 +284,16 @@ public class FeedController {
         postContent.getChildren().addAll(titleLabel, authorLabel, descriptionLabel);
 
         // 5. create the comment button for each post, showing the current amount of comments dynamically
-        Button commentButton = new Button("💬 comment (" + post.getComments().size() + ")");
-        commentButton.setStyle("-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-size: 12px;");
+        Button commentButton = new Button("💬 Comments (" + post.getComments().size() + ")");
+        commentButton.setStyle("-fx-background-color: #16a34a; -fx-text-fill: white; -fx-font-size: 11px; -fx-font-weight: bold; -fx-background-radius: 8; -fx-padding: 4 10 4 10;");
+        commentButton.setPrefWidth(120);
+        commentButton.setMinHeight(28);
+        commentButton.setAlignment(Pos.CENTER_LEFT);
         
         // this is a lambda expression. it says: "when clicked, run opencommentview() and pass THIS specific post"
         commentButton.setOnAction(e -> openCommentView(post));
+
+        mediaColumn.getChildren().add(commentButton);
 
         // 6. create like button for each post, showing the current amount of likes dynamically
         ToggleButton likeButton = new ToggleButton();
@@ -284,11 +306,9 @@ public class FeedController {
         // this is a lambda expression. it says: "when clicked, run handleLikeButton() and pass THIS specific post"
         likeButton.setOnAction(e -> handleLikeButton(likeButton, post));
 
-        // 7. create the star rating label for each post
-        Label starRating = new Label();
-        starRating.setText(String.valueOf(post.getStarRating()));
-       
-        // add the star rating label to the post content
+        // 7. show post rating using stars
+        Label starRating = new Label(formatRating(post.getStarRating()));
+        starRating.setStyle("-fx-text-fill: #d97706; -fx-font-size: 14px; -fx-font-weight: bold;");
         postContent.getChildren().add(starRating);
 
         // 8. create tag labels for each post
@@ -307,16 +327,37 @@ public class FeedController {
         //add tag container to the post content
         postContent.getChildren().add(tagsContainer);
 
-        // 7. assemble the final card by adding the text block and the comment button
-        postCard.getChildren().addAll(postContent, commentButton, likeButton);
+        // 7. assemble the final card
+        postCard.getChildren().addAll(mediaColumn, postContent, likeButton);
 
         // return the fully assembled visual component so showposts() can put it on the screen
         return postCard;
     }
 
+    private String formatRating(double rating) {
+        double safeRating = Math.max(0.0, Math.min(5.0, rating));
+        if (safeRating == 0.0) {
+            return "☆☆☆☆☆ (0.0)";
+        }
+
+        int fullStars = (int) safeRating;
+        boolean hasHalfStar = (safeRating - fullStars) >= 0.5;
+        int emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
+
+        String stars = "★".repeat(fullStars)
+                + (hasHalfStar ? "⯪" : "")
+                + "☆".repeat(Math.max(0, emptyStars));
+
+        return stars + " (" + String.format(java.util.Locale.US, "%.1f", safeRating) + ")";
+    }
+
     // helper method to navigate to the comments screen for a specific post
     private void openCommentView(Post post) {
         try {
+            if (this.businessLogic == null) {
+                return;
+            }
+
             // 1. load the fxml for the comments screen
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/eus/ehu/addComment.fxml"));
             Parent commentView = loader.load();
@@ -324,18 +365,7 @@ public class FeedController {
             // 2. crucial step: get the controller instance that was just created by the fxml loader
             CommentOnPostController controller = loader.getController();
 
-            // 3. create a temporary dummy user (in a real app, this comes from the login manager)
-            User currentUser = new User();
-            currentUser.setUsername("currentUser"); 
-            // otherwise db rejecst the comennt due to null author
-            currentUser.setBio("aupa eibar yay"); // TO SOLVE: get the real logged-in user instead of a fake one
-
-
             // 4. inject our context into the new controller before showing the window
-            //controller.initData(post, currentUser, new BusinessLogic());
-            
-            //!!!!!!!!!!!
-            // Pasamos this.businessLogic en vez de usar "new BusinessLogic()"
             controller.initData(post, this.businessLogic);
 
             // 5. switch the visible scene to the comments screen

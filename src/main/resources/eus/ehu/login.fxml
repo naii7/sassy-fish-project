@@ -26,7 +26,7 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <Label layoutX="158.0" layoutY="35.0" style="-fx-border-style: black;" text="Sassy-Me">
+      <Label layoutX="158.0" layoutY="35.0" style="-fx-border-color: black; -fx-border-width: 1;" text="Sassy-Me">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
