@@ -15,6 +15,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
@@ -219,10 +220,16 @@ public class ProfileController {
         postCard.setPrefWidth(680);
 
         ImageView postImageView = new ImageView(loadImage(post.getImagePath(), "/default.png"));
-        postImageView.setFitWidth(180);
-        postImageView.setFitHeight(135);
-        postImageView.setPreserveRatio(false);
+        postImageView.setFitWidth(160);
+        postImageView.setFitHeight(120);
+        postImageView.setPreserveRatio(true);
         postImageView.setSmooth(true);
+
+        StackPane imageContainer = new StackPane(postImageView);
+        imageContainer.setPrefSize(180, 135);
+        imageContainer.setMinSize(180, 135);
+        imageContainer.setMaxSize(180, 135);
+        StackPane.setAlignment(postImageView, javafx.geometry.Pos.CENTER);
 
         VBox postContent = new VBox(6);
         postContent.setStyle("-fx-padding: 18;");
@@ -252,7 +259,7 @@ public class ProfileController {
         ratingLabel.setMaxWidth(420);
 
         postContent.getChildren().addAll(titleLabel, authorLabel, descriptionLabel, ratingLabel);
-        postCard.getChildren().addAll(postImageView, postContent);
+        postCard.getChildren().addAll(imageContainer, postContent);
         return postCard;
     }
 

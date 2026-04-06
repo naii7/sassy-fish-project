@@ -26,7 +26,11 @@ public class LoginController {
     @FXML 
     private Label errorLabel;
     
-    private BusinessLogic businessLogic = new BusinessLogic(); // TODO: This should be injected, not created here
+    private BusinessLogic businessLogic;
+
+    public void setBusinessLogic(BusinessLogic businessLogic) {
+        this.businessLogic = businessLogic;
+    }
 
     @FXML
     void handleCancel() {
