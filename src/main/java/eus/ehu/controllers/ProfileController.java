@@ -1,6 +1,5 @@
 package eus.ehu.controllers;
 
-import eus.ehu.data_access.DbAccessManager;
 import eus.ehu.usermodel.Post;
 import eus.ehu.usermodel.User;
 
@@ -20,7 +19,11 @@ import javafx.scene.layout.VBox;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 
+import java.util.LinkedHashMap;
+
 public class ProfileController {
+
+    private static final String DEFAULT_PROFILE_RESOURCE = "/default_pfp.jpg";
 
     @FXML private Label usernameLabel;
     @FXML private Label bioLabel;
@@ -38,6 +41,17 @@ public class ProfileController {
     // This method is called from FeedController right before switching scenes
     public void initData(BusinessLogic bl) {
         this.businessLogic = bl;
+        this.currentUser = bl == null ? null : bl.getCurrentUser();
+
+        // Now that we have the data, we can load the profile info
+        loadUserProfile();
+        loadFeedAndFavorites();
+    }
+
+    // Overload used by visual tests that pass an explicit profile user
+    public void initData(BusinessLogic bl, User user) {
+        this.businessLogic = bl;
+        this.currentUser = user != null ? user : (bl == null ? null : bl.getCurrentUser());
 
         // Now that we have the data, we can load the profile info
         loadUserProfile();
@@ -57,6 +71,18 @@ public class ProfileController {
 
     private void loadUserProfile() {
         try {
+            if (currentUser == null) {
+                if (usernameLabel != null) {
+                    usernameLabel.setText("@guest");
+                }
+                if (bioLabel != null) {
+                    bioLabel.setText("No user loaded.");
+                }
+                if (profileImageView != null) {
+                    profileImageView.setImage(loadImage(null, DEFAULT_PROFILE_RESOURCE));
+                }
+                return;
+            }
             
             //currentUser.setProfilePicturePath("path/to/profile/picture.jpg"); (cosa que no funciona de momento, las bases de datos pueden guardar .jpg??)
             if (usernameLabel != null) {
@@ -66,21 +92,45 @@ public class ProfileController {
                 bioLabel.setText(currentUser.getBio());
             }
             if (profileImageView != null) {
-                profileImageView.setImage(loadImage(currentUser.getProfilePicturePath(), "/default pfp.jpg"));
+                String profilePath = currentUser.getProfilePicturePath();
+                if (isDefaultProfilePath(profilePath)) {
+                    profilePath = null;
+                }
+                profileImageView.setImage(loadImage(profilePath, DEFAULT_PROFILE_RESOURCE));
             }
         } catch (Exception e) {
             setErrorMessage("Error loading profile: " + e.getMessage());
         }
     }
 
+    private boolean isDefaultProfilePath(String path) {
+        if (path == null || path.isBlank()) return true;
+        String normalized = path.trim();
+        return normalized.equals("default_pfp.jpg") || normalized.equals("/default_pfp.jpg");
+    }
+
     private void loadFeedAndFavorites() {
         try {
+            if (businessLogic == null) {
+                showEmptyFeed();
+                showDefaultFavorites();
+                return;
+            }
             
-            // load all posts from the db
-            List<Post> posts = businessLogic.getAllPosts();
-
+            List<Post> posts = currentUser == null
+                    ? List.of()
+                    : businessLogic.getPostsByUser(currentUser.getUsername());
             showFeedPosts(posts);
-            showFavouritePosts(posts);
+
+            try {
+                List<Post> favouritePosts = currentUser == null
+                        ? List.of()
+                        : businessLogic.getFavouritePostsByUser(currentUser.getUsername());
+                showFavouritePosts(favouritePosts);
+            } catch (Exception e) {
+                setErrorMessage("Error loading favourites: " + e.getMessage());
+                showDefaultFavorites();
+            }
 
         } catch (Exception e) {
             setErrorMessage("Error loading posts: " + e.getMessage());
@@ -96,18 +146,18 @@ public class ProfileController {
         }
 
         feedContainer.getChildren().clear();
-        
-        // Filter posts to only show ones authored by the current user
-        List<Post> userPosts = posts.stream()
-                .filter(p -> p.getAuthor() != null && p.getAuthor().equals(currentUser.getUsername()))
-                .collect(Collectors.toList());
 
-        if (userPosts.isEmpty()) {
+        if (posts == null) {
             showEmptyFeed();
             return;
         }
 
-        for (Post post : userPosts) {
+        if (posts.isEmpty()) {
+            showEmptyFeed();
+            return;
+        }
+
+        for (Post post : posts) {
             feedContainer.getChildren().add(createPostCard(post));
         } 
     }
@@ -116,15 +166,22 @@ public class ProfileController {
         showFeedPosts(posts);
     }
 
-    private void showFavouritePosts(List<Post> posts) {
-        List<Post> favouritePosts = posts == null ? List.of() : posts.stream()
-            .filter(Post::getIsFavourite)
-            .limit(3)
-            .collect(Collectors.toList());
+    private void showFavouritePosts(List<Post> favouritePosts) {
+        List<Post> favoritesToShow = favouritePosts == null
+            ? List.of()
+            : favouritePosts.stream()
+                .collect(Collectors.toMap(
+                    this::favoriteKey,
+                    post -> post,
+                    (first, second) -> first,
+                    LinkedHashMap::new))
+                .values().stream()
+                .limit(3)
+                .collect(Collectors.toList());
 
         ImageView[] favouriteViews = {favourite1, favourite2, favourite3};
         for (int index = 0; index < favouriteViews.length; index++) {
-            Post favouritePost = index < favouritePosts.size() ? favouritePosts.get(index) : null;
+            Post favouritePost = index < favoritesToShow.size() ? favoritesToShow.get(index) : null;
             String imagePath = favouritePost != null ? favouritePost.getImagePath() : null;
             setImage(favouriteViews[index], imagePath, "/default.png");
         }
@@ -134,6 +191,16 @@ public class ProfileController {
         setImage(favourite1, null, "/default.png");
         setImage(favourite2, null, "/default.png");
         setImage(favourite3, null, "/default.png");
+    }
+
+    private String favoriteKey(Post post) {
+        String author = post == null ? "" : post.getAuthor();
+        if ((author == null || author.isBlank()) && post != null && post.getUser() != null) {
+            author = post.getUser().getUsername();
+        }
+
+        String title = post == null ? "" : post.getTitle();
+        return (author == null ? "" : author.trim()) + "::" + (title == null ? "" : title.trim());
     }
 
     private void showEmptyFeed() {
@@ -165,7 +232,11 @@ public class ProfileController {
         titleLabel.setWrapText(true);
         titleLabel.setMaxWidth(420);
 
-        Label authorLabel = new Label(post.getAuthor() == null ? "Unknown author" : "by " + post.getAuthor());
+        String author = post.getAuthor();
+        if ((author == null || author.isBlank()) && post.getUser() != null) {
+            author = post.getUser().getUsername();
+        }
+        Label authorLabel = new Label((author == null || author.isBlank()) ? "Unknown author" : "by " + author);
         authorLabel.setStyle("-fx-font-size: 13px; -fx-text-fill: #64748b;");
         authorLabel.setMaxWidth(420);
 
@@ -176,9 +247,30 @@ public class ProfileController {
         descriptionLabel.setMinHeight(66);
         descriptionLabel.setPrefHeight(66);
 
-        postContent.getChildren().addAll(titleLabel, authorLabel, descriptionLabel);
+        Label ratingLabel = new Label(formatRating(post.getStarRating()));
+        ratingLabel.setStyle("-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #d97706;");
+        ratingLabel.setMaxWidth(420);
+
+        postContent.getChildren().addAll(titleLabel, authorLabel, descriptionLabel, ratingLabel);
         postCard.getChildren().addAll(postImageView, postContent);
         return postCard;
+    }
+
+    private String formatRating(double rating) {
+        double safeRating = Math.max(0.0, Math.min(5.0, rating));
+        if (safeRating == 0.0) {
+            return "☆☆☆☆☆ (0.0)";
+        }
+
+        int fullStars = (int) safeRating;
+        boolean hasHalfStar = (safeRating - fullStars) >= 0.5;
+        int emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
+
+        String stars = "★".repeat(fullStars)
+                + (hasHalfStar ? "⯪" : "")
+                + "☆".repeat(Math.max(0, emptyStars));
+
+        return stars + " (" + String.format(java.util.Locale.US, "%.1f", safeRating) + ")";
     }
 
     private Image loadImage(String imagePath, String fallbackResource) {

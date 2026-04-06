@@ -16,11 +16,17 @@ public interface BlInterface {
     // increments/decrements the like count of a post and updates it in the database
     void updateLikePost(Post post);
 
+    // marks/unmarks a post as favourite for a concrete user and saves the relation in DB
+    void updateFavouriteForUser(String username, Post post, boolean isFavourite);
+
     // retrieves a list of all posts currently stored in the databas
     List<Post> getAllPosts();
 
     // retrieves a list of posts created by a specific user
     List<Post> getPostsByUser(String username); 
+
+    // retrieves the favourite posts for a specific user
+    List<Post> getFavouritePostsByUser(String username);
     
     // retrieves a list of all comments currently stored in the database
     List<Comment> getAllComments();

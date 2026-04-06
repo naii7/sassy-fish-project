@@ -1,7 +1,6 @@
 package eus.ehu.controllers;
 
 import java.time.LocalDate;
-import java.util.List;
 
 import eus.ehu.businesslogic.BusinessLogic;
 import eus.ehu.usermodel.Comment;
@@ -9,20 +8,17 @@ import eus.ehu.usermodel.Post;
 import eus.ehu.usermodel.User;
 import javafx.animation.PauseTransition;
 import javafx.beans.binding.Bindings;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextFormatter;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -73,11 +69,6 @@ public class CommentOnPostController {
                 commentArea.textProperty()
             )
         );
-
-        // TABLE OF COMMENTS
-        // set up the column cell value factories for the tables
-        usernameColumn.setCellValueFactory(new PropertyValueFactory<>("author")); //calls getAuthor() from Comment class
-        commentTextColumn.setCellValueFactory(new PropertyValueFactory<>("text")); //calls getText() from Comment class
     }
 
     // method to receive data from the window that opens this controller
@@ -114,7 +105,7 @@ public class CommentOnPostController {
         authorLabel.setStyle("-fx-font-weight: bold; -fx-text-fill: #0f172a; -fx-font-size: 13px;");
 
         Region spacer = new Region();
-        HBox.setHgrow(spacer, javafx.scene.layout.Priority.ALWAYS);
+        HBox.setHgrow(spacer, Priority.ALWAYS);
 
         String commentDate = comment.getDate() == null ? "" : comment.getDate().toString();
         Label dateLabel = new Label(commentDate);
@@ -166,6 +157,11 @@ public class CommentOnPostController {
                 errorLabel.setVisible(false);
             });
             pause.play();
+            return;
+        }
+
+        if (businessLogic == null) {
+            System.out.println("business logic context is missing!");
             return;
         }
 
@@ -221,17 +217,5 @@ public class CommentOnPostController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-    private void loadComments() {
-
-        // get comments from current post
-        List<Comment> commentsPost = currentPost.getComments();
-    
-        // add them to the observable list
-        comments = FXCollections.observableArrayList(commentsPost);
-
-        // show them in the table
-        commentsTable.setItems(comments);
     }
 }

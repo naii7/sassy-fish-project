@@ -31,14 +31,13 @@ public class Post {
     @ManyToOne
     private User user; // Author of the post
     private String author; // Username of the author
-    private boolean isFavourite;
     private double starRating = 0.0; // 1-5
     @ElementCollection
     @Enumerated(EnumType.STRING)
     private List<Tag> tags = new ArrayList<>(); // ENUM of tags
     private LocalDate date;
 
-    private int likeCount = 0;
+    private Integer likeCount;
 
     // cascade: if a post is deleted, its comments are also deleted
     @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -76,14 +75,6 @@ public class Post {
         this.description = description;
     }
 
-    public boolean getIsFavourite() {
-        return isFavourite;
-    }
-
-    public void setIsFavourite(boolean isFavourite) {
-        this.isFavourite = isFavourite;
-    }
-
     public double getStarRating() {
         return starRating;
     }
@@ -94,6 +85,10 @@ public class Post {
 
     public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public List<Tag> getTags() {
@@ -159,7 +154,7 @@ public class Post {
     }
 
     public int getLikeCount() {
-        return likeCount;
+        return likeCount == null ? 0 : likeCount;
     }
 
     public void setLikeCount(int likeCount) {
