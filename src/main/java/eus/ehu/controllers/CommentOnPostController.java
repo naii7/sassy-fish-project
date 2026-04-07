@@ -20,8 +20,12 @@ import javafx.scene.control.TextFormatter;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.VBox; // BETTER VERSION
 import javafx.stage.Stage;
+/* // SIMPLE VERSION
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+ */
 
 public class CommentOnPostController {
 
@@ -37,8 +41,26 @@ public class CommentOnPostController {
     @FXML
     private Label errorLabel;
 
+    // TABLE OF COMMENTS
+    
+    /* // SIMPLE VERSION
+    @FXML
+    private TableView<Comment> commentsTable;
+
+    @FXML
+    private TableColumn<Comment, String> usernameColumn;
+
+    @FXML
+    private TableColumn<Comment, String> commentTextColumn;
+    
+    @FXML
+    private ObservableList<Comment> comments;
+    */
+
+    // BETTER VERSION
     @FXML
     private VBox commentsContainer; // container to hold the previous comment cards
+    // END BETTER VERSION
 
     // variables to store the context of the comment
     private Post currentPost;
@@ -69,15 +91,40 @@ public class CommentOnPostController {
                 commentArea.textProperty()
             )
         );
+
+        /* SIMPLE VERSION
+        // TABLE OF COMMENTS
+        // set up the column cell value factories for the tables
+        usernameColumn.setCellValueFactory(new PropertyValueFactory<>("author")); //calls getAuthor() from Comment class
+        commentTextColumn.setCellValueFactory(new PropertyValueFactory<>("text")); //calls getText() from Comment class
+        */
     }
 
     // method to receive data from the window that opens this controller
     public void initData(Post post, BusinessLogic bl) {
         this.currentPost = post;
         this.businessLogic = bl;
-        reloadComments();
+        
+        // load the comments of the post into the table
+        reloadComments(); // BETTER VERSION
+        // loadComments(); // SIMPLE VERSION
     }
 
+    /* SIMPLE VERSION (1 METHOD)
+    private void loadComments() {
+
+        // get comments from current post
+        List<Comment> commentsPost = currentPost.getComments();
+    
+        // add them to the observable list
+        comments = FXCollections.observableArrayList(commentsPost);
+
+        // show them in the table
+        commentsTable.setItems(comments);
+    }
+    */
+   
+    // BETTER VERSION (3 METHODS)
     private void reloadComments() {
         if (commentsContainer == null) {
             return;
@@ -137,6 +184,7 @@ public class CommentOnPostController {
             currentPost = refreshedPost;
         }
     }
+    // END BETTER VERSION
 
     // handle the save button click event
     @FXML
@@ -161,11 +209,6 @@ public class CommentOnPostController {
             return;
         }
 
-        if (businessLogic == null) {
-            System.out.println("business logic context is missing!");
-            return;
-        }
-
         // get user from bl (it should be there cause you can't get to the comment screen without being logged in)
         currentUser = businessLogic.getCurrentUser(); 
 
@@ -184,9 +227,13 @@ public class CommentOnPostController {
         // send it to the database via business logic
         businessLogic.addCommentToPost(currentPost, newComment);
 
-        // refresh from DB so we always show persisted state in the comments panel
+        // loadComments(); // SIMPLE VERSION
+
+        // BETTER VERSION
+        // refresh from DB so we always show persisted state in the comments panel (to show new comment)
         refreshCurrentPostFromDatabase();
         reloadComments();
+        // END BETTER VERSION
         
         // clear the comment area after saving
         commentArea.clear();
@@ -195,10 +242,6 @@ public class CommentOnPostController {
     //handle the cancel button click event
     @FXML
     private void cancelComment() {
-        openFeedAndCloseComment();
-    }
-
-    private void openFeedAndCloseComment() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/eus/ehu/FeedPage.fxml"));
             Parent root = loader.load();

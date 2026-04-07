@@ -1,14 +1,11 @@
 package eus.ehu.controllers;
 
 
-import eus.ehu.businesslogic.BusinessLogic;
-//import eus.ehu.controllers.CommentOnPostController;
-//import eus.ehu.controllers.CreatePostController;
-import eus.ehu.usermodel.Post;
-
 import java.util.ArrayList;
 import java.util.List;
 
+import eus.ehu.businesslogic.BusinessLogic;
+import eus.ehu.usermodel.Post;
 import eus.ehu.usermodel.Tag;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -105,7 +102,7 @@ public class FeedController {
             if (likes > 0) { // avoid negative like count
                 likes--; // decrement
             }
-            likeBtn.setStyle("-fx-text-fill: #f0f0f0d2; -fx-background-color: transparent; -fx-font-size: 20px");
+            likeBtn.setStyle("-fx-text-fill: #f0f0f060; -fx-background-color: transparent; -fx-font-size: 20px");
         }
 
         // update the like count in the post object in memory
@@ -242,15 +239,24 @@ public class FeedController {
 
         // set initial text and style
         likeButton.setText("♥" + post.getLikeCount());
-        likeButton.setStyle("-fx-text-fill: #f0f0f0d2; -fx-background-color: transparent; -fx-font-size: 20px;");
+        likeButton.setStyle("-fx-text-fill: #f0f0f060; -fx-background-color: transparent; -fx-font-size: 20px;");
         likeButton.setSelected(false); // default state -> not liked
 
         // this is a lambda expression. it says: "when clicked, run handleLikeButton() and pass THIS specific post"
         likeButton.setOnAction(e -> handleLikeButton(likeButton, post));
 
         // 7. show post rating using stars
+            // BETTER VERSION (AUXILIAR METHOD formatRating() NEEDED)
         Label starRating = new Label(formatRating(post.getStarRating()));
         starRating.setStyle("-fx-text-fill: #d97706; -fx-font-size: 14px; -fx-font-weight: bold;");
+            // END BETTER VERSION
+
+            /* // SIMPLE VERSION (JUST SHOW VALUE)
+        Label starRating = new Label();
+        starRating.setText(String.valueOf(post.getStarRating()));
+            */
+        
+        // add the star rating label to the post content
         postContent.getChildren().add(starRating);
 
         // 8. create tag labels for each post
@@ -276,6 +282,7 @@ public class FeedController {
         return postCard;
     }
 
+    // BETTER VERSION AUXILIAR
     private String formatRating(double rating) {
         double safeRating = Math.max(0.0, Math.min(5.0, rating));
         if (safeRating == 0.0) {
@@ -292,6 +299,7 @@ public class FeedController {
 
         return stars + " (" + String.format(java.util.Locale.US, "%.1f", safeRating) + ")";
     }
+    // END BETTER VERSION AUXILIAR
 
     // helper method to navigate to the comments screen for a specific post
     private void openCommentView(Post post) {
