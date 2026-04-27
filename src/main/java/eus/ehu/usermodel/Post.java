@@ -170,5 +170,5 @@ public class Post {
     public void setIsFavourite(boolean isFavourite) {
         this.isFavourite = isFavourite;
     }
-    
+ 
 }
