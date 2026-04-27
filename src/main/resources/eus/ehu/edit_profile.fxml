@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox alignment="TOP_CENTER" prefHeight="738.0" prefWidth="452.0" spacing="15.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eus.ehu.controllers.ProfileController">
+   <padding>
+      <Insets bottom="20.0" left="25.0" right="25.0" top="20.0" />
+   </padding>
+   <AnchorPane prefHeight="200.0" prefWidth="200.0">
+      <children>
+         <Label layoutX="183.0" layoutY="1.0" text="EDIT YOUR PROFILE" textAlignment="CENTER">
+            <font>
+               <Font name="System Bold" size="24.0" />
+            </font>
+         </Label>
+         <Label fx:id="dateLabel" layoutX="323.0" layoutY="9.0" prefHeight="17.0" prefWidth="79.0" textAlignment="RIGHT" />
+      </children>
+   </AnchorPane>
+   <AnchorPane fx:id="imageUploadArea" prefHeight="152.0" prefWidth="479.0" style="-fx-border-color: black;">
+      <children>
+         <Label fx:id="uploadImageLabel" layoutX="138.0" layoutY="65.0" prefHeight="20.0" prefWidth="143.0" style="-fx-font-weight: bold; -fx-font-size: 14px;" text="📷 Upload Image *" />
+         <ImageView fx:id="profileImageView" fitHeight="150.0" fitWidth="400.0" layoutX="100.0" onMouseClicked="#handleImageClick" pickOnBounds="true" preserveRatio="true" />
+      </children>
+   </AnchorPane>
+
+   <VBox spacing="5.0">
+      <Label fx:id="usernameField" prefHeight="18.0" prefWidth="215.0" style="-fx-font-weight: bold;" text="New Username" />
+      <TextField fx:id="usernameField" promptText="Enter new username..." />
+   </VBox>
+
+   <VBox prefHeight="132.0" prefWidth="600.0" spacing="5.0">
+      <Label fx:id="descriptionLabel" style="-fx-font-weight: bold;" text="Description" />
+      <TextArea fx:id="descriptionField" prefHeight="94.0" prefWidth="600.0" promptText="Enter description..." wrapText="true" />
+   </VBox>
+
+   <VBox prefHeight="81.0" prefWidth="402.0" spacing="5.0">
+      <Label fx:id="favouritesLabel" prefHeight="18.0" prefWidth="155.0" style="-fx-font-weight: bold;" text="Edit Favourtites" />
+      <HBox fx:id="favouritesContainer">
+         <children>
+            <ImageView fx:id= "fav1" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id= "fav2" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="fav3" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+         </children>
+      </HBox>
+   </VBox>
+   <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+   <AnchorPane prefHeight="81.0" prefWidth="402.0">
+      <children>      
+         <Button fx:id="cancelButton" layoutX="233.0" layoutY="23.0" onAction="#cancelPost" prefHeight="30.0" prefWidth="75.0" style="-fx-font-weight: bold;" text="Cancel" />
+         <Button fx:id="saveButton" layoutX="320.0" layoutY="23.0" onAction="#savePost" style="-fx-font-weight: bold; -fx-font-size: 14px;" text="Save Changes" />
+      </children>
+   </AnchorPane>
+</VBox>

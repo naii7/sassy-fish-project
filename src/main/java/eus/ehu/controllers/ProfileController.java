@@ -340,4 +340,24 @@ public class ProfileController {
             e.printStackTrace();
         }
     }
+
+    @FXML
+    private void editProfile() {
+        try{
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/eus/ehu/edit_profile.fxml"));
+            Parent root = loader.load();
+            
+            EditProfileController editController = loader.getController();
+            editController.initData(this.businessLogic, this.currentUser);
+
+            Stage stage = (javafx.stage.Stage) feedScroll.getScene().getWindow();
+            stage.setScene(new javafx.scene.Scene(root));
+            stage.setTitle("Edit Profile");
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+    }
 }
