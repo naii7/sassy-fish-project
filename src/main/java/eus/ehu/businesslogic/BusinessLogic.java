@@ -5,6 +5,7 @@ import java.util.List;
 import eus.ehu.data_access.DbAccessManager;
 import eus.ehu.usermodel.Comment;
 import eus.ehu.usermodel.Post;
+import eus.ehu.usermodel.Tag;
 import eus.ehu.usermodel.User;
 
 public class BusinessLogic implements BlInterface {
@@ -26,8 +27,8 @@ public class BusinessLogic implements BlInterface {
         // if the user doesn't exist, we create it with the provided credentials and store it in the database
         if (dbUser == null) {
             User newUser = new User(username, password);
-            dbManager.storeUser(newUser);
-            this.currentUser = newUser; // save the new user in the bl for the rest of the controllers to access
+            dbManager.storeUser(newUser); // save the new user in the bl for the rest of the controllers to access
+            this.currentUser = newUser; 
             System.out.println("new user '" + username + "' created and logged in successfully");
             return true; // we consider that creating a new user is also a successful login
 
@@ -73,6 +74,10 @@ public class BusinessLogic implements BlInterface {
     public List<Post> getAllPosts() {
         
         return dbManager.getAllPosts(); // ask the real database to fetch all posts
+    }
+    @Override
+    public List<Post> getPostsByTag(Tag tag) {
+        return dbManager.getPostsByTag(tag); // ask the real database to fetch posts by a specific tag
     }
 
     @Override 

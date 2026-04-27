@@ -1,15 +1,13 @@
 package eus.ehu.controllers;
 
 
-import eus.ehu.businesslogic.BusinessLogic;
-//import eus.ehu.controllers.CommentOnPostController;
-//import eus.ehu.controllers.CreatePostController;
-import eus.ehu.usermodel.Post;
-
 import java.util.ArrayList;
 import java.util.List;
 
+import eus.ehu.businesslogic.BusinessLogic;
+import eus.ehu.usermodel.Post;
 import eus.ehu.usermodel.Tag;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
@@ -27,7 +25,7 @@ import javafx.stage.Stage;
 
 public class FeedController {
 
-    // links these java variables to the specific id tags in your feed.fxml file
+    // links these java variables to the specific id tags in feed.fxml file
     @FXML
     private ScrollPane feedScroll;
     @FXML
@@ -38,7 +36,25 @@ public class FeedController {
     private VBox feedContainer; // this is the empty vertical box where we will inject our posts
     @FXML
     private HBox PostMockup;
+
     
+    @FXML
+    private Button Bathroom;
+    @FXML
+    private Button Disaster;
+    @FXML
+    private Button Food;
+    @FXML
+    private Button Movie;
+    @FXML
+    private Button Music;
+    @FXML
+    private Button Videogame;
+    @FXML
+    private Button Book;
+    @FXML
+    private Button Other;
+
     private BusinessLogic businessLogic;
 
     public void initData(BusinessLogic bl) {
@@ -46,8 +62,7 @@ public class FeedController {
 
         try {
            // now that we have the data, we can load the post feed
-            List<Post> posts = this.businessLogic.getAllPosts();
-            showPosts(posts);
+            showAllPosts();
 
         } catch (Exception e) {
             System.err.println("could not load feed: " + e.getMessage());
@@ -105,7 +120,7 @@ public class FeedController {
             if (likes > 0) { // avoid negative like count
                 likes--; // decrement
             }
-            likeBtn.setStyle("-fx-text-fill: #f0f0f0d2; -fx-background-color: transparent; -fx-font-size: 20px");
+            likeBtn.setStyle("-fx-text-fill: #f0f0f060; -fx-background-color: transparent; -fx-font-size: 20px");
         }
 
         // update the like count in the post object in memory
@@ -119,64 +134,6 @@ public class FeedController {
 
     }
     
-   
-    /*  triggered by the fxml when the user clicks the profile button
-    @FXML
-    void profileButtonClicked() {
-        try {
-            // 1. locate the fxml file for the profile screen
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/eus/ehu/profile.fxml"));
-            
-            // 2. load the fxml into a parent object (the root of the new scene graph)
-            Parent profileView = loader.load(); 
-            
-            // 3. get the current window (stage) using the button we just clicked
-            Stage stage = (Stage) profileButton.getScene().getWindow();
-            
-            // 4. change the scene to the new profile view
-            stage.setScene(new Scene(profileView));
-
-        } catch (Exception e) {
-            e.printStackTrace(); 
-        }
-    }*/
-   // triggered by the fxml when the user clicks the profile button
-    /*@FXML
-    void profileButtonClicked() {
-        try {
-            // 1. locate the fxml file for the profile screen
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/eus/ehu/profile.fxml"));
-            
-            // 2. load the fxml into a parent object (the root of the new scene graph)
-            Parent profileView = loader.load(); 
-            
-            // we get the profile controller
-            ProfileController controller = loader.getController();
-
-            // we create our fake user for the demo
-            User currentUser = new User();
-            currentUser.setUsername("currentUser"); 
-            currentUser.setBio("aupa eibar yay");
-
-            // we inject the connection and the user to the Profile
-            controller.initData(this.businessLogic, currentUser);
-
-            // 3. get the current window (stage) using the button we just clicked
-            Stage stage = (Stage) profileButton.getScene().getWindow();
-            
-            // 4. change the scene to the new profile view
-            stage.setScene(new Scene(profileView));
-            stage.setTitle("User Profile"); // Un detalle para que la ventana quede bonita
-
-        } catch (Exception e) {
-            e.printStackTrace(); 
-        }
-    }
-
-    @FXML
-    void openProfile() {
-        System.out.println("profile button clicked!");
-    } */
 
     // triggered by the fxml when the user clicks the profile button
     @FXML
@@ -204,6 +161,17 @@ public class FeedController {
         } catch (Exception e) {
             e.printStackTrace(); 
         }
+    }
+
+    @FXML
+    void showAllPosts() {
+        if (this.businessLogic == null) {
+            showPosts(new ArrayList<>());
+            return;
+        }
+
+        List<Post> posts = this.businessLogic.getAllPosts();
+        showPosts(posts);
     }
 
     // this is the factory method. it builds a user interface dynamically using java code instead of fxml
@@ -291,7 +259,7 @@ public class FeedController {
         commentButton.setAlignment(Pos.CENTER_LEFT);
         
         // this is a lambda expression. it says: "when clicked, run opencommentview() and pass THIS specific post"
-        commentButton.setOnAction(e -> openCommentView(post));
+        commentButton.setOnAction(e -> openCommentView(post, commentButton));
 
         mediaColumn.getChildren().add(commentButton);
 
@@ -300,15 +268,24 @@ public class FeedController {
 
         // set initial text and style
         likeButton.setText("♥" + post.getLikeCount());
-        likeButton.setStyle("-fx-text-fill: #f0f0f0d2; -fx-background-color: transparent; -fx-font-size: 20px;");
+        likeButton.setStyle("-fx-text-fill: #f0f0f060; -fx-background-color: transparent; -fx-font-size: 20px;");
         likeButton.setSelected(false); // default state -> not liked
 
         // this is a lambda expression. it says: "when clicked, run handleLikeButton() and pass THIS specific post"
         likeButton.setOnAction(e -> handleLikeButton(likeButton, post));
 
         // 7. show post rating using stars
+            // BETTER VERSION (AUXILIAR METHOD formatRating() NEEDED)
         Label starRating = new Label(formatRating(post.getStarRating()));
         starRating.setStyle("-fx-text-fill: #d97706; -fx-font-size: 14px; -fx-font-weight: bold;");
+            // END BETTER VERSION
+
+            /* // SIMPLE VERSION (JUST SHOW VALUE)
+        Label starRating = new Label();
+        starRating.setText(String.valueOf(post.getStarRating()));
+            */
+        
+        // add the star rating label to the post content
         postContent.getChildren().add(starRating);
 
         // 8. create tag labels for each post
@@ -334,6 +311,7 @@ public class FeedController {
         return postCard;
     }
 
+    // BETTER VERSION AUXILIAR
     private String formatRating(double rating) {
         double safeRating = Math.max(0.0, Math.min(5.0, rating));
         if (safeRating == 0.0) {
@@ -350,9 +328,10 @@ public class FeedController {
 
         return stars + " (" + String.format(java.util.Locale.US, "%.1f", safeRating) + ")";
     }
+    // END BETTER VERSION AUXILIAR
 
     // helper method to navigate to the comments screen for a specific post
-    private void openCommentView(Post post) {
+    private void openCommentView(Post post, Button commentButton) {
         try {
             if (this.businessLogic == null) {
                 return;
@@ -368,10 +347,14 @@ public class FeedController {
             // 4. inject our context into the new controller before showing the window
             controller.initData(post, this.businessLogic);
 
-            // 5. switch the visible scene to the comments screen
-            Stage stage = (Stage) feedScroll.getScene().getWindow();
-            stage.setScene(new Scene(commentView));
-            stage.setTitle("add comment - " + post.getTitle());
+            // 5. pass button to update its text later
+            controller.setCommentButton(commentButton);
+            
+            // 5. create the mew comments window (scene)
+            Stage newStage = new Stage();
+            newStage.setScene(new Scene(commentView));
+            newStage.setTitle("add comment - " + post.getTitle());
+            newStage.show();
 
         } catch (Exception e) {
             System.err.println("error opening comment view: " + e.getMessage());
@@ -389,19 +372,51 @@ public class FeedController {
             // 2. get the controller so we can pass data to it
             CreatePostController controller = loader.getController();
 
-            // 3. inject the bl with the logged-in user inside to the create post controller so it can save the new post to the database with the correct user as author
+            // 3. inject the bl with the logged-in user inside to the create post controller
+            //  so it can save the new post to the database with the correct user as author
             controller.initData(this.businessLogic);
 
-            // 5. switch the scene
-            Stage stage = (Stage) newPostButton.getScene().getWindow();
-            stage.setScene(new Scene(createPostView));
-            stage.setTitle("create new post");
+            // 4. open the new create post window (scene)
+            Stage newStage = new Stage();
+            newStage.setScene(new Scene(createPostView));
+            newStage.setTitle("create new post");
+            newStage.showAndWait(); // wait until the new window closes to update (refresh)
+
+            // 5. refresh feed
+            showAllPosts();
 
         } catch (Exception e) {
             System.err.println("error opening create post view: " + e.getMessage());
             e.printStackTrace();
         }
-    }
 
+
+       
+    }
+    @FXML
+    private void filterByTag(ActionEvent event) {
+        try {
+            if (this.businessLogic == null) {
+                return;
+            }
+
+            // get the tag from the button text
+            Button clickedButton = (Button) event.getSource();
+            String tagText = clickedButton.getText().toUpperCase();
+
+            // convert the button text to a Tag enum
+            Tag selectedTag = Tag.valueOf(tagText);
+
+            // get posts with the selected tag from the business logic
+            List<Post> filteredPosts = this.businessLogic.getPostsByTag(selectedTag);
+
+            // update the feed to show only the filtered posts
+            showPosts(filteredPosts);
+
+        } catch (Exception e) {
+            System.err.println("error filtering by tag: " + e.getMessage());
+            e.printStackTrace();
+        }
     
+    }
 }

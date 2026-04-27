@@ -4,6 +4,7 @@ import java.util.List;
 
 import eus.ehu.usermodel.Comment;
 import eus.ehu.usermodel.Post;
+import eus.ehu.usermodel.Tag;
 
 public interface BlInterface {
     
@@ -30,4 +31,7 @@ public interface BlInterface {
     
     // retrieves a list of all comments currently stored in the database
     List<Comment> getAllComments();
+
+    // filters posts by a specific tag
+    List<Post> getPostsByTag(Tag tag);
 }

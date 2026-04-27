@@ -2,6 +2,7 @@
 
 title SassyMe - Manage Profile Sequence Diagram
 
+hide footbox
 actor User
 participant "UI Profile" as UP
 participant "BlInterface" as BL
@@ -9,6 +10,7 @@ participant "DbAccessManager" as DB
 participant "EntityManager" as EM
 participant UserProfile
 ' !!! User class = UserProfile to avoid confusion with Actor "User"
+
 
 == Initialization ==
 UP -> BL : getUserProfile(u)
@@ -39,35 +41,35 @@ User -> UP : enter location
 
 
 
-== Cancel Edit ==
-User -> UP : click Cancel
-UP -> UP : discard changes
-UP -> UP : display original profile 
+alt user cancels process
+    User -> UP : click Cancel
+    UP -> UP : discard changes
+    UP -> UP : display original profile 
+else user saves changes
+    User -> UP : click SaveProfile
+    UP -> BL : updateUserProfile(u, picture, username, bio, location)
+    BL -> BL : validate data
 
-== Save Changes ==
-User -> UP : click SaveProfile
-UP -> BL : updateUserProfile(u, picture, username, bio, location)
-BL -> BL : validate data
+    alt validation fails
+        BL --> UP : validation error
+        UP -> UP : display error message
 
-alt validation fails
-    BL --> UP : validation error
-    UP -> UP : display error message
-
-else validation passes
-    BL -> DB : updateUserProfile(u, picture, username, bio, location)
+    else validation passes
+        BL -> DB : updateUserProfile(u, picture, username, bio, location)
     
-    DB -> EM : getTransaction().begin()
+        DB -> EM : getTransaction().begin()
     
-    DB -> UserProfile : setProfilePicture(picture)
-    DB -> UserProfile : setUsername(username)
-    DB -> UserProfile: setBio(bio)
-    DB -> UserProfile : setLocation(location)
+        DB -> UserProfile : setProfilePicture(picture)
+        DB -> UserProfile : setUsername(username)
+        DB -> UserProfile: setBio(bio)
+        DB -> UserProfile : setLocation(location)
     
-    DB -> EM : getTransaction().commit()
+        DB -> EM : getTransaction().commit()
 
-    DB --> BL : updated profile data
-    BL --> UP : updated profile data
-    UP --> UP : display success message
-    UP --> UP : display updated profile
+        DB --> BL : updated profile data
+        BL --> UP : updated profile data
+        UP --> UP : display success message
+        UP --> UP : display updated profile
+    end
 end
 @enduml

@@ -8,6 +8,7 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
 import eus.ehu.usermodel.Comment;
 import eus.ehu.usermodel.Post;
+import eus.ehu.usermodel.Tag;
 import eus.ehu.usermodel.User;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
@@ -22,12 +23,13 @@ public class DbAccessManager {
                 .configure("hibernate.cfg.xml")
                 .build();
         try {
-            emf = new MetadataSources(registry).buildMetadata().buildSessionFactory();
+            // Build the SessionFactory from the service registry and metadata sources. 
+            emf = new MetadataSources(registry).buildMetadata().buildSessionFactory(); 
         } catch (Exception e) {
             StandardServiceRegistryBuilder.destroy(registry);
             throw new IllegalStateException("Failed to initialize Hibernate SessionFactory", e);
         }
-
+        // Open a new EntityManager for database operations
         db = emf.createEntityManager();
         System.out.println("DataBase opened");
         ensureLegacySchemaCompatibility();
@@ -49,6 +51,8 @@ public class DbAccessManager {
     }
     public void storeUser(User user) {
         db.getTransaction().begin();
+        // Simply persist the user. 
+        // If the user already exists, this will throw an exception due to the unique constraint on username. 
         db.persist(user);
         db.getTransaction().commit();
     }
@@ -59,12 +63,13 @@ public class DbAccessManager {
         }
 
         return db.createQuery("FROM User WHERE username = :username", User.class)
-                 .setParameter("username", username)
+                 .setParameter("username", username) // :username is a named parameter
                  .getResultStream()
                  .findFirst()
                  .orElse(null);
     }
 
+    // More robust method to store a user only if it doesn't exist
     public User storeUserIfNotExists(User user) {
         User existingUser = findUserByUsername(user.getUsername());
         if (existingUser != null) {
@@ -100,44 +105,49 @@ public class DbAccessManager {
     }
 
     public void storePost(Post post) {
-        // Llama a la database y si está cerrada, la vuelve a abrir para evitar errores de conexión
+        // Check if the database transaction is active, if not, start a new one. 
         if (!db.getTransaction().isActive()) {
             db.getTransaction().begin();
         }
         
         try {
-            //Conseguimos el autor.java del post para asegurarnos de que está guardado en la base de datos, confirmar que lo tenemos vaya
+            // Get the author of the post to ensure it's saved in the database
             User author = post.getUser();
             if(author != null) {
                 User managedAuthor = null;
-                
-                // Y una vez conseguido el autor, intentamos encontrarlo en la base de datos por su ID (si lo tiene) para obtener el username desde la DB
+                // Once we have the author from the post object, we need to check if it already exists in the database.
                 if (author.getId() != null) {
                     managedAuthor = db.find(User.class, author.getId());
                 }
                 
-                // Si el autor no tiene ID o no se encuentra en la base de datos, lo guardamos primero para asegurarnos de que tiene un ID válido y evitar problemas de integridad referencial al guardar el post
+                // If the author has an ID but is not found in the database, we should treat it as a new user and save it to get a valid ID.
                 if(managedAuthor == null) {
                     System.out.println("Author is new or fake, saving to database first to get an ID...");
-                    db.persist(author); // This automatically assigns a real ID to the user object
+                    db.persist(author); 
+                    // This automatically assigns a real ID to the user object, because of the @GeneratedValue
                     managedAuthor = author; 
                 }
 
                 Post existingPost = findPostByAuthorAndTitle(managedAuthor.getUsername(), post.getTitle());
                 if (existingPost != null) {
                     // Keep legacy rows up to date instead of skipping inserts silently.
+                    // Missing user
                     if (existingPost.getUser() == null) {
                         existingPost.setUser(managedAuthor);
                     }
+                    // Missing author
                     if (existingPost.getAuthor() == null || existingPost.getAuthor().isBlank()) {
                         existingPost.setAuthor(managedAuthor.getUsername());
                     }
+                    // Missing description
                     if (post.getDescription() != null && !post.getDescription().isBlank()) {
                         existingPost.setDescription(post.getDescription());
                     }
+                    // Missing image path
                     if (post.getImagePath() != null && !post.getImagePath().isBlank()) {
                         existingPost.setImagePath(post.getImagePath());
                     }
+                    // Update star rating if the new post has a valid rating
                     if (post.getStarRating() > 0.0) {
                         existingPost.setStarRating(post.getStarRating());
                     }
@@ -160,7 +170,7 @@ public class DbAccessManager {
                 System.out.println("Post has no author!");
             }
             
-            //Aqui ya si que guardas el post despues de tantas comprobaciones
+            // Finally, persist the post itself. 
             db.persist(post);
             
             // Commit the transaction to make changes permanent
@@ -194,6 +204,17 @@ public class DbAccessManager {
     public List<Post> getAllPosts() {
         return db.createQuery("FROM Post p ORDER BY p.id DESC", Post.class).getResultList();
     }
+    public List<Post> getPostsByTag(Tag tag) {
+        if (tag == null) {
+            return List.of();
+        }
+
+        return db.createQuery(
+            "SELECT p FROM Post p JOIN p.tags t WHERE t = :tag ORDER BY p.id DESC",
+                Post.class)
+                .setParameter("tag", tag)
+                .getResultList();
+    }
     public List<Post> getPostsByUser(String username) {
         return db.createQuery(
             "FROM Post p WHERE (p.user IS NOT NULL AND p.user.username = :username) OR p.author = :username ORDER BY p.id DESC",
@@ -220,7 +241,7 @@ public class DbAccessManager {
                 db.getTransaction().rollback();
                 return;
             }
-
+            // Update the user's favorite posts based on the isFavourite flag
             if (isFavourite) {
                 if (!managedUser.hasFavoritePost(managedPost)) {
                     managedUser.addFavoritePost(managedPost);

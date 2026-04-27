@@ -19,7 +19,7 @@ public class Comment {
     private String text;
     private LocalDate date;
 
-    @ManyToOne
+    @ManyToOne // A comment belongs to one post
     private Post post;
 
     public Comment() {
@@ -32,6 +32,8 @@ public class Comment {
         this.post = post;
     }
 
+
+    // GETTERS AND SETTERS
     public Long getId() {
         return id;
     }

@@ -28,7 +28,7 @@ public class Post {
     private String title;
     private String description;
 
-    @ManyToOne
+    @ManyToOne // A post belongs to one user
     private User user; // Author of the post
     private String author; // Username of the author
     private double starRating = 0.0; // 1-5
@@ -37,7 +37,8 @@ public class Post {
     private List<Tag> tags = new ArrayList<>(); // ENUM of tags
     private LocalDate date;
 
-    private Integer likeCount;
+    private Integer likeCount; 
+    private boolean isFavourite = false;
 
     // cascade: if a post is deleted, its comments are also deleted
     @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -49,6 +50,21 @@ public class Post {
     private String imagePath;
 
     public Post() {
+    }
+
+    
+    public void addComment(Comment comment) {
+        if (comment != null) {
+            comment.setPost(this); // Set the post reference in the comment
+            comments.add(comment);
+        }
+    }
+
+    public void removeComment(Comment comment) {
+        if (comment != null) {
+            comments.remove(comment); 
+            comment.setPost(null); // Clear the post reference in the comment
+        }
     }
 
     // GETTERS & SETTERS
@@ -123,20 +139,6 @@ public class Post {
         return comments;
     }
 
-    public void addComment(Comment comment) {
-        if (comment != null) {
-            comment.setPost(this);
-            comments.add(comment);
-        }
-    }
-
-    public void removeComment(Comment comment) {
-        if (comment != null) {
-            comments.remove(comment);
-            comment.setPost(null);
-        }
-    }
-
     public Image getImage() {
         return image;
     }
@@ -159,6 +161,14 @@ public class Post {
 
     public void setLikeCount(int likeCount) {
         this.likeCount = likeCount;
+    }
+
+    public boolean getIsFavourite() {
+        return isFavourite;
+    }
+
+    public void setIsFavourite(boolean isFavourite) {
+        this.isFavourite = isFavourite;
     }
     
 }

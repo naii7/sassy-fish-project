@@ -2,7 +2,10 @@ package eus.ehu.ui;
 
 import eus.ehu.controllers.FeedController;
 import eus.ehu.usermodel.Post;
+
 import java.util.List;
+
+import eus.ehu.businesslogic.BusinessLogic;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -31,7 +34,7 @@ public class FeedTest extends Application {
         post3.setTitle("UI smoke check");
         post3.setAuthor("qa-user");
         post3.setDescription("No real DB, just checking if cards render in the scroll feed.");
-
+        
         controller.showPosts(List.of(post1, post2, post3));
 
         primaryStage.setTitle("Test - Feed");
