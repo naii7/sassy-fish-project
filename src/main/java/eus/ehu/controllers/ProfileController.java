@@ -1,17 +1,20 @@
 package eus.ehu.controllers;
 
-import eus.ehu.usermodel.Post;
-import eus.ehu.usermodel.User;
-
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import eus.ehu.businesslogic.BusinessLogic;
+import eus.ehu.usermodel.Post;
+import eus.ehu.usermodel.User;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
@@ -20,20 +23,22 @@ import javafx.scene.layout.VBox;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 
-import java.util.LinkedHashMap;
-
 public class ProfileController {
+
+    // FOR EDIT PROFILE USE CASE
+    private boolean editMode = false;
 
     private static final String DEFAULT_PROFILE_RESOURCE = "/default_pfp.jpg";
 
-    @FXML private Label usernameLabel;
-    @FXML private Label bioLabel;
+    @FXML private TextField usernameField;
+    @FXML private TextField bioField;
     @FXML private ImageView profileImageView; 
     @FXML private ImageView favourite1;
     @FXML private ImageView favourite2;
     @FXML private ImageView favourite3;
     @FXML private ScrollPane feedScroll;
     @FXML private VBox feedContainer;
+    @FXML private Button saveChangesButton; // FOR WHEN ON EDITABLE
 
     //private ManageProfileUseCase manageProfileUseCase;
     private BusinessLogic businessLogic;
@@ -68,16 +73,19 @@ public class ProfileController {
         if (feedScroll != null) {
             feedScroll.setFitToWidth(true);
         }
+
+        // DEFAULT = VIEW MODE
+        setMode(false);
     }
 
     private void loadUserProfile() {
         try {
             if (currentUser == null) {
-                if (usernameLabel != null) {
-                    usernameLabel.setText("@guest");
+                if (usernameField != null) {
+                    usernameField.setText("@guest");
                 }
-                if (bioLabel != null) {
-                    bioLabel.setText("No user loaded.");
+                if (bioField != null) {
+                    bioField.setText("No user loaded.");
                 }
                 if (profileImageView != null) {
                     profileImageView.setImage(loadImage(null, DEFAULT_PROFILE_RESOURCE));
@@ -86,11 +94,11 @@ public class ProfileController {
             }
             
             //currentUser.setProfilePicturePath("path/to/profile/picture.jpg"); (cosa que no funciona de momento, las bases de datos pueden guardar .jpg??)
-            if (usernameLabel != null) {
-                usernameLabel.setText("@" + currentUser.getUsername());
+            if (usernameField != null) {
+                usernameField.setText("@" + currentUser.getUsername());
             }
-            if (bioLabel != null) {
-                bioLabel.setText(currentUser.getBio());
+            if (bioField != null) {
+                bioField.setText(currentUser.getBio());
             }
             if (profileImageView != null) {
                 String profilePath = currentUser.getProfilePicturePath();
@@ -318,9 +326,44 @@ public class ProfileController {
         imageView.setClip(clip);
     }
 
+    @FXML 
+    private void saveChangesClicked() {
+
+        // SAFETY (!gonna happen)
+        if (currentUser == null) return;
+
+        // 1. update username
+        currentUser.setUsername( usernameField.getText() );
+
+        // 2. update bio
+        currentUser.setBio( bioField.getText() );
+
+        // 3. exit edit mode => activate view mode
+        setMode(false);
+        saveChangesButton.setVisible(false); // disable save changes button
+
+        // 4. refresh UI to keep data updated visually
+        loadUserProfile();
+
+        
+    }
+
     @FXML
     private void backButtonClicked() {
         try {
+
+            // IF EDITING => discard changes, reload orig. data
+            if (editMode) {
+
+                // restore orig. values
+                loadUserProfile();
+
+                // go back to view mode
+                setMode(false);
+                return;
+            }
+
+            // BESTELA => back to feed normal
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/eus/ehu/FeedPage.fxml"));
             Parent root = loader.load();
             
@@ -332,8 +375,8 @@ public class ProfileController {
             
 
             // Navigate back to the feed in the current window.
-            Stage stage = (javafx.stage.Stage) feedScroll.getScene().getWindow();
-            stage.setScene(new javafx.scene.Scene(root));
+            Stage stage = (Stage) feedScroll.getScene().getWindow();
+            stage.setScene(new Scene(root));
             stage.setTitle("Feed");
             
         } catch (Exception e) {
@@ -341,23 +384,43 @@ public class ProfileController {
         }
     }
 
+    // EDIT BUTTON CLICKED
     @FXML
     private void editProfile() {
-        try{
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/eus/ehu/edit_profile.fxml"));
-            Parent root = loader.load();
-            
-            EditProfileController editController = loader.getController();
-            editController.initData(this.businessLogic, this.currentUser);
 
-            Stage stage = (javafx.stage.Stage) feedScroll.getScene().getWindow();
-            stage.setScene(new javafx.scene.Scene(root));
-            stage.setTitle("Edit Profile");
+        // load updated data
+        loadUserProfile();
+
+        // activate editable
+        setMode(true);
+    }
+
+    private void setMode(boolean editable) {
+       
+        this.editMode = editable;
+
+        // USERNAME
+        usernameField.setEditable(editable);
+
+        // editable
+        if (editable) {
+
+            // keep textField style
+            usernameField.setStyle(null);
+            bioField.setStyle(null);
             
-        } catch (Exception e) {
-            e.printStackTrace();
+        } else { // !editable
+
+            // change to label style
+            usernameField.setStyle("-fx-background-color: transparent;" +
+            "-fx-border-color: transparent;");
+            bioField.setStyle("-fx-background-color: transparent;" +
+            "-fx-border-color: transparent;");
         }
-
-
+        // ONLY ALLOW CHANGING PICTURE IN EDIT MODE
+        profileImageView.setDisable(!editable); // setDisable(true) => cannot click / inactive
+    
+        // ENABLE (EDIT MODE) / DISABLE (VIEW MODE) save changes depending on mode
+        saveChangesButton.setVisible(editable);
     }
 }
