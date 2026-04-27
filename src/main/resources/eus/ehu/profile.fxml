@@ -29,6 +29,7 @@
                         <StackPane alignment="CENTER">
                            <children>
                               <ImageView fx:id="profileImageView" fitHeight="170.0" fitWidth="170.0" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fx:id="editIcon" fitHeight="24.0" fitWidth="24.0" layoutX="130.0" layoutY="130.0" pickOnBounds="true" preserveRatio="true" onMouseClicked="#editProfile" />
                            </children>
                         </StackPane>
                         <Label style="-fx-font-family: 'System'; -fx-font-size: 13px; -fx-text-fill: #64748b;" text="User" />

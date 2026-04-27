@@ -19,7 +19,7 @@ class BusinessLogicTest {
     @BeforeEach
     void setUp() {
         // Initialize the connection to the database before each test
-        businessLogic = new BusinessLogic(); 
+        businessLogic = BusinessLogic.getInstance(); // SINGLETON
     }
 
     @Test

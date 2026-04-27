@@ -23,7 +23,7 @@ public class CommentTest extends Application {
         Post dummyPost = new Post();
         dummyPost.setTitle("My awesome post about AI");
         
-        BusinessLogic dummyLogic = new BusinessLogic();
+        BusinessLogic dummyLogic = BusinessLogic.getInstance(); // SINGLETON
 
         // 2. load the fxml
         // adjust the path if your fxml is in a different resources folder

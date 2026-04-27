@@ -14,7 +14,21 @@ public class BusinessLogic implements BlInterface {
     
     // we store the logged-in user so all controllers can access it through the bl
     private User currentUser;
+
     
+    // SINGLETON (only one bl instance allowed)
+    private static final BusinessLogic INSTANCE = new BusinessLogic();
+
+    private BusinessLogic() {
+        // PRIVATE | prevent other new instances
+    }
+    
+    public static BusinessLogic getInstance() {
+        return INSTANCE;
+    }
+    // END SINGLETON
+
+
     public User getCurrentUser() {
         return this.currentUser;
     }

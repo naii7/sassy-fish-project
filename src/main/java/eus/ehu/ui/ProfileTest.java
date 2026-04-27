@@ -60,7 +60,7 @@ public class ProfileTest extends Application {
         dbManager.close();
 
         // Para navegar entre todo, el feed el profile y el create post y comentario use el mismo usuario
-        BusinessLogic bl = new BusinessLogic();
+        BusinessLogic bl = BusinessLogic.getInstance(); // SINGLETON
         boolean loggedIn = bl.login(profileUser.getUsername(), profileUser.getPassword());
         if (!loggedIn) {
             throw new IllegalStateException("ProfileTest could not log in test user: " + profileUser.getUsername());
