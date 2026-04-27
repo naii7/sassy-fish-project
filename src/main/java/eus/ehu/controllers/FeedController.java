@@ -7,6 +7,7 @@ import java.util.List;
 import eus.ehu.businesslogic.BusinessLogic;
 import eus.ehu.usermodel.Post;
 import eus.ehu.usermodel.Tag;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
@@ -35,7 +36,25 @@ public class FeedController {
     private VBox feedContainer; // this is the empty vertical box where we will inject our posts
     @FXML
     private HBox PostMockup;
+
     
+    @FXML
+    private Button Bathroom;
+    @FXML
+    private Button Disaster;
+    @FXML
+    private Button Food;
+    @FXML
+    private Button Movie;
+    @FXML
+    private Button Music;
+    @FXML
+    private Button Videogame;
+    @FXML
+    private Button Book;
+    @FXML
+    private Button Other;
+
     private BusinessLogic businessLogic;
 
     public void initData(BusinessLogic bl) {
@@ -43,8 +62,7 @@ public class FeedController {
 
         try {
            // now that we have the data, we can load the post feed
-            List<Post> posts = this.businessLogic.getAllPosts();
-            showPosts(posts);
+            showAllPosts();
 
         } catch (Exception e) {
             System.err.println("could not load feed: " + e.getMessage());
@@ -143,6 +161,17 @@ public class FeedController {
         } catch (Exception e) {
             e.printStackTrace(); 
         }
+    }
+
+    @FXML
+    void showAllPosts() {
+        if (this.businessLogic == null) {
+            showPosts(new ArrayList<>());
+            return;
+        }
+
+        List<Post> posts = this.businessLogic.getAllPosts();
+        showPosts(posts);
     }
 
     // this is the factory method. it builds a user interface dynamically using java code instead of fxml
@@ -354,14 +383,40 @@ public class FeedController {
             newStage.showAndWait(); // wait until the new window closes to update (refresh)
 
             // 5. refresh feed
-            List<Post> posts = this.businessLogic.getAllPosts();
-            showPosts(posts);
+            showAllPosts();
 
         } catch (Exception e) {
             System.err.println("error opening create post view: " + e.getMessage());
             e.printStackTrace();
         }
-    }
 
+
+       
+    }
+    @FXML
+    private void filterByTag(ActionEvent event) {
+        try {
+            if (this.businessLogic == null) {
+                return;
+            }
+
+            // get the tag from the button text
+            Button clickedButton = (Button) event.getSource();
+            String tagText = clickedButton.getText().toUpperCase();
+
+            // convert the button text to a Tag enum
+            Tag selectedTag = Tag.valueOf(tagText);
+
+            // get posts with the selected tag from the business logic
+            List<Post> filteredPosts = this.businessLogic.getPostsByTag(selectedTag);
+
+            // update the feed to show only the filtered posts
+            showPosts(filteredPosts);
+
+        } catch (Exception e) {
+            System.err.println("error filtering by tag: " + e.getMessage());
+            e.printStackTrace();
+        }
     
+    }
 }

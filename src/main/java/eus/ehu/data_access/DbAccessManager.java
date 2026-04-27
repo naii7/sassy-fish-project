@@ -8,6 +8,7 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
 import eus.ehu.usermodel.Comment;
 import eus.ehu.usermodel.Post;
+import eus.ehu.usermodel.Tag;
 import eus.ehu.usermodel.User;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
@@ -202,6 +203,17 @@ public class DbAccessManager {
 
     public List<Post> getAllPosts() {
         return db.createQuery("FROM Post p ORDER BY p.id DESC", Post.class).getResultList();
+    }
+    public List<Post> getPostsByTag(Tag tag) {
+        if (tag == null) {
+            return List.of();
+        }
+
+        return db.createQuery(
+            "SELECT p FROM Post p JOIN p.tags t WHERE t = :tag ORDER BY p.id DESC",
+                Post.class)
+                .setParameter("tag", tag)
+                .getResultList();
     }
     public List<Post> getPostsByUser(String username) {
         return db.createQuery(
