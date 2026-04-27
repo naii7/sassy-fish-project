@@ -146,7 +146,7 @@ public class FeedController {
             Parent profileView = loader.load(); 
             
             // we get the profile controller
-            ProfileController profileController = loader.getController();
+            CopyProfileController profileController = loader.getController();
 
             // get the real logged-in user from the bl
             profileController.initData(this.businessLogic);
@@ -402,7 +402,7 @@ public class FeedController {
 
             // get the tag from the button text
             Button clickedButton = (Button) event.getSource();
-            String tagText = clickedButton.getText().toUpperCase();
+            String tagText = clickedButton.getText().toUpperCase(); // ENUM sintax
 
             // convert the button text to a Tag enum
             Tag selectedTag = Tag.valueOf(tagText);

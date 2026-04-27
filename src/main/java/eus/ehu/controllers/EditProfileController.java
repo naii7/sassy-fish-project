@@ -22,7 +22,7 @@ import javafx.stage.Stage;
 
 import java.util.LinkedHashMap;
 
-public class editProfileControler {
+public class EditProfileController {
     @FXML private TextField usernameField;
     @FXML private TextArea descriptionField;
     @FXML private ImageView profileImageView;
