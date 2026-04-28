@@ -57,6 +57,45 @@ public class DbAccessManager {
         db.getTransaction().commit();
     }
 
+    public void updateUserProfile(User user) {
+        updateUserProfile(user, null);
+    }
+
+    public void updateUserProfile(User user, String previousUsername) {
+        if (user == null || user.getUsername() == null || user.getUsername().isBlank()) {
+            return;
+        }
+
+        db.getTransaction().begin();
+        try {
+            User managedUser = findUserByUsername(user.getUsername());
+            if (managedUser == null && previousUsername != null && !previousUsername.isBlank()) {
+                managedUser = findUserByUsername(previousUsername);
+            }
+            if (managedUser == null && user.getId() != null) {
+                managedUser = db.find(User.class, user.getId());
+            }
+
+            if (managedUser == null) {
+                db.getTransaction().rollback();
+                return;
+            }
+
+            managedUser.setUsername(user.getUsername());
+            managedUser.setBio(user.getBio());
+            managedUser.setLocation(user.getLocation());
+            managedUser.setProfilePicturePath(user.getProfilePicturePath());
+
+            db.merge(managedUser);
+            db.getTransaction().commit();
+        } catch (Exception e) {
+            if (db.getTransaction().isActive()) {
+                db.getTransaction().rollback();
+            }
+            e.printStackTrace();
+        }
+    }
+
     public User findUserByUsername(String username) {
         if (username == null || username.isBlank()) {
             return null;
@@ -248,6 +287,48 @@ public class DbAccessManager {
                 }
             } else {
                 managedUser.removeFavoritePost(managedPost);
+            }
+
+            db.merge(managedUser);
+            db.getTransaction().commit();
+        } catch (Exception e) {
+            if (db.getTransaction().isActive()) {
+                db.getTransaction().rollback();
+            }
+            e.printStackTrace();
+        }
+    }
+
+    public void updateFavouritePostsForUser(String username, List<Post> favoritePosts) {
+        if (username == null || username.isBlank()) {
+            return;
+        }
+
+        db.getTransaction().begin();
+        try {
+            User managedUser = db.createQuery("FROM User u LEFT JOIN FETCH u.favoritePosts WHERE u.username = :username", User.class)
+                    .setParameter("username", username)
+                    .getResultStream()
+                    .findFirst()
+                    .orElse(null);
+
+            if (managedUser == null) {
+                db.getTransaction().rollback();
+                return;
+            }
+
+            managedUser.getFavoritePosts().clear();
+            if (favoritePosts != null) {
+                for (Post favoritePost : favoritePosts) {
+                    if (favoritePost == null || favoritePost.getId() == null) {
+                        continue;
+                    }
+
+                    Post managedPost = db.find(Post.class, favoritePost.getId());
+                    if (managedPost != null && !managedUser.hasFavoritePost(managedPost)) {
+                        managedUser.addFavoritePost(managedPost);
+                    }
+                }
             }
 
             db.merge(managedUser);

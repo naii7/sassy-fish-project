@@ -5,6 +5,7 @@ import java.util.List;
 import eus.ehu.usermodel.Comment;
 import eus.ehu.usermodel.Post;
 import eus.ehu.usermodel.Tag;
+import eus.ehu.usermodel.User;
 
 public interface BlInterface {
     
@@ -17,8 +18,17 @@ public interface BlInterface {
     // increments/decrements the like count of a post and updates it in the database
     void updateLikePost(Post post);
 
+    // updates the editable profile fields for a user
+    void updateUserProfile(User user);
+
+    // updates the editable profile fields for a user using the previous username as lookup key
+    void updateUserProfile(User user, String previousUsername);
+
     // marks/unmarks a post as favourite for a concrete user and saves the relation in DB
     void updateFavouriteForUser(String username, Post post, boolean isFavourite);
+
+    // replaces the visible favourite posts for a concrete user
+    void updateFavouritePostsForUser(String username, List<Post> favoritePosts);
 
     // retrieves a list of all posts currently stored in the databas
     List<Post> getAllPosts();
