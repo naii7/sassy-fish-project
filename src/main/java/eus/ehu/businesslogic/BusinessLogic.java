@@ -80,8 +80,23 @@ public class BusinessLogic implements BlInterface {
     }
 
     @Override
+    public void updateUserProfile(User user) {
+        dbManager.updateUserProfile(user);
+    }
+
+    @Override
+    public void updateUserProfile(User user, String previousUsername) {
+        dbManager.updateUserProfile(user, previousUsername);
+    }
+
+    @Override
     public void updateFavouriteForUser(String username, Post post, boolean isFavourite) {
         dbManager.updateFavouritePostForUser(username, post, isFavourite);
+    }
+
+    @Override
+    public void updateFavouritePostsForUser(String username, List<Post> favoritePosts) {
+        dbManager.updateFavouritePostsForUser(username, favoritePosts);
     }
 
     @Override

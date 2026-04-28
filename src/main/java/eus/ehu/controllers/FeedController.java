@@ -146,7 +146,7 @@ public class FeedController {
             Parent profileView = loader.load(); 
             
             // we get the profile controller
-            CopyProfileController profileController = loader.getController();
+            ProfileController profileController = loader.getController();
 
             // get the real logged-in user from the bl
             profileController.initData(this.businessLogic);

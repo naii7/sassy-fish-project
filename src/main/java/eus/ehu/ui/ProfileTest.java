@@ -1,7 +1,7 @@
 package eus.ehu.ui;
 
 import eus.ehu.businesslogic.BusinessLogic;
-import eus.ehu.controllers.CopyProfileController;
+import eus.ehu.controllers.ProfileController;
 import eus.ehu.data_access.DbAccessManager;
 import eus.ehu.usermodel.Post;
 import eus.ehu.usermodel.User;
@@ -68,7 +68,7 @@ public class ProfileTest extends Application {
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/eus/ehu/profile.fxml"));
         Parent root = loader.load();
-        CopyProfileController controller = loader.getController();
+        ProfileController controller = loader.getController();
         controller.initData(bl, profileUser);
         primaryStage.setTitle("Test - Profile");
         primaryStage.setScene(new Scene(root));
