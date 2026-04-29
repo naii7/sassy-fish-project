@@ -594,7 +594,7 @@ public class ProfileController {
 
     private List<String> findBundledImageResources() {
         Set<String> resources = new LinkedHashSet<>();
-        collectImageResources(Paths.get(System.getProperty("user.dir"), "src/main/resources"), resources);
+        collectImageResources(Paths.get(System.getProperty("user.dir"), "src/main/resources/profilePic"), resources);
         collectImageResources(Paths.get(System.getProperty("user.dir"), "target/classes"), resources);
         return new ArrayList<>(resources);
     }
