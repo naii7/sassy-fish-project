@@ -13,7 +13,7 @@
    <children>
       <ImageView fitHeight="113.0" fitWidth="125.0" layoutX="140.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../fish-sassy.gif" />
+            <Image url="@profilePic/fish-sassy.gif" />
          </image>
       </ImageView>
       <Label layoutX="58.0" layoutY="211.0" text="Password:" />
