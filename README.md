@@ -1,5 +1,7 @@
 # Sassy-me 
 
+[![View Presentation](https://img.shields.io/badge/Final_Presentation-Google_Slides-4285F4?style=for-the-badge&logo=google-slides&logoColor=white)](https://docs.google.com/presentation/d/1ia48QtU-yVTR9XPIfAOYYiJ38kBl_Rd66Vx9PCwIufs/preview)
+
 > A social platform where you can rate all type of aspects of your everyday life. From your favorite restaurant's meal down to the public bathroom at the train station. Everything deserves a star.
 
 ---
