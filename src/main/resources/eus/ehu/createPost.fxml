@@ -13,49 +13,45 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="TOP_CENTER" prefHeight="738.0" prefWidth="452.0" spacing="15.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eus.ehu.controllers.CreatePostController">
+<VBox alignment="TOP_CENTER" prefHeight="738.0" prefWidth="452.0" spacing="15.0" style="-fx-background-color: #fefce8;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eus.ehu.controllers.CreatePostController">
    <padding>
       <Insets bottom="20.0" left="25.0" right="25.0" top="20.0" />
    </padding>
-   <AnchorPane prefHeight="200.0" prefWidth="200.0">
+   <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white; -fx-background-radius: 0; -fx-border-color: #e2e8f0; -fx-border-radius: 0; -fx-effect: dropshadow(gaussian, rgba(15,23,42,0.07), 14, 0, 0, 4);">
       <children>
-         <Label text="Create New Post">
-            <font>
-               <Font name="System Bold" size="24.0" />
-            </font>
-         </Label>
-         <Label fx:id="dateLabel" layoutX="323.0" layoutY="9.0" prefHeight="17.0" prefWidth="79.0" textAlignment="RIGHT" />
+         <Label text="Create New Post" style="-fx-font-family: 'Playfair Display'; -fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: #1e293b;" />
+         <Label fx:id="dateLabel" layoutX="323.0" layoutY="9.0" prefHeight="17.0" prefWidth="79.0" textAlignment="RIGHT" style="-fx-font-family: 'Inter'; -fx-font-size: 12px; -fx-text-fill: #64748b;" />
       </children>
    </AnchorPane>
-   <AnchorPane fx:id="imageDropArea" prefHeight="150.0" prefWidth="300.0" style="-fx-border-color: black;">
+   <AnchorPane fx:id="imageDropArea" prefHeight="150.0" prefWidth="300.0" style="-fx-background-color: white; -fx-background-radius: 0; -fx-border-color: #e2e8f0; -fx-border-radius: 0; -fx-effect: dropshadow(gaussian, rgba(15,23,42,0.05), 10, 0, 0, 4);">
       <children>
-         <Label fx:id="imageUploadLabel" layoutX="138.0" layoutY="65.0" prefHeight="20.0" prefWidth="124.0" style="-fx-font-weight: bold; -fx-font-size: 14px;" text="📷 Upload Image *" />
+         <Label fx:id="imageUploadLabel" layoutX="138.0" layoutY="65.0" prefHeight="20.0" prefWidth="124.0" style="-fx-font-family: 'Inter'; -fx-font-weight: bold; -fx-font-size: 14px; -fx-text-fill: #1e293b;" text="📷 Upload Image *" />
          <ImageView fx:id="imageView" fitHeight="150.0" fitWidth="400.0" onMouseClicked="#handleImageClick" pickOnBounds="true" preserveRatio="true" />
       </children>
    </AnchorPane>
 
    <VBox spacing="5.0">
-      <Label fx:id="titleLabel" prefHeight="17.0" prefWidth="42.0" style="-fx-font-weight: bold;" text="Title *" />
-      <TextField fx:id="titleField" promptText="Enter title..." />
+      <Label fx:id="titleLabel" prefHeight="17.0" prefWidth="42.0" style="-fx-font-family: 'Inter'; -fx-font-weight: bold; -fx-font-size: 14px;" text="Title *" />
+      <TextField fx:id="titleField" promptText="Enter title..." style="-fx-background-color: #f8fafc; -fx-background-radius: 0; -fx-border-color: #e2e8f0; -fx-border-radius: 0; -fx-padding: 10 12; -fx-font-family:'Inter'; -fx-font-size:14px;" />
    </VBox>
 
    <VBox spacing="5.0">
-      <Label fx:id="descriptionLabel" style="-fx-font-weight: bold;" text="Description" />
-      <TextArea fx:id="descriptionField" prefHeight="80.0" promptText="Enter description..." wrapText="true" />
+      <Label fx:id="descriptionLabel" style="-fx-font-family: 'Inter'; -fx-font-weight: bold; -fx-font-size: 14px;" text="Description" />
+      <TextArea fx:id="descriptionField" prefHeight="80.0" promptText="Enter description..." wrapText="true" style="-fx-background-color: #f8fafc; -fx-background-radius: 0; -fx-border-color: #e2e8f0; -fx-border-radius: 0; -fx-padding: 10 12; -fx-font-family:'Inter'; -fx-font-size:14px;" />
    </VBox>
 
    <VBox spacing="5.0">
-      <Label fx:id="tagsLabel" prefHeight="17.0" prefWidth="52.0" style="-fx-font-weight: bold;" text="Tags *" />
-      <AnchorPane fx:id="tagContainer" prefHeight="200.0" prefWidth="200.0">
+      <Label fx:id="tagsLabel" prefHeight="17.0" prefWidth="52.0" style="-fx-font-family: 'Inter'; -fx-font-weight: bold; -fx-font-size: 14px;" text="Tags *" />
+      <AnchorPane fx:id="tagContainer" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white; -fx-background-radius: 0; -fx-border-color: #e2e8f0; -fx-border-radius: 0; -fx-effect: dropshadow(gaussian, rgba(15,23,42,0.04), 10, 0, 0, 4);">
          <children>
-            <CheckBox layoutX="14.0" layoutY="44.0" mnemonicParsing="false" text="Food" textFill="#6aa84f" />
-            <CheckBox layoutX="14.0" layoutY="74.0" mnemonicParsing="false" text="Movie" textFill="#cc0000" />
-            <CheckBox layoutX="303.0" layoutY="74.0" mnemonicParsing="false" text="Book" textFill="#cc0000" />
-            <CheckBox layoutX="105.0" layoutY="74.0" mnemonicParsing="false" text="Music" textFill="#cc0000" />
-            <CheckBox layoutX="193.0" layoutY="74.0" mnemonicParsing="false" text="Videogame" textFill="#cc0000" />
-            <CheckBox layoutX="15.0" layoutY="104.0" mnemonicParsing="false" text="Other" textFill="#ffca69" />
-            <CheckBox layoutX="14.0" layoutY="15.0" mnemonicParsing="false" text="Bathroom" textFill="#3d85c6" />
-            <CheckBox layoutX="105.0" layoutY="16.0" mnemonicParsing="false" text="Disaster" textFill="#3d85c6" />
+            <CheckBox layoutX="14.0" layoutY="44.0" mnemonicParsing="false" text="Food" style="-fx-font-family: 'Inter'; -fx-font-size: 13px; -fx-text-fill: #059669;" />
+            <CheckBox layoutX="14.0" layoutY="74.0" mnemonicParsing="false" text="Movie" style="-fx-font-family: 'Inter'; -fx-font-size: 13px; -fx-text-fill: #7c3aed;" />
+            <CheckBox layoutX="303.0" layoutY="74.0" mnemonicParsing="false" text="Book" style="-fx-font-family: 'Inter'; -fx-font-size: 13px; -fx-text-fill: #57534e;" />
+            <CheckBox layoutX="105.0" layoutY="74.0" mnemonicParsing="false" text="Music" style="-fx-font-family: 'Inter'; -fx-font-size: 13px; -fx-text-fill: #db2777;" />
+            <CheckBox layoutX="193.0" layoutY="74.0" mnemonicParsing="false" text="Videogame" style="-fx-font-family: 'Inter'; -fx-font-size: 13px; -fx-text-fill: #3b82f6;" />
+            <CheckBox layoutX="15.0" layoutY="104.0" mnemonicParsing="false" text="Other" style="-fx-font-family: 'Inter'; -fx-font-size: 13px; -fx-text-fill: #b45309;" />
+            <CheckBox layoutX="14.0" layoutY="15.0" mnemonicParsing="false" text="Bathroom" style="-fx-font-family: 'Inter'; -fx-font-size: 13px; -fx-text-fill: #2563eb;" />
+            <CheckBox layoutX="105.0" layoutY="16.0" mnemonicParsing="false" text="Disaster" style="-fx-font-family: 'Inter'; -fx-font-size: 13px; -fx-text-fill: #dc2626;" />
          </children>
       </AnchorPane>
    </VBox>
@@ -94,15 +90,15 @@
    </VBox>
    <AnchorPane prefHeight="81.0" prefWidth="402.0">
       <children>
-         <Label fx:id="favouriteLabel" layoutY="20.0" prefHeight="35.0" prefWidth="65.0" style="-fx-font-weight: bold;" text="Favourite" />      
-         <Button fx:id="cancelPostButton" layoutX="245.0" layoutY="23.0" onAction="#cancelPost" prefHeight="29.0" prefWidth="63.0" style="-fx-font-weight: bold;" text="Cancel" />
-         <Button fx:id="createPostButton" layoutX="319.0" layoutY="24.0" onAction="#savePost" style="-fx-font-weight: bold; -fx-font-size: 14px;" text="Save Post" />
+         <Label fx:id="favouriteLabel" layoutY="20.0" prefHeight="35.0" prefWidth="65.0" style="-fx-font-family: 'Inter'; -fx-font-weight: bold; -fx-font-size: 14px;" text="Favourite" />      
+         <Button fx:id="cancelPostButton" layoutX="235.0" layoutY="23.0" onAction="#cancelPost" prefHeight="35.0" prefWidth="85.0" style="-fx-background-color: transparent; -fx-text-fill: #475569; -fx-border-color: #cbd5e1; -fx-border-width: 1; -fx-background-radius: 8; -fx-border-radius: 8; -fx-font-family: 'Inter'; -fx-font-weight: bold; -fx-cursor: hand;" text="Cancel" />
+         <Button fx:id="createPostButton" layoutX="327.0" layoutY="23.0" onAction="#savePost" prefHeight="35.0" prefWidth="85.0" style="-fx-background-color: linear-gradient(to right, #ff6b9d, #ffa500); -fx-text-fill: white; -fx-font-family: 'Inter'; -fx-font-size: 14px; -fx-font-weight: bold; -fx-background-radius: 8; -fx-cursor: hand;" text="Save Post" />
          <ToggleButton fx:id="favouriteButton" alignment="CENTER_LEFT" layoutX="40.0" layoutY="-2.0" onAction="#handleFavoriteToggle" prefHeight="68.0" prefWidth="118.0" style="-fx-background-color: transparent; -fx-font-size: 40px;" text="♥" textFill="#b9b9b9">
             <font>
                <Font size="40.0" />
             </font>
          </ToggleButton>
-         <Label fx:id="errorLabel" layoutX="192.0" layoutY="61.0" prefHeight="17.0" prefWidth="210.0" style="-fx-background-color: red;" text="Please fill in all required fields" textFill="WHITE" visible="false">
+         <Label fx:id="errorLabel" layoutX="192.0" layoutY="61.0" prefHeight="17.0" prefWidth="210.0" style="-fx-background-color: #fee2e2; -fx-text-fill: #dc2626; -fx-background-radius: 0; -fx-padding: 4 12;" text="Please fill in all required fields" visible="false">
             <font>
                <Font name="System Bold" size="12.0" />
             </font>

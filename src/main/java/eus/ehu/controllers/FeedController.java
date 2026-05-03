@@ -155,7 +155,7 @@ public class FeedController {
             Stage stage = (Stage) profileButton.getScene().getWindow();
             
             // 4. change the scene to the new profile view
-            stage.setScene(new Scene(profileView));
+            stage.setScene(new Scene(profileView, 1250, 820));
             stage.setTitle("User Profile");
 
         } catch (Exception e) {
@@ -347,9 +347,6 @@ public class FeedController {
             // 4. inject our context into the new controller before showing the window
             controller.initData(post, this.businessLogic);
 
-            // 5. pass button to update its text later
-            controller.setCommentButton(commentButton);
-            
             // 5. create the mew comments window (scene)
             Stage newStage = new Stage();
             newStage.setScene(new Scene(commentView));
@@ -371,10 +368,6 @@ public class FeedController {
 
             // 2. get the controller so we can pass data to it
             CreatePostController controller = loader.getController();
-
-            // 3. inject the bl with the logged-in user inside to the create post controller
-            //  so it can save the new post to the database with the correct user as author
-            controller.initData(this.businessLogic);
 
             // 4. open the new create post window (scene)
             Stage newStage = new Stage();

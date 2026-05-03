@@ -708,7 +708,7 @@ public class ProfileController {
             feedController.initData(this.businessLogic);
 
             Stage stage = (Stage) feedScroll.getScene().getWindow();
-            stage.setScene(new Scene(root));
+            stage.setScene(new Scene(root, 1250, 820));
             stage.setTitle("Feed");
         } catch (Exception e) {
             e.printStackTrace();

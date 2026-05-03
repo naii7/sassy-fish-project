@@ -72,7 +72,7 @@
          </padding>
          <ScrollPane fx:id="profileScroll" fitToWidth="true" hbarPolicy="NEVER" prefWidth="360.0" style="-fx-background-color: transparent; -fx-background: transparent;" HBox.hgrow="NEVER">
             <content>
-               <VBox spacing="18.0" style="-fx-background-color: white; -fx-background-radius: 20; -fx-border-radius: 20; -fx-effect: dropshadow(gaussian, rgba(15,23,42,0.10), 18, 0, 0, 4);">
+               <VBox spacing="18.0" style="-fx-background-color: white; -fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: #e2e8f0; -fx-border-width: 1; -fx-effect: dropshadow(gaussian, rgba(15,23,42,0.08), 18, 0, 0, 4);">
                   <padding>
                      <Insets bottom="24.0" left="22.0" right="22.0" top="22.0" />
                   </padding>
@@ -84,16 +84,17 @@
                               <ImageView fx:id="editIcon" fitHeight="24.0" fitWidth="24.0" layoutX="130.0" layoutY="130.0" onMouseClicked="#handleProfileImageClicked" pickOnBounds="true" preserveRatio="true" />
                            </children>
                         </StackPane>
-                        <Label style="-fx-font-family: 'System'; -fx-font-size: 13px; -fx-text-fill: #64748b;" text="User" />
-                        <TextField fx:id="usernameField" style="-fx-font-family: 'System'; -fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #0f172a;" text="user" />
-                        <Label style="-fx-font-family: 'System'; -fx-font-size: 13px; -fx-text-fill: #64748b;" text="Bio" />
-                        <TextField fx:id="bioField" style="-fx-font-family: 'System'; -fx-font-size: 14px; -fx-text-fill: #334155;" text="user's bio" />
+                        <Label style="-fx-font-family: 'Inter'; -fx-font-size: 13px; -fx-text-fill: #64748b;" text="User" />
+                        <TextField fx:id="usernameField" style="-fx-font-family: 'Inter'; -fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #0f172a; -fx-background-color: #f8fafc; -fx-background-radius: 14; -fx-border-color: #e2e8f0; -fx-border-radius: 14; -fx-padding: 10 12;" text="user" />
+                        <Label style="-fx-font-family: 'Inter'; -fx-font-size: 13px; -fx-text-fill: #64748b;" text="Bio" />
+                        <TextField fx:id="bioField" style="-fx-font-family: 'Inter'; -fx-font-size: 14px; -fx-text-fill: #334155; -fx-background-color: #f8fafc; -fx-background-radius: 14; -fx-border-color: #e2e8f0; -fx-border-radius: 14; -fx-padding: 10 12;" text="user's bio" />
                      </children>
                   </VBox>
                   <Separator />
                   <VBox spacing="12.0">
                      <children>
-                        <Label style="-fx-font-family: 'System'; -fx-font-size: 15px; -fx-font-weight: bold; -fx-text-fill: #0f172a;" text="Favourites" />
+                        <Label style="-fx-font-family: 'System'; -fx-font-size: 15px; -fx-font-weight: bold; -fx-text-fill: #7c3aed;" text="Favourites" />
+                        <Region prefHeight="3.0" prefWidth="70.0" style="-fx-background-color: linear-gradient(to right, #ff6b9d, #ffa500);" />
                         <HBox spacing="12.0">
                            <children>
                               <ImageView fx:id="favourite1" fitHeight="95.0" fitWidth="95.0" onMouseClicked="#handleFavouriteClicked" pickOnBounds="true" preserveRatio="true" />
@@ -121,9 +122,9 @@
    <bottom>
       <AnchorPane prefHeight="82.0" prefWidth="1200.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="backButton" layoutX="39.0" layoutY="29.0" mnemonicParsing="false" onAction="#backButtonClicked" text="Back" visible="false" />
-            <Button fx:id="saveChangesButton" layoutX="150.0" layoutY="29.0" mnemonicParsing="false" onAction="#saveChangesButtonClicked" text="Save Changes" visible="false" />
-            <Button fx:id="editProfileButton" layoutX="39.0" layoutY="29.0" mnemonicParsing="false" onAction="#editProfile" text="Edit Profile" />
+            <Button fx:id="backButton" layoutX="39.0" layoutY="29.0" mnemonicParsing="false" onAction="#backButtonClicked" style="-fx-background-color: transparent; -fx-text-fill: #475569; -fx-border-color: #cbd5e1; -fx-border-width: 1; -fx-background-radius: 999; -fx-border-radius: 999; -fx-font-family: 'Inter'; -fx-font-weight: bold; -fx-cursor: hand;" text="Back" visible="false" />
+            <Button fx:id="saveChangesButton" layoutX="150.0" layoutY="29.0" mnemonicParsing="false" onAction="#saveChangesButtonClicked" style="-fx-background-color: linear-gradient(to right, #ff6b9d, #ffa500); -fx-text-fill: white; -fx-font-family: 'Inter'; -fx-font-size: 14px; -fx-font-weight: bold; -fx-background-radius: 999; -fx-cursor: hand;" text="Save Changes" visible="false" />
+            <Button fx:id="editProfileButton" layoutX="39.0" layoutY="29.0" mnemonicParsing="false" onAction="#editProfile" style="-fx-background-color: #ff6b9d; -fx-text-fill: white; -fx-font-family: 'Inter'; -fx-font-size: 14px; -fx-font-weight: bold; -fx-background-radius: 999; -fx-cursor: hand;" text="Edit Profile" />
          </children>
       </AnchorPane>
    </bottom>

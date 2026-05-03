@@ -2,13 +2,13 @@
 
 [![View Presentation](https://img.shields.io/badge/Final_Presentation-Google_Slides-4285F4?style=for-the-badge&logo=google-slides&logoColor=white)](https://docs.google.com/presentation/d/1ia48QtU-yVTR9XPIfAOYYiJ38kBl_Rd66Vx9PCwIufs/preview)
 
-> A social platform where you can rate all type of aspects of your everyday life. From your favorite restaurant's meal down to the public bathroom at the train station. Everything deserves a star.
+> A social platform where you can rate all types of aspects of your everyday life. From your favorite restaurant's meal down to the public bathroom at the train station. Everything deserves a star.
 
 ---
 
 ## What is Sassy-me?
 
-**Sassy-me** is a JavaFX desktop social network inspired by Letterboxd, but for your entire life. Users can create posts rating any aspect of their day-to-day experience — food, music, cinema, books, games, concerts, and more. Every post can include images, tags, and a star rating, and can be marked as a personal favorite.
+**Sassy-me** is a JavaFX desktop social network inspired by Letterboxd (a film review site), but for your entire life. Users can create posts rating any aspect of their day-to-day experience — food, music, cinema, books, games, concerts, and more. Every post can include images, tags, and a star rating, and can be marked as a personal favorite.
 
 The app has two main spaces: a **feed** showing your best friends' latest posts (with option to like and comment on them), and a **personal profile** displaying your own posts and favorites. The feed can be filtered by tag so you only see what matters to you.
 
@@ -22,8 +22,18 @@ The app has two main spaces: a **feed** showing your best friends' latest posts 
 - **Edit profile** — update your username, profile picture, and personal info
 - **Feed view** — see posts from people you follow, like and comment on them, filter by tags
 - **Comment system** — add comments on any post
-- **Database integration** — full Hibernate ORM setup with persistent storage
+- **Database integration** — full Hibernate ORM setup with persistent storage (using H2/MySQL database)
 - **JUnit test suite** — business logic and model tests verified with `mvn clean test`
+
+---
+
+## Technologies
+
+- JavaFX for the UI
+- Hibernate ORM for database management
+- Maven for build and dependency management
+- JUnit for testing
+- Scene Builder for UI design
 
 ---
 

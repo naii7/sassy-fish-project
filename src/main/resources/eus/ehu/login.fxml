@@ -16,19 +16,19 @@
             <Image url="@profilePic/fish-sassy.gif" />
          </image>
       </ImageView>
-      <Label layoutX="58.0" layoutY="211.0" text="Password:" />
-      <Label layoutX="58.0" layoutY="169.0" text="Username:" />
-      <TextField fx:id="usernameField" layoutX="135.0" layoutY="165.0" prefHeight="25.0" prefWidth="203.0" />
-      <PasswordField fx:id="passwordField" layoutX="135.0" layoutY="207.0" prefHeight="25.0" prefWidth="203.0" />
-      <Button fx:id="loginButton" layoutX="289.0" layoutY="241.0" mnemonicParsing="false" onAction="#handleLogin" text="Log in" />
-      <Label fx:id="errorLabel" layoutX="47.0" layoutY="245.0" prefHeight="17.0" prefWidth="236.0" style="-fx-background-color: red;" textFill="WHITE" visible="false" wrapText="true">
+      <Label layoutX="58.0" layoutY="211.0" style="-fx-font-weight: bold; -fx-font-size: 13px;" text="Password:" />
+      <Label layoutX="58.0" layoutY="169.0" style="-fx-font-weight: bold; -fx-font-size: 13px; -fx-text-fill: #7c3aed;" text="Username:" />
+      <TextField fx:id="usernameField" layoutX="135.0" layoutY="165.0" prefHeight="25.0" prefWidth="203.0" style="-fx-border-color: #cbd5e1; -fx-border-radius: 6; -fx-background-radius: 6; -fx-padding: 0 8;" />
+      <PasswordField fx:id="passwordField" layoutX="135.0" layoutY="207.0" prefHeight="25.0" prefWidth="203.0" style="-fx-border-color: #cbd5e1; -fx-border-radius: 6; -fx-background-radius: 6; -fx-padding: 0 8;" />
+      <Button fx:id="loginButton" layoutX="289.0" layoutY="241.0" mnemonicParsing="false" onAction="#handleLogin" prefHeight="35.0" style="-fx-background-color: linear-gradient(to right, #ff6b9d, #ffa500); -fx-text-fill: white; -fx-font-family: 'Inter'; -fx-font-size: 14px; -fx-font-weight: bold; -fx-background-radius: 8; -fx-border-radius: 0; -fx-cursor: hand;" text="Log in" />
+      <Label fx:id="errorLabel" layoutX="47.0" layoutY="245.0" prefHeight="17.0" prefWidth="236.0" style="-fx-background-color: #fee2e2; -fx-text-fill: #dc2626; -fx-background-radius: 6; -fx-padding: 4 8;" visible="false" wrapText="true">
          <font>
-            <Font name="System Bold" size="12.0" />
+            <Font name="System Bold" size="11.0" />
          </font>
       </Label>
-      <Label layoutX="158.0" layoutY="35.0" style="-fx-border-color: black; -fx-border-width: 1;" text="Sassy-Me">
+      <Label layoutX="135.0" layoutY="35.0" style="-fx-font-weight: bold; -fx-font-size: 20px; -fx-text-fill: #7c3aed;" text="Sassy-Me">
          <font>
-            <Font name="System Bold" size="18.0" />
+            <Font name="System Bold" size="20.0" />
          </font>
       </Label>
    </children>

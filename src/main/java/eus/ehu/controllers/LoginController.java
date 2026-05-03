@@ -94,8 +94,9 @@ public class LoginController {
 
             // change scene to the feed page
             Stage feedStage = (Stage) loginButton.getScene().getWindow(); // pick any element from the login window to id which stage
-            feedStage.setScene(new Scene(root));
+            feedStage.setScene(new Scene(root, 1250, 820));
             feedStage.setTitle("Feed");
+            feedStage.centerOnScreen();
             feedStage.show();
 
         } catch (Exception e) {

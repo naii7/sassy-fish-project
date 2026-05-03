@@ -21,8 +21,11 @@ public class MainTest extends Application {
         LoginController loginController = loader.getController();
         loginController.setBusinessLogic(businessLogic);
         
-        primaryStage.setTitle("Sassy Fish -ewwdrvevrddsvdsaderdvevevrvfdssddds Social Media");
+        primaryStage.setTitle("Sassy Me - Social Media");
+        primaryStage.setResizable(false);  // Prevents user resizing
         primaryStage.setScene(new Scene(root));
+        primaryStage.sizeToScene();
+        primaryStage.centerOnScreen();     // Centers the window    
         primaryStage.show();
     }
     
